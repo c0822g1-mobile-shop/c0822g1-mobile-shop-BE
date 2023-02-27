@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserPrinciple implements UserDetails {
-    private int id;
+    private Integer id;
     private String username;
     private String password;
     private String name;
@@ -23,7 +23,7 @@ public class UserPrinciple implements UserDetails {
     public UserPrinciple() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -74,6 +74,10 @@ public class UserPrinciple implements UserDetails {
         this.avatar = avatar;
         this.roles = roles;
 
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public static UserPrinciple build(User user) {
