@@ -1,4 +1,4 @@
-package com.codegym.model.commodity;
+package com.example.mobiledemo.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,31 +7,32 @@ import javax.persistence.Id;
 
 @Entity
 public class Commodity {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String name;
     private String cpu;
     private String capacity;
-    private String tradeMark;
+    private String trademArk;
     private double price;
     private String image;
     private String camera;
     private String selfie;
-    private String screenSize;
+    private String screensize;
     private String guarantee;
     private String origin;
-    private String description;
-    private String codeQR;
+    private String decription;
+    private String codeQr;
     private int quantity;
 
     public Commodity() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -59,12 +60,12 @@ public class Commodity {
         this.capacity = capacity;
     }
 
-    public String getTradeMark() {
-        return tradeMark;
+    public String getTrademArk() {
+        return trademArk;
     }
 
-    public void setTradeMark(String tradeMark) {
-        this.tradeMark = tradeMark;
+    public void setTrademArk(String trademArk) {
+        this.trademArk = trademArk;
     }
 
     public double getPrice() {
@@ -99,12 +100,12 @@ public class Commodity {
         this.selfie = selfie;
     }
 
-    public String getScreenSize() {
-        return screenSize;
+    public String getScreensize() {
+        return screensize;
     }
 
-    public void setScreenSize(String screenSize) {
-        this.screenSize = screenSize;
+    public void setScreensize(String screensize) {
+        this.screensize = screensize;
     }
 
     public String getGuarantee() {
@@ -123,20 +124,20 @@ public class Commodity {
         this.origin = origin;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDecription() {
+        return decription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDecription(String decription) {
+        this.decription = decription;
     }
 
-    public String getCodeQR() {
-        return codeQR;
+    public String getCodeQr() {
+        return codeQr;
     }
 
-    public void setCodeQR(String codeQR) {
-        this.codeQR = codeQR;
+    public void setCodeQr(String codeQr) {
+        this.codeQr = codeQr;
     }
 
     public int getQuantity() {

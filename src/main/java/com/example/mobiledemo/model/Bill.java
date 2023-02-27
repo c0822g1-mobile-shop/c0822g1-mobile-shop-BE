@@ -1,16 +1,15 @@
-package com.codegym.model.bill;
-
-import com.codegym.model.user.User;
+package com.example.mobiledemo.model;
 
 import javax.persistence.*;
 
 @Entity
 public class Bill {
     @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String buyDate;
     private String detail;
+    private double moneyTotal;
     private int quantity;
     private String paymentMethod;
     @ManyToOne
@@ -43,6 +42,13 @@ public class Bill {
         this.detail = detail;
     }
 
+    public double getMoneyTotal() {
+        return moneyTotal;
+    }
+
+    public void setMoneyTotal(double moneyTotal) {
+        this.moneyTotal = moneyTotal;
+    }
 
     public int getQuantity() {
         return quantity;

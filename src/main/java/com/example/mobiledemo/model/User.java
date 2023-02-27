@@ -1,41 +1,24 @@
-package com.codegym.model.user;
+package com.example.mobiledemo.model;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String name;
-    private String password;
     private String phoneNumber;
     private String email;
     private String address;
     private int age;
     private boolean gender;
     private String dateOfBirth;
-    private String avatar;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles = new HashSet<>();
 
     public User() {
-    }
-
-    public User(int id, String name, String password, String phoneNumber, String email, String address, int age, boolean gender, String dateOfBirth, String avatar, Set<Role> roles) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.address = address;
-        this.age = age;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.avatar = avatar;
-        this.roles = roles;
     }
 
     public int getId() {
@@ -52,14 +35,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getPhoneNumber() {
@@ -108,21 +83,5 @@ public class User {
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 }
