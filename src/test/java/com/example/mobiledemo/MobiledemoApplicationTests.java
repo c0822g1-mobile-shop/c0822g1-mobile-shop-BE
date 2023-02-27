@@ -1,10 +1,10 @@
-package com.codegym;
+package com.example.mobiledemo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BackEndApplicationTests {
+class MobiledemoApplicationTests {
 
     @Test
     void contextLoads() {
