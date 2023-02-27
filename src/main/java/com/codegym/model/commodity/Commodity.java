@@ -1,9 +1,6 @@
 package com.codegym.model.commodity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Commodity {
@@ -13,7 +10,6 @@ public class Commodity {
     private String name;
     private String cpu;
     private String capacity;
-    private String trademark;
     private double price;
     private String image;
     private String camera;
@@ -26,15 +22,26 @@ public class Commodity {
     private int quantity;
     private boolean flagDelete;
 
+    @ManyToOne
+    private Trademark trademark;
+
     public Commodity() {
     }
 
-    public boolean isFlagDelete() {
-        return flagDelete;
+    public Trademark getTrademark() {
+        return trademark;
     }
 
-    public void setFlagDelete(boolean flagDelete) {
-        this.flagDelete = flagDelete;
+    public void setTrademark(Trademark trademark) {
+        this.trademark = trademark;
+    }
+
+    public String getCodeQr() {
+        return codeQr;
+    }
+
+    public void setCodeQr(String codeQr) {
+        this.codeQr = codeQr;
     }
 
     public Integer getId() {
@@ -67,14 +74,6 @@ public class Commodity {
 
     public void setCapacity(String capacity) {
         this.capacity = capacity;
-    }
-
-    public String getTrademark() {
-        return trademark;
-    }
-
-    public void setTrademark(String trademark) {
-        this.trademark = trademark;
     }
 
     public double getPrice() {
@@ -141,19 +140,19 @@ public class Commodity {
         this.description = description;
     }
 
-    public String getCodeQr() {
-        return codeQr;
-    }
-
-    public void setCodeQr(String codeQr) {
-        this.codeQr = codeQr;
-    }
-
     public int getQuantity() {
         return quantity;
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public boolean isFlagDelete() {
+        return flagDelete;
+    }
+
+    public void setFlagDelete(boolean flagDelete) {
+        this.flagDelete = flagDelete;
     }
 }
