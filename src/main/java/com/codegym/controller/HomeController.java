@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/home")
+@RequestMapping("home")
 public class HomeController {
     /**
      *Create by: PhucNT
@@ -21,7 +21,6 @@ public class HomeController {
      * @Param name
      * @return HttpStatus.OK if result not error
      */
-
 
     @Autowired
     private ICommodityService commodityService;

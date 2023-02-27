@@ -11,11 +11,11 @@ import javax.transaction.Transactional;
 
 @Transactional
 public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
-    @Query(value = "select * from `commodity` from where name like %:name%",nativeQuery = true)
+    @Query(value = "select * from `commodity` where name like concat('%',:name,'%')",nativeQuery = true)
     Page<Commodity> searchCommodity(@Param("name") String name, Pageable pageable);
 
-    @Query(value = "select c.*,ifnull(ifnull(sum(ich.quantity),0)-ifnull(c.quantity,0),0)) as quantity_sold" +
-            " from `commodity` c join import_commodity_history ich on c.id = ich.id_commodity" +
+    @Query(value = "select c.*, ifnull(ifnull(sum(wh.quantity),0)-ifnull(c.quantity,0),0)) as quantity_sold" +
+            " from `commodity` c join ware_housing wh on c.id = wh.id_commodity" +
             "group by c.id order by quantity_sold asc limit 20 ", nativeQuery = true)
     Page<Commodity> getCommodityByQuantity(Pageable pageable);
 }
