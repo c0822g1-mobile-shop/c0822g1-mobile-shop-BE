@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/home")
 public class HomeController {
     /**
+     *Create by: PhucNT
+     * Date create: 27/02/2023
+     * Function: list Commodity search & List Commodity order by quantity sold
      *
+     * @Param name
+     * @return HttpStatus.OK if result not error
      */
 
 
