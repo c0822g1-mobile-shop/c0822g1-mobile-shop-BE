@@ -14,8 +14,8 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
     @Query(value = "select * from `commodity` where name like concat('%',:name,'%')",nativeQuery = true)
     Page<Commodity> searchCommodity(@Param("name") String name, Pageable pageable);
 
-    @Query(value = "select c.*, ifnull(ifnull(sum(wh.quantity),0)-ifnull(c.quantity,0),0)) as quantity_sold" +
-            " from `commodity` c join ware_housing wh on c.id = wh.id_commodity" +
-            "group by c.id order by quantity_sold asc limit 20 ", nativeQuery = true)
+    @Query(nativeQuery = true,value = "SELECT c.* , ifnull(sum(ifnull(wh.quantity,0))-ifnull(c.quantity,0),0) as quantity_sold" +
+            " FROM `commodity` c JOIN `ware_housing` wh on c.id = wh.commodity_id GROUP BY c.id " +
+            "ORDER BY quantity_sold")
     Page<Commodity> getCommodityByQuantity(Pageable pageable);
 }

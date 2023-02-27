@@ -32,6 +32,6 @@ public class HomeController {
     @GetMapping("quantity")
     public ResponseEntity<Page<Commodity>> pageResponseEntityByQuantity(Pageable pageable){
         Page<Commodity> commodityPage = commodityService.getCommodityByQuantity(pageable);
-        return new ResponseEntity<>(commodityPage,HttpStatus.OK) ;
+        return new ResponseEntity<>(commodityPage,HttpStatus.OK);
     }
 }
