@@ -1,19 +1,11 @@
-package com.codegym.model.commodity;
+package com.codegym.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class Commodity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CommodityDto {
     private Integer id;
     private String name;
     private String cpu;
     private String capacity;
-    private String tradeMark;
+    private String trademark;
     private double price;
     private String image;
     private String camera;
@@ -22,19 +14,30 @@ public class Commodity {
     private String guarantee;
     private String origin;
     private String description;
-    private String codeQR;
+    private String codeQr;
     private int quantity;
-    private boolean flagDelete;
+    private boolean flag_delete;
 
-    public Commodity() {
+    public CommodityDto() {
     }
 
-    public boolean isFlagDelete() {
-        return flagDelete;
-    }
-
-    public void setFlagDelete(boolean flagDelete) {
-        this.flagDelete = flagDelete;
+    public CommodityDto(Integer id, String name, String cpu, String capacity, String trademark, double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, int quantity, boolean flag_delete) {
+        this.id = id;
+        this.name = name;
+        this.cpu = cpu;
+        this.capacity = capacity;
+        this.trademark = trademark;
+        this.price = price;
+        this.image = image;
+        this.camera = camera;
+        this.selfie = selfie;
+        this.screenSize = screenSize;
+        this.guarantee = guarantee;
+        this.origin = origin;
+        this.description = description;
+        this.codeQr = codeQr;
+        this.quantity = quantity;
+        this.flag_delete = flag_delete;
     }
 
     public Integer getId() {
@@ -69,12 +72,12 @@ public class Commodity {
         this.capacity = capacity;
     }
 
-    public String getTradeMark() {
-        return tradeMark;
+    public String getTrademark() {
+        return trademark;
     }
 
-    public void setTradeMark(String tradeMark) {
-        this.tradeMark = tradeMark;
+    public void setTrademark(String trademark) {
+        this.trademark = trademark;
     }
 
     public double getPrice() {
@@ -141,12 +144,12 @@ public class Commodity {
         this.description = description;
     }
 
-    public String getCodeQR() {
-        return codeQR;
+    public String getCodeQr() {
+        return codeQr;
     }
 
-    public void setCodeQR(String codeQR) {
-        this.codeQR = codeQR;
+    public void setCodeQr(String codeQr) {
+        this.codeQr = codeQr;
     }
 
     public int getQuantity() {
@@ -155,5 +158,13 @@ public class Commodity {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public boolean isFlag_delete() {
+        return flag_delete;
+    }
+
+    public void setFlag_delete(boolean flag_delete) {
+        this.flag_delete = flag_delete;
     }
 }
