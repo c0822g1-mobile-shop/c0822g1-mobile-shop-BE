@@ -23,6 +23,7 @@ public class Commodity {
     private String description;
     private String codeQR;
     private int quantity;
+    private Boolean flagDelete;
 
     public Commodity() {
     }
@@ -145,5 +146,13 @@ public class Commodity {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Boolean getFlagDelete() {
+        return flagDelete;
+    }
+
+    public void setFlagDelete(Boolean flagDelete) {
+        this.flagDelete = flagDelete;
     }
 }
