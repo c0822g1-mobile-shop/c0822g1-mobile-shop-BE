@@ -14,5 +14,7 @@ public interface ISupplierService {
 
     void updateSupplier(String name, String address, String phoneNumber, String email, Integer id);
 
-    public Map<String, String> check(SupplierDto supplierDto);
+    Map<String, String> checkCreate(SupplierDto supplierDto);
+
+    Map<String, String> checkUpdate(SupplierDto supplierDto);
 }

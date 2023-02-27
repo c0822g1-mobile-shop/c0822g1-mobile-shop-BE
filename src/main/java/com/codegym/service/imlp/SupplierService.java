@@ -34,17 +34,34 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public Map<String, String> check(SupplierDto supplierDto) {
+    public Map<String, String> checkCreate(SupplierDto supplierDto) {
         Map<String, String> checkMap = new HashMap<>();
 
         for (int i = 0; i < supplierRepository.supplierList().size(); i++) {
-            if (supplierRepository.supplierList().get(i).getCode().equals(supplierDto.getCode())){
+            if (supplierRepository.supplierList().get(i).getCode().equals(supplierDto.getCode())) {
                 checkMap.put("errorCode", "Code đã tồn tại trong hệ thống");
             }
-            if (supplierRepository.supplierList().get(i).getPhoneNumber().equals(supplierDto.getPhoneNumber())){
+            if (supplierRepository.supplierList().get(i).getPhoneNumber().equals(supplierDto.getPhoneNumber())) {
                 checkMap.put("errorPhone", "Số điện thoại đã tồn tại trong hệ thống");
             }
-            if (supplierRepository.supplierList().get(i).getEmail().equals(supplierDto.getEmail())){
+            if (supplierRepository.supplierList().get(i).getEmail().equals(supplierDto.getEmail())) {
+                checkMap.put("errorEmail", "Email đã tồn tại trong hệ thống");
+            }
+        }
+        return checkMap;
+    }
+
+    @Override
+    public Map<String, String> checkUpdate(SupplierDto supplierDto) {
+        Map<String, String> checkMap = new HashMap<>();
+
+        Supplier supplier = findSupplier(supplierDto.getId());
+
+        for (int i = 0; i < supplierRepository.supplierList().size(); i++) {
+            if (!supplier.getPhoneNumber().equals(supplierDto.getPhoneNumber()) && supplierRepository.supplierList().get(i).getPhoneNumber().equals(supplierDto.getPhoneNumber())) {
+                checkMap.put("errorPhone", "Số điện thoại đã tồn tại trong hệ thống");
+            }
+            if (!supplier.getEmail().equals(supplierDto.getEmail()) && supplierRepository.supplierList().get(i).getEmail().equals(supplierDto.getEmail())) {
                 checkMap.put("errorEmail", "Email đã tồn tại trong hệ thống");
             }
         }
