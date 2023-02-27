@@ -13,10 +13,26 @@ import javax.transaction.Transactional;
 
 @Repository
 public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
+
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: show commodity list
+     *
+     * @param pageable
+     * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
+     */
     @Query(value = "select * from commodity where flag_delete = false", nativeQuery = true)
     Page<Commodity> showListCommodity(Pageable pageable);
 
-
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: delete commodity
+     *
+     * @param id
+     * @Return HttpStatus.OK if result is not error
+     */
     @Modifying
     @Transactional
     @Query(value = "update commodity  set flag_delete = true" +
