@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface ISupplierRepository extends JpaRepository<Supplier, Integer> {
 
     @Modifying
@@ -21,4 +23,7 @@ public interface ISupplierRepository extends JpaRepository<Supplier, Integer> {
     @Transactional
     @Query(value = "update supplier set name = :name, address = :address, phone_number = :phone, email = :email where id = :id and flag_delete = false", nativeQuery = true)
     void updateSupplier(@Param("name") String name, @Param("address") String address, @Param("phone") String phoneNumber, @Param("email") String email, @Param("id") Integer id);
+
+    @Query(value = "select * from supplier", nativeQuery = true)
+    List<Supplier> supplierList();
 }

@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("")
 @CrossOrigin("*")
@@ -22,6 +24,20 @@ public class SupplierRestController {
     @PostMapping("/add")
     private ResponseEntity<?> addSupplier(@RequestBody @Validated SupplierDto supplierDto, BindingResult bindingResult){
         new SupplierDto().validate(supplierDto, bindingResult);
+        Map<String, String> check = supplierService.check(supplierDto);
+
+        if (check.get("errorCode") != null){
+            bindingResult.rejectValue("code", "code", check.get("errorCode"));
+        }
+
+        if (check.get("errorPhone") != null){
+            bindingResult.rejectValue("phoneNumber", "phoneNumber", check.get("errorPhone"));
+        }
+
+        if (check.get("errorEmail") != null){
+            bindingResult.rejectValue("email", "email", check.get("errorEmail"));
+        }
+
         if (bindingResult.hasErrors()){
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
@@ -41,7 +57,7 @@ public class SupplierRestController {
     private ResponseEntity<?> updateSupplier(@RequestBody @Validated SupplierDto supplierDto, BindingResult bindingResult){
         new SupplierDto().validate(supplierDto, bindingResult);
         if (bindingResult.hasErrors()){
-
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         Supplier supplier = new Supplier();
         BeanUtils.copyProperties(supplierDto, supplier);
