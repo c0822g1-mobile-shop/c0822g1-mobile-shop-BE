@@ -1,26 +1,31 @@
-package com.codegym.model.supplier;
+package com.codegym.dto;
 
-import javax.persistence.*;
+
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-@Entity
-public class Supplier {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class SupplierDto implements Validator {
     private int id;
-    @Column(columnDefinition = "varchar(6)", unique = true)
+    @Pattern(regexp = "^\\d{6}$", message = "Mã số không đúng định dạng")
+    @NotBlank(message = "Không được để trống")
     private String code;
+    @NotBlank(message = "Không được để trống")
     private String name;
+    @NotBlank(message = "Không được để trống")
     private String address;
-    @Column(name = "phone_number", unique = true)
+    @NotBlank(message = "Không được để trống")
+    @Pattern(regexp = "^(0|\\+84)\\d{9}$", message = "Số điện thoại không đúng định dạng")
     private String phoneNumber;
-    @Column(unique = true)
+    @NotBlank(message = "Không được để trống")
+    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$", message = "Email không đúng định dạng")
     private String email;
-    @Column(columnDefinition = "boolean")
     private boolean flagDelete;
 
-    public Supplier() {
+    public SupplierDto() {
+
     }
 
     public int getId() {
@@ -77,5 +82,15 @@ public class Supplier {
 
     public void setFlagDelete(boolean flagDelete) {
         this.flagDelete = flagDelete;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }
