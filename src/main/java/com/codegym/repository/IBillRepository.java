@@ -1,6 +1,6 @@
-package com.example.mobiledemo.repository;
+package com.codegym.repository;
 
-import com.example.mobiledemo.model.Bill;
+import com.codegym.model.Bill;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IBillRepository extends JpaRepository<Bill,Integer> {

@@ -1,6 +1,6 @@
-package com.example.mobiledemo.service;
+package com.codegym.service;
 
-import com.example.mobiledemo.model.Bill;
+import com.codegym.model.Bill;
 
 import java.util.List;
 

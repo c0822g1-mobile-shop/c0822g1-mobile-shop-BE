@@ -1,7 +1,7 @@
-package com.example.mobiledemo.controller;
+package com.codegym.controller;
 
-import com.example.mobiledemo.model.User;
-import com.example.mobiledemo.service.IUserService;
+import com.codegym.model.User;
+import com.codegym.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

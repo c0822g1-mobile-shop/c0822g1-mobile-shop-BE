@@ -1,6 +1,6 @@
-package com.example.mobiledemo.service;
+package com.codegym.service;
 
-import com.example.mobiledemo.model.Commodity;
+import com.codegym.model.Commodity;
 
 import java.util.List;
 

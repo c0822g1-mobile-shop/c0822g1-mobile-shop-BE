@@ -1,6 +1,6 @@
-package com.example.mobiledemo.repository;
+package com.codegym.repository;
 
-import com.example.mobiledemo.model.User;
+import com.codegym.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

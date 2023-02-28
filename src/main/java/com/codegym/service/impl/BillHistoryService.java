@@ -1,8 +1,8 @@
-package com.example.mobiledemo.service.impl;
+package com.codegym.service.impl;
 
-import com.example.mobiledemo.model.BillHistory;
-import com.example.mobiledemo.repository.IBillHistoryRepository;
-import com.example.mobiledemo.service.IBillHistoryService;
+import com.codegym.model.BillHistory;
+import com.codegym.repository.IBillHistoryRepository;
+import com.codegym.service.IBillHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

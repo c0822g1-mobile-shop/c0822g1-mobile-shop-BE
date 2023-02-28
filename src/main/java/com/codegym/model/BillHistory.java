@@ -1,4 +1,4 @@
-package com.example.mobiledemo.model;
+package com.codegym.model;
 
 import javax.persistence.*;
 

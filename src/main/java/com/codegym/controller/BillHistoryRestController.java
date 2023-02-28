@@ -1,7 +1,7 @@
-package com.example.mobiledemo.controller;
+package com.codegym.controller;
 
-import com.example.mobiledemo.model.BillHistory;
-import com.example.mobiledemo.service.IBillHistoryService;
+import com.codegym.model.BillHistory;
+import com.codegym.service.IBillHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

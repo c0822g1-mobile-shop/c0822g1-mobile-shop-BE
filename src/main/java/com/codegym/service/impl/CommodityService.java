@@ -1,8 +1,8 @@
-package com.example.mobiledemo.service.impl;
+package com.codegym.service.impl;
 
-import com.example.mobiledemo.model.Commodity;
-import com.example.mobiledemo.repository.ICommodityRepository;
-import com.example.mobiledemo.service.ICommodityService;
+import com.codegym.model.Commodity;
+import com.codegym.repository.ICommodityRepository;
+import com.codegym.service.ICommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

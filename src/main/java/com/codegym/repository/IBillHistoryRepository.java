@@ -1,6 +1,6 @@
-package com.example.mobiledemo.repository;
+package com.codegym.repository;
 
-import com.example.mobiledemo.model.BillHistory;
+import com.codegym.model.BillHistory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
