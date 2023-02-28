@@ -22,13 +22,13 @@ public class ScanQRCodeController {
      * Create by: DuongLTH
      * Date create 27/02/2023
      * Function scan QRCode
-     * @Param : QRCode
+     * @Param : qrCode
      * Return: HttpStatus.NO_CONTENT if result is error, commodity & HttpStatus.OK if result is not error
      */
 
-    @GetMapping("/{QRCode}")
-    public ResponseEntity<Commodity> scanQRCode(@PathVariable("QRCode") String QRCode) {
-        Commodity commodity = commodityService.findByQRCode(QRCode);
+    @GetMapping("/{qrCode}")
+    public ResponseEntity<Commodity> scanQRCode(@PathVariable("qrCode") String qrCode) {
+        Commodity commodity = commodityService.findByQRCode(qrCode);
         if (commodity==null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
