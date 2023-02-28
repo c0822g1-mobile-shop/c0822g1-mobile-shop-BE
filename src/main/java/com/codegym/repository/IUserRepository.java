@@ -1,7 +1,6 @@
 package com.codegym.repository;
 
 import com.codegym.model.user.User;
-import org.hibernate.metamodel.model.convert.spi.JpaAttributeConverter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,9 +15,9 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all customer
-     * @param name
-     * @param address
-     * @param pageable
+     * @param: name
+     * @param: address
+     * @param: pageable
      */
     @Query(value = "select `user`.*"+
             " from `user`\n" +
@@ -34,7 +33,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all customer
-     * @param pageable
+     * @param: pageable
      */
     @Query(value = "select `user`.*"+
             " from `user`\n" +
@@ -47,7 +46,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get customer by id
-     * @param id
+     * @param: id
      */
     @Query(value = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.id = :id",
             countQuery = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.id = :id"
