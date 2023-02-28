@@ -1,22 +1,37 @@
 package com.codegym.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD:src/main/java/com/codegym/model/User.java
     private int id;
     private String name;
+=======
+    private Integer id;
+    @Column(columnDefinition = "varchar(6)", unique = true)
+    private String code;
+    private String name;
+    private String address;
+    @Column(name = "phone_number", unique = true)
+>>>>>>> origin/develop:src/main/java/com/codegym/model/supplier/Supplier.java
     private String phoneNumber;
+    @Column(unique = true)
     private String email;
+<<<<<<< HEAD:src/main/java/com/codegym/model/User.java
     private String address;
     private int age;
     private boolean gender;
     private String dateOfBirth;
+=======
+    @Column(columnDefinition = "boolean")
+    private boolean flagDelete;
+>>>>>>> origin/develop:src/main/java/com/codegym/model/supplier/Supplier.java
 
     public User() {
     }
@@ -53,6 +68,7 @@ public class User {
         this.email = email;
     }
 
+<<<<<<< HEAD:src/main/java/com/codegym/model/User.java
     public String getAddress() {
         return address;
     }
@@ -83,5 +99,13 @@ public class User {
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+=======
+    public boolean isFlagDelete() {
+        return flagDelete;
+    }
+
+    public void setFlagDelete(boolean flagDelete) {
+        this.flagDelete = flagDelete;
+>>>>>>> origin/develop:src/main/java/com/codegym/model/supplier/Supplier.java
     }
 }

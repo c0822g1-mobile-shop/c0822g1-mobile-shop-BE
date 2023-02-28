@@ -1,15 +1,19 @@
 package com.codegym.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Commodity {
+<<<<<<< HEAD:src/main/java/com/codegym/model/Commodity.java
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+=======
+
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+>>>>>>> origin/develop:src/main/java/com/codegym/model/commodity/Commodity.java
     private String name;
     private String cpu;
     private String capacity;
@@ -24,8 +28,21 @@ public class Commodity {
     private String decription;
     private String codeQr;
     private int quantity;
+    private boolean flagDelete;
+
+
+    private int interestRate = 10;
 
     public Commodity() {
+
+    }
+
+    public int getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(int interestRate) {
+        this.interestRate = interestRate;
     }
 
     public int getId() {
@@ -146,5 +163,13 @@ public class Commodity {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public boolean isFlagDelete() {
+        return flagDelete;
+    }
+
+    public void setFlagDelete(boolean flagDelete) {
+        this.flagDelete = flagDelete;
     }
 }
