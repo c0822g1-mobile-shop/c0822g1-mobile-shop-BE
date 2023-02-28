@@ -1,6 +1,5 @@
 package com.codegym.service;
 
-<<<<<<< HEAD
 import com.codegym.model.user.User;
 import com.codegym.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import java.util.Optional;
 public class UserService implements IUserService {
     @Autowired
     private IUserRepository userRepository;
+
     /**
      * Created by: LongPT
      * Date created: 27/2/2023
@@ -24,7 +24,7 @@ public class UserService implements IUserService {
      * @param pageable
      */
     @Override
-    public Page<User>findAllCustomer(Pageable pageable, String name, String address) {
+    public Page<User> findAllCustomer(Pageable pageable, String name, String address) {
         return userRepository.findAllCustomer(pageable, name, address);
     }
 
@@ -32,8 +32,9 @@ public class UserService implements IUserService {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get customer by id
+     *
      * @param id
-    */
+     */
     @Override
     public Optional<User> findCustomerById(Integer id) {
         return userRepository.findCustomerById(id);
@@ -43,7 +44,4 @@ public class UserService implements IUserService {
     public Page<User> findAllCustomerNoParam(Pageable pageable) {
         return userRepository.findAllCustomerNoParam(pageable);
     }
-=======
-public class UserService {
->>>>>>> 082265685ff1401b7688e0e27661e412920d5873
 }
