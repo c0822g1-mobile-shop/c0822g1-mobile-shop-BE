@@ -25,6 +25,10 @@ public class SupplierRestController_createSupplier {
     @Autowired
     private ObjectMapper objectMapper;
 
+    /**
+     *
+     * This function is used to check an input code property is null
+     */
     @Test
     public void createSupplier_code_13() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -43,6 +47,10 @@ public class SupplierRestController_createSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     *
+     * This function is used to check an input name property is null
+     */
     @Test
     public void createSupplier_name_13() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -61,6 +69,10 @@ public class SupplierRestController_createSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     *
+     * This function is used to check an input address property is null
+     */
     @Test
     public void createSupplier_address_13() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -79,6 +91,11 @@ public class SupplierRestController_createSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input phoneNumber property is null
+     */
     @Test
     public void createSupplier_phoneNumber_13() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -97,6 +114,10 @@ public class SupplierRestController_createSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     *
+     * This function is used to check an input email property is null
+     */
     @Test
     public void createSupplier_email_13() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -115,6 +136,11 @@ public class SupplierRestController_createSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input code property is empty
+     */
     @Test
     public void createSupplier_code_14() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -133,6 +159,11 @@ public class SupplierRestController_createSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input name property is empty
+     */
     @Test
     public void createSupplier_name_14() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -151,6 +182,11 @@ public class SupplierRestController_createSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input address property is empty
+     */
     @Test
     public void createSupplier_address_14() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -169,6 +205,11 @@ public class SupplierRestController_createSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input phoneNumber property is empty
+     */
     @Test
     public void createSupplier_phoneNumber_14() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -187,6 +228,11 @@ public class SupplierRestController_createSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input email property is empty
+     */
     @Test
     public void createSupplier_email_14() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -205,6 +251,11 @@ public class SupplierRestController_createSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input code property has correct format
+     */
     @Test
     public void createSupplier_code_15() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -223,6 +274,11 @@ public class SupplierRestController_createSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input phone property has correct format
+     */
     @Test
     public void createSupplier_phoneNumber_15() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -241,6 +297,11 @@ public class SupplierRestController_createSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input email property has correct format
+     */
     @Test
     public void createSupplier_email_15() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -259,6 +320,11 @@ public class SupplierRestController_createSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check when all input data is correct
+     */
     @Test
     public void createSupplier_18() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
