@@ -1,5 +1,6 @@
 package com.codegym.repository;
 
+import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -65,3 +66,12 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             " FROM `commodity` c JOIN `ware_housing` wh on c.id = wh.commodity_id GROUP BY c.id " +
             "ORDER BY quantity_sold")
     Page<Commodity> getCommodityByQuantity(Pageable pageable);
+    
+    /**
+     * Create by : DuongLTH
+     * Date create 27/02/2023
+     * @param QRCode
+     */
+    @Query(value = "SELECT * FROM commodity where codeqr=:QRCode",nativeQuery = true)
+    Commodity findByQRCode(@Param("QRCode") String QRCode);
+}

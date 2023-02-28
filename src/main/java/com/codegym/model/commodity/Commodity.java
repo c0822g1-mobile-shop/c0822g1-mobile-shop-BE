@@ -1,12 +1,11 @@
 package com.codegym.model.commodity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Commodity {
+
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
@@ -24,7 +23,19 @@ public class Commodity {
     private String codeQR;
     private int quantity;
 
+
+    private int interestRate = 10;
+
     public Commodity() {
+
+    }
+
+    public int getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(int interestRate) {
+        this.interestRate = interestRate;
     }
 
     public Integer getId() {
