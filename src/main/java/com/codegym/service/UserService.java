@@ -1,5 +1,6 @@
 package com.codegym.service;
 
+<<<<<<< HEAD
 import com.codegym.model.user.User;
 import com.codegym.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +43,7 @@ public class UserService implements IUserService {
     public Page<User> findAllCustomerNoParam(Pageable pageable) {
         return userRepository.findAllCustomerNoParam(pageable);
     }
+=======
+public class UserService {
+>>>>>>> 082265685ff1401b7688e0e27661e412920d5873
 }

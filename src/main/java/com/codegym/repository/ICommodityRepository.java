@@ -1,5 +1,6 @@
 package com.codegym.repository;
 
+
 import com.codegym.model.commodity.Commodity;
 import com.codegym.model.user.User;
 import org.springframework.data.domain.Page;
@@ -43,4 +44,3 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             ,nativeQuery = true)
     Optional<Commodity> findCommodityById(@Param("id") Integer id);
 }
-

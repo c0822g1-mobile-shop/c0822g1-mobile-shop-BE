@@ -19,6 +19,14 @@ import java.util.Optional;
 public class CommodityController {
     @Autowired
     private ICommodityService commodityService;
+    /**
+     * Created by: LongPT
+     * Date created: 27/2/2023
+     * Function: get all commodity
+     * @param pageable
+     * @param name
+     * @return HttpStatus.NOT_FOUND if result is error. HttpStatus.OK if result is not error.
+     */
     @GetMapping("")
     public ResponseEntity<Page<Commodity>> getAllCommodity(@PageableDefault(size = 5) Pageable pageable, @RequestParam(required = false, defaultValue = "") String name) {
         Page<Commodity> commodityPage;
@@ -32,6 +40,14 @@ public class CommodityController {
         }
         return new ResponseEntity<>(commodityPage, HttpStatus.OK);
     }
+    /**
+     * Created by: LongPT
+     * Date created: 27/2/2023
+     * Function: get commodity by id
+     *
+     * @param id
+     * @return HttpStatus.NOT_FOUND if result is error, id null or id not in database. HttpStatus.OK if result is not error.
+     */
     @GetMapping("{id}")
     public ResponseEntity<Optional<Commodity>> getCommodityById(@PathVariable("id") Integer id) {
         Optional<Commodity> commodity;
@@ -42,5 +58,4 @@ public class CommodityController {
             return new ResponseEntity<>(commodity, HttpStatus.OK);
         }
     }
-
 }
