@@ -30,7 +30,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_name_13() throws Exception {
+    public void editCommodity_name_19() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName(null);
@@ -65,7 +65,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_cpu_13() throws Exception {
+    public void editCommodity_cpu_19() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -100,7 +100,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_capacity_13() throws Exception {
+    public void editCommodity_capacity_19() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -136,7 +136,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_image_13() throws Exception {
+    public void editCommodity_image_19() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -171,7 +171,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_camera_13() throws Exception {
+    public void editCommodity_camera_19() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -206,7 +206,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_selfie_13() throws Exception {
+    public void editCommodity_selfie_19() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -241,7 +241,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_screenSize_13() throws Exception {
+    public void editCommodity_screenSize_19() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -276,7 +276,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_guarantee_13() throws Exception {
+    public void editCommodity_guarantee_19() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -311,7 +311,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_origin_13() throws Exception {
+    public void editCommodity_origin_19() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -346,7 +346,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_codeQr_13() throws Exception {
+    public void editCommodity_codeQr_19() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -381,7 +381,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_name_14() throws Exception {
+    public void editCommodity_name_20() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("");
@@ -416,7 +416,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_cpu_14() throws Exception {
+    public void editCommodity_cpu_20() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -451,7 +451,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_capacity_14() throws Exception {
+    public void editCommodity_capacity_20() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -486,7 +486,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_image_14() throws Exception {
+    public void editCommodity_image_20() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -521,7 +521,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_camera_14() throws Exception {
+    public void editCommodity_camera_20() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -556,7 +556,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_selfie_14() throws Exception {
+    public void editCommodity_selfie_20() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -591,7 +591,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_screenSize_14() throws Exception {
+    public void editCommodity_screenSize_20() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -626,7 +626,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_guarantee_14() throws Exception {
+    public void editCommodity_guarantee_20() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -661,7 +661,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_origin_14() throws Exception {
+    public void editCommodity_origin_20() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -696,7 +696,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_codeQr_14() throws Exception {
+    public void editCommodity_codeQr_20() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone");
@@ -731,7 +731,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_name_15() throws Exception {
+    public void editCommodity_name_21() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12@#!");
@@ -766,7 +766,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_cpu_15() throws Exception {
+    public void editCommodity_cpu_21() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -800,7 +800,7 @@ public class CommodityRestController_editCommodity {
      * @author DanhHD
      * @Time 15:00 28/02/2023
      */    @Test
-    public void editCommodity_capacity_15() throws Exception {
+    public void editCommodity_capacity_21() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -835,7 +835,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_camera_15() throws Exception {
+    public void editCommodity_camera_21() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -870,7 +870,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_selfie_15() throws Exception {
+    public void editCommodity_selfie_21() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -905,7 +905,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_screenSize_15() throws Exception {
+    public void editCommodity_screenSize_21() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -940,7 +940,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_guarantee_15() throws Exception {
+    public void editCommodity_guarantee_21() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -975,7 +975,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_origin_15() throws Exception {
+    public void editCommodity_origin_21() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1010,7 +1010,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_codeQr_15() throws Exception {
+    public void editCommodity_codeQr_21() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1045,7 +1045,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_name_16() throws Exception {
+    public void editCommodity_name_22() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iph");
@@ -1080,7 +1080,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_cpu_16() throws Exception {
+    public void editCommodity_cpu_22() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1115,7 +1115,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_capacity_16() throws Exception {
+    public void editCommodity_capacity_22() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1150,7 +1150,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_image_16() throws Exception {
+    public void editCommodity_image_22() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1185,7 +1185,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_camera_16() throws Exception {
+    public void editCommodity_camera_22() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1220,7 +1220,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_selfie_16() throws Exception {
+    public void editCommodity_selfie_22() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1255,7 +1255,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_screenSize_16() throws Exception {
+    public void editCommodity_screenSize_22() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1290,7 +1290,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_guarantee_16() throws Exception {
+    public void editCommodity_guarantee_22() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1325,7 +1325,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_origin_16() throws Exception {
+    public void editCommodity_origin_22() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1360,7 +1360,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_codeQR_16() throws Exception {
+    public void editCommodity_codeQR_22() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1395,7 +1395,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_name_17() throws Exception {
+    public void editCommodity_name_23() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 Iphone 12 I");
@@ -1430,7 +1430,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_cpu_17() throws Exception {
+    public void editCommodity_cpu_23() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1465,7 +1465,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_capacity_17() throws Exception {
+    public void editCommodity_capacity_23() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1500,7 +1500,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_image_17() throws Exception {
+    public void editCommodity_image_23() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1535,7 +1535,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_camera_17() throws Exception {
+    public void editCommodity_camera_23() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1570,7 +1570,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_selfie_17() throws Exception {
+    public void editCommodity_selfie_23() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1605,7 +1605,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_screenSize_17() throws Exception {
+    public void editCommodity_screenSize_23() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1640,7 +1640,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_guarantee_17() throws Exception {
+    public void editCommodity_guarantee_23() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1675,7 +1675,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_origin_17() throws Exception {
+    public void editCommodity_origin_23() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1710,7 +1710,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_codeQr_17() throws Exception {
+    public void editCommodity_codeQr_23() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("Iphone 12");
@@ -1745,7 +1745,7 @@ public class CommodityRestController_editCommodity {
      * @Time 15:00 28/02/2023
      */
     @Test
-    public void editCommodity_18() throws Exception {
+    public void editCommodity_24() throws Exception {
         CommodityDto commodityDto = new CommodityDto();
         commodityDto.setId(15);
         commodityDto.setName("OPPO Reno 10");
