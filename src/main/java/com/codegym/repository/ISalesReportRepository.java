@@ -16,7 +16,7 @@ public interface ISalesReportRepository extends JpaRepository<SalesReport,Intege
      * @return Sales report from 'startDay' to 'endDay'
      */
 
-    @Query(value = "SELECT SUM((b.quantity * (c.price + c.price * c.interest_rate)) - (b.quantity * c.price))\n" +
+    @Query(value = "SELECT SUM((b.quantity * (c.price + c.price * c.interest_rate/100)) - (b.quantity * c.price))\n" +
             "                       AS revenue,\n" +
             "       SUM(b.quantity) AS totalQuantity\n" +
             "FROM bill b\n" +
