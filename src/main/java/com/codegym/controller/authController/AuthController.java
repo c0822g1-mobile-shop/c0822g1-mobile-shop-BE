@@ -15,14 +15,24 @@ import com.codegym.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+//import org.springframework.security.authentication.AuthenticationManager;
+//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -50,11 +60,13 @@ public class AuthController {
      */
     @PostMapping("/signup")
     public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm) {
+
         if (iUserService.existsByUsername(signUpForm.getUsername())) {
+
             return new ResponseEntity<>(new ResponseMessage("Tên đăng " + signUpForm.getUsername() + " nhập đã được sử dụng, vui lòng chọn tên khác"), HttpStatus.BAD_REQUEST);
         }
         if (iUserService.existsByEmail(signUpForm.getEmail())) {
-            return new ResponseEntity<>(new ResponseMessage("Email"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ResponseMessage("Email " + signUpForm.getEmail() + " đã được sử dụng"), HttpStatus.BAD_REQUEST);
         }
         User user = new User(signUpForm.getUsername(), passwordEncoder.encode(signUpForm.getPassword()), signUpForm.getName(), signUpForm.getEmail());
         Set<String> strRoles = signUpForm.getRoles();
@@ -62,15 +74,15 @@ public class AuthController {
         strRoles.forEach(role -> {
             switch (role) {
                 case "admin":
-                    Role roleAdmin = iRoleService.findByName(RoleName.ROLE_ADMIN).orElseThrow(() -> new RuntimeException("Role not found"));
+                    Role roleAdmin = iRoleService.roleAdmin().orElseThrow(() -> new RuntimeException("Role not found 1"));
                     roles.add(roleAdmin);
                     break;
                 case "employee":
-                    Role roleEmployee = iRoleService.findByName(RoleName.ROLE_EMPLOYEE).orElseThrow(() -> new RuntimeException("Role not found"));
+                    Role roleEmployee = iRoleService.roleEmployee().orElseThrow(() -> new RuntimeException("Role not found 2"));
                     roles.add(roleEmployee);
                     break;
                 default:
-                    Role roleCustomer = iRoleService.findByName(RoleName.ROLE_CUSTOMER).orElseThrow(() -> new RuntimeException("Role not found"));
+                    Role roleCustomer = iRoleService.roleCustomer().orElseThrow(() -> new RuntimeException("Role not found 3"));
                     roles.add(roleCustomer);
             }
         });
@@ -119,5 +131,32 @@ public class AuthController {
             }
         }
         return new ResponseEntity<>(new ResponseMessage("Thay đổi mật khẩu thất bại"),HttpStatus.BAD_REQUEST);
+    }
+    @GetMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+
+            return new ResponseEntity<>(new ResponseMessage("Đăng xuất thành công"),HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity<>(new ResponseMessage("Đăng xuất thất bại"),HttpStatus.NOT_ACCEPTABLE);
+
+    }
+    @GetMapping("/customers")
+    public ResponseEntity<?> getAllCustomer(){
+      return new ResponseEntity<>(iUserService.findAllCustomer(),HttpStatus.OK);
+    }
+    @GetMapping("/employees")
+    public ResponseEntity<?> getAllEmployee(){
+        return new ResponseEntity<>(iUserService.findAllEmployee(),HttpStatus.OK);
+    }
+    @GetMapping("/admins")
+    public ResponseEntity<?> getAllAdmin(){
+        return new ResponseEntity<>(iUserService.findAllAdmin(),HttpStatus.OK);
+    }
+    @GetMapping("/users")
+    public ResponseEntity<?> getAllUser(){
+        return new ResponseEntity<>(iUserService.findAll(),HttpStatus.OK);
     }
 }

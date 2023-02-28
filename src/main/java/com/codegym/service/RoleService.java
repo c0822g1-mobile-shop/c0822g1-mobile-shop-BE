@@ -13,7 +13,15 @@ public class RoleService implements IRoleService{
   @Autowired
   private IRoleRepository iRoleRepository;
     @Override
-    public Optional<Role> findByName(RoleName name) {
-        return iRoleRepository.findByName(name);
+    public Optional<Role> roleAdmin() {
+        return iRoleRepository.roleAdmin();
     }
+  @Override
+  public Optional<Role> roleCustomer() {
+    return iRoleRepository.roleCustomer();
+  }
+  @Override
+  public Optional<Role> roleEmployee() {
+    return iRoleRepository.roleEmployee();
+  }
 }

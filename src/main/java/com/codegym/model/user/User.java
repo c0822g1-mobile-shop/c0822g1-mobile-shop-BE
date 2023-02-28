@@ -7,7 +7,7 @@ import java.util.Set;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String username;
@@ -15,8 +15,8 @@ public class User {
     private String phoneNumber;
     private String email;
     private String address;
-    private int age;
-    private boolean gender;
+    private Integer age;
+    private Boolean gender;
     private String dateOfBirth;
     private String avatar;
     @ManyToMany(fetch = FetchType.EAGER)
@@ -91,7 +91,7 @@ public class User {
         this.address = address;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
@@ -99,7 +99,7 @@ public class User {
         this.age = age;
     }
 
-    public boolean isGender() {
+    public Boolean isGender() {
         return gender;
     }
 
