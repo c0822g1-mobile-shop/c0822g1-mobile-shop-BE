@@ -1,5 +1,8 @@
 package com.codegym.repository;
 
+<<<<<<< HEAD
+public interface ICommodityRepository {
+=======
 import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,5 +34,10 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
     @Query(nativeQuery = true, value = "SELECT c.* , ifnull(sum(ifnull(wh.quantity,0))-ifnull(c.quantity,0),0) as quantity_sold" +
             " FROM `commodity` c JOIN `ware_housing` wh on c.id = wh.commodity_id GROUP BY c.id " +
             "ORDER BY quantity_sold")
+<<<<<<< HEAD
     Page<Commodity> getCommodityByQuantity(Pageable pageable, @Param("limit") Integer limit );
+=======
+    Page<Commodity> getCommodityByQuantity(Pageable pageable);
+>>>>>>> home-PhucNT
+>>>>>>> develop
 }

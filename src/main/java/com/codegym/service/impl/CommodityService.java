@@ -1,4 +1,4 @@
-package com.codegym.service.imlp;
+package com.codegym.service.impl;
 
 import com.codegym.model.commodity.Commodity;
 import com.codegym.repository.ICommodityRepository;
