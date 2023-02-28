@@ -26,7 +26,8 @@ public class BillRestController_createBill {
 
     /**
      *
-     * this function use to test the validation of all field more specific is null
+     * this function use to test the validation of paymentMethod field more specific is null
+     * Author: HocHH
      */
 
     @Test
@@ -49,6 +50,11 @@ public class BillRestController_createBill {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     *
+     * this function use to test the validation of name field more specific is null
+     * Author: HocHH
+     */
     @Test
     public void createBill_name_13() throws Exception {
         BillDto billDto = new BillDto();
@@ -69,6 +75,11 @@ public class BillRestController_createBill {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     *
+     * this function use to test the validation of phoneNumber field more specific is null
+     * Author: HocHH
+     */
     @Test
     public void createBill_phoneNumber_13() throws Exception {
         BillDto billDto = new BillDto();
@@ -89,6 +100,11 @@ public class BillRestController_createBill {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     *
+     * this function use to test the validation of address field more specific is null
+     * Author: HocHH
+     */
     @Test
     public void createBill_address_13() throws Exception {
         BillDto billDto = new BillDto();
@@ -109,6 +125,11 @@ public class BillRestController_createBill {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     *
+     * this function use to test the validation of age field more specific is null
+     * Author: HocHH
+     */
     @Test
     public void createBill_age_13() throws Exception {
         BillDto billDto = new BillDto();
@@ -129,6 +150,11 @@ public class BillRestController_createBill {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     *
+     * this function use to test the validation of email field more specific is null
+     * Author: HocHH
+     */
     @Test
     public void createBill_email_13() throws Exception {
         BillDto billDto = new BillDto();
@@ -149,6 +175,11 @@ public class BillRestController_createBill {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     *
+     * this function use to test the validation of paymentMethod field more specific is empty
+     * Author: HocHH
+     */
     @Test
     public void createBill_paymentMethod_14() throws Exception {
         BillDto billDto = new BillDto();
@@ -169,6 +200,11 @@ public class BillRestController_createBill {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     *
+     * this function use to test the validation of name field more specific is empty
+     * Author: HocHH
+     */
     @Test
     public void createBill_name_14() throws Exception {
         BillDto billDto = new BillDto();
@@ -189,6 +225,11 @@ public class BillRestController_createBill {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     *
+     * this function use to test the validation of phoneNumber field more specific is empty
+     * Author: HocHH
+     */
     @Test
     public void createBill_phoneNumber_14() throws Exception {
         BillDto billDto = new BillDto();
@@ -209,6 +250,11 @@ public class BillRestController_createBill {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     *
+     * this function use to test the validation of address field more specific is empty
+     * Author: HocHH
+     */
     @Test
     public void createBill_address_14() throws Exception {
         BillDto billDto = new BillDto();
@@ -229,8 +275,11 @@ public class BillRestController_createBill {
                 .andExpect(status().is4xxClientError());
     }
 
-
-
+    /**
+     *
+     * this function use to test the validation of email field more specific is empty
+     * Author: HocHH
+     */
     @Test
     public void createBill_email_14() throws Exception {
         BillDto billDto = new BillDto();
@@ -256,6 +305,7 @@ public class BillRestController_createBill {
     /**
      *
      * This function is used to check when all input data is correct
+     * Author: HocHH
      */
     @Test
     public void createBill_18() throws Exception {
