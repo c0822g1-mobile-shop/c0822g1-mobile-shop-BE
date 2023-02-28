@@ -17,12 +17,22 @@ import java.util.Optional;
 public class UserService implements IUserService {
     @Autowired
     private IUserRepository iUserRepository;
-
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: find user by username
+     * @param:username
+     **/
     @Override
     public Optional<User> findByUsername(String username) {
         return iUserRepository.findByUsername(username);
     }
-
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: insert into user to register account
+     * @param:name,username,password,email
+     **/
     @Override
     public void save(User user) {
          iUserRepository.save(user.getName(),user.getUsername(), user.getEmail(), user.getPassword());
@@ -32,7 +42,12 @@ public class UserService implements IUserService {
             iUserRepository.insertRole(user1.getId(), x.getId());
         }
     }
-
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: check exists user by username
+     * @param:username
+     **/
     @Override
     public Boolean existsByUsername(String username) {
         for (int i = 0; i < iUserRepository.getAllUser().size(); i++) {
@@ -43,7 +58,12 @@ public class UserService implements IUserService {
         return false;
 
     }
-
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: check exists user by email
+     * @param:email
+     **/
     @Override
     public Boolean existsByEmail(String email) {
         for (int i = 0; i < iUserRepository.getAllUser().size(); i++) {
@@ -53,22 +73,42 @@ public class UserService implements IUserService {
         }
         return false;
     }
-
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: get all user
+     * @param:none
+     **/
     @Override
     public List<User> findAll() {
         return iUserRepository.getAllUser();
     }
-
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: get all user customer
+     * @param:email
+     **/
     @Override
     public List<User> findAllCustomer() {
         return iUserRepository.findAllCustomer();
     }
-
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: get all user employee
+     * @param:email
+     **/
     @Override
     public List<User> findAllEmployee() {
         return iUserRepository.findAllEmployee();
     }
-
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: get all user admin
+     * @param:none
+     **/
     @Override
     public List<User> findAllAdmin() {
         return iUserRepository.findAllAdmin();

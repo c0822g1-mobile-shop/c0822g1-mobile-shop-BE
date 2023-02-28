@@ -61,9 +61,7 @@ public class AuthController {
      */
     @PostMapping("/signup")
     public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm) {
-
         if (iUserService.existsByUsername(signUpForm.getUsername())) {
-
             return new ResponseEntity<>(new ResponseMessage("Tên đăng " + signUpForm.getUsername() + " nhập đã được sử dụng, vui lòng chọn tên khác"), HttpStatus.BAD_REQUEST);
         }
         if (iUserService.existsByEmail(signUpForm.getEmail())) {
@@ -134,6 +132,12 @@ public class AuthController {
         }
         return new ResponseEntity<>(new ResponseMessage("Thay đổi mật khẩu thất bại"),HttpStatus.BAD_REQUEST);
     }
+    /**
+     * Created by: CuongVV
+     * Date created: 27/2/2023
+     * Function: logout to close connect to server
+     * @param: none
+     */
     @GetMapping("/logout")
     public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -144,21 +148,5 @@ public class AuthController {
         }
         return new ResponseEntity<>(new ResponseMessage("Đăng xuất thất bại"),HttpStatus.NOT_ACCEPTABLE);
 
-    }
-    @GetMapping("/customers")
-    public ResponseEntity<?> getAllCustomer(){
-      return new ResponseEntity<>(iUserService.findAllCustomer(),HttpStatus.OK);
-    }
-    @GetMapping("/employees")
-    public ResponseEntity<?> getAllEmployee(){
-        return new ResponseEntity<>(iUserService.findAllEmployee(),HttpStatus.OK);
-    }
-    @GetMapping("/admins")
-    public ResponseEntity<?> getAllAdmin(){
-        return new ResponseEntity<>(iUserService.findAllAdmin(),HttpStatus.OK);
-    }
-    @GetMapping("/users")
-    public ResponseEntity<?> getAllUser(){
-        return new ResponseEntity<>(iUserService.findAll(),HttpStatus.OK);
     }
 }
