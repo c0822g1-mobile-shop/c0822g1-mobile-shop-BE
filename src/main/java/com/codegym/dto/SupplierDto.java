@@ -23,13 +23,15 @@ public class SupplierDto implements Validator {
     private String email;
     private boolean flagDelete;
 
+
+    public SupplierDto() {
+
     public boolean isFlagDelete() {
         return flagDelete;
     }
 
     public void setFlagDelete(boolean flagDelete) {
         this.flagDelete = flagDelete;
-    }
 
     public int getId() {
         return id;
