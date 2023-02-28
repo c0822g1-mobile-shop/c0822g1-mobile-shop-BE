@@ -30,7 +30,7 @@ public class ScanQRCodeController {
     public ResponseEntity<Commodity> scanQRCode(@PathVariable("QRCode") String QRCode) {
         Commodity commodity = commodityService.findByQRCode(QRCode);
         if (commodity==null){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(commodity, HttpStatus.OK);
     }
