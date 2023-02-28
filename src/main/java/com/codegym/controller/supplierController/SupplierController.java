@@ -36,7 +36,7 @@ public class SupplierController {
         return new ResponseEntity<>(supplierListDtoList, HttpStatus.OK);
     }
 
-    @PutMapping("/list")
+    @PatchMapping("/list")
     private ResponseEntity<?> delete(@RequestBody Supplier supplier) {
         try {
             supplierService.deleteSupplier(supplier.getId());
