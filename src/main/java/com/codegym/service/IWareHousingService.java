@@ -1,5 +1,6 @@
 package com.codegym.service;
 
+
 public interface IWareHousingService {
 
     /**
@@ -8,6 +9,6 @@ public interface IWareHousingService {
      * Function: show list supplier +Search supplier + create warehousing
      */
 
-    void wareHousing(Integer quantity, Integer id);
+    void wareHousing( Integer quantityNew, Integer id);
 }
 

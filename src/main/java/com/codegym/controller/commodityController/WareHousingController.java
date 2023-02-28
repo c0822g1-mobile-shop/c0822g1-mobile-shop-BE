@@ -35,15 +35,23 @@ public class WareHousingController {
     @Autowired
     private IFindSuppliersService findSuppliersService;
 
-    @PutMapping("/ware-housing")
-    private ResponseEntity<?> wareHousing(@RequestBody Commodity commodity, @RequestParam(value = "quantity") Integer quantity){
-        Integer quantityNew = commodity.getQuantity() + quantity;
-        wareHousingService.wareHousing(quantityNew, commodity.getId());
+
+   @PutMapping("/ware-housing")
+    private ResponseEntity<?> wareHousing(@RequestBody Commodity commodity, @RequestParam(value = "quantityNew") Integer quantityNew){
+       if (commodity==null && quantityNew == null){
+           return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+       }
+       wareHousingService.wareHousing(quantityNew, commodity.getId());
         return  new ResponseEntity<>(HttpStatus.OK);
     }
+
+
     @GetMapping("/list")
-    private ResponseEntity<?> showLists(@RequestParam(value = "name" ,defaultValue = "") String name, @PageableDefault(value = 5) Pageable pageable) {
-        Page<List<Supplier>> lists = findSuppliersService.showList(name,pageable);
+    private ResponseEntity<?> showLists(@RequestParam(value = "search", defaultValue = "") String search, @PageableDefault(value = 2)Pageable pageable) {
+        Page<List<Supplier>> lists = findSuppliersService.showList(search,pageable);
         return new ResponseEntity<>(lists, HttpStatus.OK);
     }
+
+
+
 }

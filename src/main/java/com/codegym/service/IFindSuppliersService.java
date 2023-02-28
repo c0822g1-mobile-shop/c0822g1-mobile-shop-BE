@@ -17,5 +17,5 @@ public interface IFindSuppliersService {
      * @return HttpStatus.OK
      */
 
-    Page<List<Supplier>> showList(String name, Pageable pageable);
+   Page<List<Supplier>> showList(String search ,Pageable pageable);
 }

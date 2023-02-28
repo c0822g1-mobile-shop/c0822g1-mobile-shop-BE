@@ -27,8 +27,8 @@ public class FindSuppliersService implements IFindSuppliersService {
     private IFindSuppliersRepository findSuppliersRepository;
 
     @Override
-    public Page<List<Supplier>> showList(String name, Pageable pageable) {
-        return findSuppliersRepository.showList(name,pageable);
+    public Page<List<Supplier>> showList(String search, Pageable pageable) {
+        return findSuppliersRepository.showList(search,pageable);
     }
 
 

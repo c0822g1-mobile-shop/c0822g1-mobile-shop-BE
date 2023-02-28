@@ -22,8 +22,9 @@ public class WareHousingService implements IWareHousingService {
     @Autowired
     private IWareHousingRepository wareHousingRepository;
 
+
     @Override
-    public void wareHousing(Integer quantity, Integer id) {
-        wareHousingRepository.wareHousing(quantity, id);
+    public void wareHousing(Integer quantityNew, Integer id) {
+        wareHousingRepository.wareHousing(quantityNew,id);
     }
 }
