@@ -25,6 +25,7 @@ public class SupplierDto implements Validator {
 
 
     public SupplierDto() {
+    }
 
     public boolean isFlagDelete() {
         return flagDelete;
@@ -32,6 +33,7 @@ public class SupplierDto implements Validator {
 
     public void setFlagDelete(boolean flagDelete) {
         this.flagDelete = flagDelete;
+    }
 
     public int getId() {
         return id;

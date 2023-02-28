@@ -1,6 +1,5 @@
 package com.codegym.controller.scanQRCodeController;
 
-import com.codegym.model.SalesReport.ISalesReport;
 import com.codegym.model.commodity.Commodity;
 import com.codegym.service.ICommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
