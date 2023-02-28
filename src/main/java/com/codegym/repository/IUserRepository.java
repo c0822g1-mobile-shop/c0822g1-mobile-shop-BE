@@ -20,8 +20,13 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param address
      * @param pageable
      */
-    @Query(value = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.name like concat('%',:name,'%') and user.address like concat('%', :address,'%')",
-            countQuery = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.name like concat('%',:name,'%') and user.address like concat('%', :address,'%')"
+    @Query(value = "select `user`.*"+
+            " from `user`\n" +
+            "         join `user_roles` on `user`.id = `user_roles`.user_id\n" +
+            "         join `role` on `role`.id = `user_roles`.roles_id\n" +
+            "where role.id = 1\n" +
+            "  and user.name like concat('%', :name, '%')\n" +
+            "  and user.address like concat('%', :address, '%')"
             ,nativeQuery = true)
     Page<User> findAllCustomer(Pageable pageable, @Param("name") String name, @Param("address") String address);
 
@@ -31,8 +36,11 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Function: get all customer
      * @param pageable
      */
-    @Query(value = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1",
-            countQuery = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1"
+    @Query(value = "select `user`.*"+
+            " from `user`\n" +
+            "         join `user_roles` on `user`.id = `user_roles`.user_id\n" +
+            "         join `role` on `role`.id = `user_roles`.roles_id\n" +
+            "where role.id = 1"
             ,nativeQuery = true)
     Page<User> findAllCustomerNoParam(Pageable pageable);
     /**
