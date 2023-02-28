@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/commodity")
 @CrossOrigin("*")
 public class CommodityController {
 
@@ -29,10 +29,11 @@ public class CommodityController {
     @Autowired
     private ICommodityService commodityService;
     @GetMapping("/list")
-    public ResponseEntity<Page<Commodity>> showList(Model model, @PageableDefault(value = 1) Pageable pageable){
-        Page<Commodity> commodityList = commodityService.findAll(pageable);
+    public ResponseEntity<Page<Commodity>> showList( @RequestParam(defaultValue = "",required = false ) String search,
+                                                    @PageableDefault(value = 2) Pageable pageable){
+        Page<Commodity> commodityList = commodityService.findAll(search,pageable);
         if (commodityList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(commodityList, HttpStatus.OK);
     }
@@ -49,6 +50,10 @@ public class CommodityController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Commodity> delete(@PathVariable("id") Integer id){
+        Commodity commodity = commodityService.findById(id).orElse(null);
+        if (commodity == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         commodityService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Repository
 public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
@@ -22,8 +23,12 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      * @param pageable
      * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
      */
-    @Query(value = "select * from commodity where flag_delete = false", nativeQuery = true)
-    Page<Commodity> showListCommodity(Pageable pageable);
+    @Query(value = "select * from commodity where flag_delete = false " +
+            "and (commodity.name like concat('%',:search ,'%')" +
+            " or commodity.price = :search " +
+            "or  commodity.quantity = :search)", nativeQuery = true)
+    Page<Commodity> showListCommodity(@Param("search") String name,
+                                      Pageable pageable);
 
     /**
      * Created by: CongBD,
@@ -38,4 +43,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
     @Query(value = "update commodity  set flag_delete = true" +
             " where id = :id", nativeQuery = true)
     void deleteCommodity(@Param("id") Integer id);
+
+    @Query(value = "select * from commodity where id = :id and flag_delete = false",nativeQuery = true)
+    Optional<Commodity> findById(@Param("id") int id);
 }

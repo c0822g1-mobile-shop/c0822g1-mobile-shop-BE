@@ -12,8 +12,8 @@ public class Commodity {
     private String name;
     private String cpu;
     private String capacity;
-    private String tradeMark;
-    private double price;
+    private String trademark;
+    private Double price;
     private String image;
     private String camera;
     private String selfie;
@@ -21,8 +21,8 @@ public class Commodity {
     private String guarantee;
     private String origin;
     private String description;
-    private String codeQR;
-    private int quantity;
+    private String codeQr;
+    private Integer quantity;
     private Boolean flagDelete;
 
     public Commodity() {
@@ -60,12 +60,12 @@ public class Commodity {
         this.capacity = capacity;
     }
 
-    public String getTradeMark() {
-        return tradeMark;
+    public String getTrademark() {
+        return trademark;
     }
 
-    public void setTradeMark(String tradeMark) {
-        this.tradeMark = tradeMark;
+    public void setTrademark(String trademark) {
+        this.trademark = trademark;
     }
 
     public double getPrice() {
@@ -132,12 +132,12 @@ public class Commodity {
         this.description = description;
     }
 
-    public String getCodeQR() {
-        return codeQR;
+    public String getCodeQr() {
+        return codeQr;
     }
 
-    public void setCodeQR(String codeQR) {
-        this.codeQR = codeQR;
+    public void setCodeQr(String codeQr) {
+        this.codeQr = codeQr;
     }
 
     public int getQuantity() {
