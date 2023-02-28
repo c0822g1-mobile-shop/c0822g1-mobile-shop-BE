@@ -18,6 +18,7 @@ public class CommodityRestController {
     @Autowired
     private ICommodityService commodityService;
 
+
     /**
      * Created by: DanhHD
      * Date Created: 27/02/2023
@@ -45,12 +46,15 @@ public class CommodityRestController {
      * Function: find commodity by id
      *
      * @param id
-     * @return HttpStatus.OK if id is found
+     * @return HttpStatus.BAD_REQUEST if id is not found or HttpStatus.OK if id is found
      */
 
     @GetMapping("{id}")
     public ResponseEntity<Commodity> findById(@PathVariable("id") Integer id) {
         Commodity commodity = commodityService.findCommodity(id);
+        if (commodity == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(commodity, HttpStatus.OK);
     }
 

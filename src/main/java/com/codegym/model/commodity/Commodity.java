@@ -10,7 +10,7 @@ public class Commodity {
     private String name;
     private String cpu;
     private String capacity;
-    private double price;
+    private Double price;
     private String image;
     private String camera;
     private String selfie;
@@ -19,29 +19,13 @@ public class Commodity {
     private String origin;
     private String description;
     private String codeQr;
-    private int quantity;
-    private boolean flagDelete;
+    private Integer quantity;
+    private Boolean flagDelete;
 
     @ManyToOne
     private Trademark trademark;
 
     public Commodity() {
-    }
-
-    public Trademark getTrademark() {
-        return trademark;
-    }
-
-    public void setTrademark(Trademark trademark) {
-        this.trademark = trademark;
-    }
-
-    public String getCodeQr() {
-        return codeQr;
-    }
-
-    public void setCodeQr(String codeQr) {
-        this.codeQr = codeQr;
     }
 
     public Integer getId() {
@@ -76,11 +60,11 @@ public class Commodity {
         this.capacity = capacity;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -140,19 +124,35 @@ public class Commodity {
         this.description = description;
     }
 
-    public int getQuantity() {
+    public String getCodeQr() {
+        return codeQr;
+    }
+
+    public void setCodeQr(String codeQr) {
+        this.codeQr = codeQr;
+    }
+
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public boolean isFlagDelete() {
+    public Boolean getFlagDelete() {
         return flagDelete;
     }
 
-    public void setFlagDelete(boolean flagDelete) {
+    public void setFlagDelete(Boolean flagDelete) {
         this.flagDelete = flagDelete;
+    }
+
+    public Trademark getTrademark() {
+        return trademark;
+    }
+
+    public void setTrademark(Trademark trademark) {
+        this.trademark = trademark;
     }
 }

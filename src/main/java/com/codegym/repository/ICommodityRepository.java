@@ -21,10 +21,11 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
 
     @Modifying
     @Transactional
-    @Query(value = "insert into commodity(`name`, " +
+    @Query(value = "insert into commodity" +
+            "(`name`, " +
             "cpu, " +
             "capacity, " +
-            "trademark, " +
+            "trademark_id, " +
             "price," +
             "image, " +
             "camera, " +
@@ -40,7 +41,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             "(:#{#commodity.name}, " +
             ":#{#commodity.cpu}, " +
             ":#{#commodity.capacity}, " +
-            ":#{#commodity.trademark}, " +
+            ":#{#commodity.trademark.id}, " +
             ":#{#commodity.price}, " +
             ":#{#commodity.image}, " +
             ":#{#commodity.camera}, " +
@@ -84,7 +85,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             "`name` =:#{#commodity.name}, " +
             "cpu =:#{#commodity.cpu}, " +
             "capacity =:#{#commodity.capacity}, " +
-            "trademark =:#{#commodity.trademark}, " +
+            "trademark_id =:#{#commodity.trademark.id}, " +
             "price =:#{#commodity.price}," +
             "image =:#{#commodity.image}, " +
             "camera =:#{#commodity.camera}, " +

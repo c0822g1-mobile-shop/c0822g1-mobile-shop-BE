@@ -1,32 +1,51 @@
 package com.codegym.dto;
 
+import com.codegym.model.commodity.Trademark;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 public class CommodityDto {
     private Integer id;
+    @NotBlank(message = "Không được để trống")
+    @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$",message = "Không chứa ký tự đặc biệt")
+    @Length(min = 1, max = 200)
     private String name;
+    @NotBlank(message = "Không được để trống")
+    @Length(min = 1, max = 50)
     private String cpu;
+    @NotBlank(message = "Không được để trống")
     private String capacity;
-    private String trademark;
-    private double price;
+    private Double price;
+    @NotBlank(message = "Không được để trống")
     private String image;
+    @NotBlank(message = "Không được để trống")
     private String camera;
+    @NotBlank(message = "Không được để trống")
     private String selfie;
+    @NotBlank(message = "Không được để trống")
     private String screenSize;
+    @NotBlank(message = "Không được để trống")
     private String guarantee;
+    @NotBlank(message = "Không được để trống")
     private String origin;
     private String description;
+    @NotBlank(message = "Không được để trống")
     private String codeQr;
-    private int quantity;
-    private boolean flag_delete;
+    private Integer quantity;
+    private Boolean flag_delete;
+    private Trademark trademark;
 
     public CommodityDto() {
     }
 
-    public CommodityDto(Integer id, String name, String cpu, String capacity, String trademark, double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, int quantity, boolean flag_delete) {
+    public CommodityDto(Integer id, String name, String cpu, String capacity, Double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, Integer quantity, Boolean flag_delete, Trademark trademark) {
         this.id = id;
         this.name = name;
         this.cpu = cpu;
         this.capacity = capacity;
-        this.trademark = trademark;
         this.price = price;
         this.image = image;
         this.camera = camera;
@@ -38,6 +57,7 @@ public class CommodityDto {
         this.codeQr = codeQr;
         this.quantity = quantity;
         this.flag_delete = flag_delete;
+        this.trademark = trademark;
     }
 
     public Integer getId() {
@@ -72,19 +92,11 @@ public class CommodityDto {
         this.capacity = capacity;
     }
 
-    public String getTrademark() {
-        return trademark;
-    }
-
-    public void setTrademark(String trademark) {
-        this.trademark = trademark;
-    }
-
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -152,19 +164,27 @@ public class CommodityDto {
         this.codeQr = codeQr;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public boolean isFlag_delete() {
+    public Boolean getFlag_delete() {
         return flag_delete;
     }
 
-    public void setFlag_delete(boolean flag_delete) {
+    public void setFlag_delete(Boolean flag_delete) {
         this.flag_delete = flag_delete;
+    }
+
+    public Trademark getTrademark() {
+        return trademark;
+    }
+
+    public void setTrademark(Trademark trademark) {
+        this.trademark = trademark;
     }
 }
