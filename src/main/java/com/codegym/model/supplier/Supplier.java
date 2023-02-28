@@ -1,20 +1,25 @@
 package com.codegym.model.supplier;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 
 @Entity
 public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(columnDefinition = "varchar(6)", unique = true)
     private String code;
     private String name;
     private String address;
+    @Column(name = "phone_number", unique = true)
     private String phoneNumber;
+    @Column(unique = true)
     private String email;
+    @Column(columnDefinition = "boolean")
+    private boolean flagDelete;
 
     public Supplier() {
     }
@@ -23,7 +28,7 @@ public class Supplier {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -65,5 +70,13 @@ public class Supplier {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isFlagDelete() {
+        return flagDelete;
+    }
+
+    public void setFlagDelete(boolean flagDelete) {
+        this.flagDelete = flagDelete;
     }
 }

@@ -3,6 +3,8 @@ package com.codegym.model.bill;
 import com.codegym.model.user.User;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Bill {
@@ -13,9 +15,13 @@ public class Bill {
     private String detail;
     private int quantity;
     private String paymentMethod;
+//    private Boolean billPrint;
     private Boolean billPrint;
     @ManyToOne
     private User user;
+
+    @OneToMany
+    private Set<BillHistory> billHistorySet = new HashSet<>();
 
     public Bill() {
     }
@@ -74,5 +80,13 @@ public class Bill {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<BillHistory> getBillHistorySet() {
+        return billHistorySet;
+    }
+
+    public void setBillHistorySet(Set<BillHistory> billHistorySet) {
+        this.billHistorySet = billHistorySet;
     }
 }

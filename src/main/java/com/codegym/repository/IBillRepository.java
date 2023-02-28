@@ -14,9 +14,9 @@ import java.util.Optional;
 @Transactional
 public interface IBillRepository extends JpaRepository<Bill, Integer> {
 
-
-    @Query(value = "select * from bill where id = :billId", nativeQuery = true)
-    Optional<Bill> findByBill(@Param("billId") Integer billId);
+//
+//    @Query(value = "select * from bill where id = :billId", nativeQuery = true)
+//    Optional<Bill> findByBill(@Param("billId") Integer billId);
 
     /**
      * Create by: HocHH
@@ -32,12 +32,15 @@ public interface IBillRepository extends JpaRepository<Bill, Integer> {
             " user_phone_number, " +
             " user_address, " +
             " user_age, " +
-            " user_email) value ( :payment_method,  :bill_print,  :user_name,  :user_phone_number, :user_address, :user_age,  :user_email)",nativeQuery = true)
-    void saveBill(@Param("payment_method") String paymentMethod, @Param("bill_Print") Boolean billPrint, @Param("name") String name, @Param("phone_number") String phoneNumber, @Param("address") String address, @Param("age") int age, @Param("email") String email);
+            " user_email) value ( :payment_method,  :bill_print,  :user_name,  :user_phone_number, :user_address, :user_age,  :user_email) ",nativeQuery = true)
+    void saveBill(@Param("payment_method") String paymentMethod, @Param("bill_print") Boolean billPrint, @Param("user_name") String name, @Param("user_phone_number") String phoneNumber, @Param("user_address") String address, @Param("user_age") int age, @Param("user_email") String email);
+
+//    @Modifying
+//    @Query(value = "insert into bill_history (bill_id, bill_history_id) value (:bill_id, :bill_history_id)",nativeQuery = true)
+//    void insertBillHistory(@Param("bill") int billId, @Param("bill_history") int billHistoryId);
 
     @Modifying
-    @Query(value = "insert into bill_history (bill_id, bill_history_id) value (:bill_id, :bill_history_id)",nativeQuery = true)
-    void insertBillHistory(@Param("bill") int billId, @Param("bill_history") int billHistoryId);
+    @Query(value = " insert into bill_history (bill_id, bill_history_commodity_id) value (:bill_id, :bill_history_commodity_id) ",nativeQuery = true)
+    void insertBillHistory(@Param("bill") int billId, @Param("bill_history") int billHistoryCommodityId);
 
-//    void saveBill(String paymentMethod, Boolean billPrint, String name, String phoneNumber, String address, int age, String email);
 }

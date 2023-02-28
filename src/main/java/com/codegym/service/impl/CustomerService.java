@@ -1,4 +1,4 @@
-package com.codegym.service.imdb;
+package com.codegym.service.impl;
 
 
 import com.codegym.model.user.User;

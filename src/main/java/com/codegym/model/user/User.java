@@ -14,7 +14,7 @@ public class User {
     private String phoneNumber;
     private String email;
     private String address;
-    private int age;
+    private Integer age;
     private boolean gender;
     private String dateOfBirth;
     private String avatar;
@@ -24,25 +24,11 @@ public class User {
     public User() {
     }
 
-    public User(int id, String name, String password, String phoneNumber, String email, String address, int age, boolean gender, String dateOfBirth, String avatar, Set<Role> roles) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.address = address;
-        this.age = age;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.avatar = avatar;
-        this.roles = roles;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -86,11 +72,11 @@ public class User {
         this.address = address;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
