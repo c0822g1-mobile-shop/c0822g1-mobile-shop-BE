@@ -13,17 +13,18 @@ public class Bill {
     private String detail;
     private int quantity;
     private String paymentMethod;
+    private Boolean billPrint;
     @ManyToOne
     private User user;
 
     public Bill() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -43,7 +44,6 @@ public class Bill {
         this.detail = detail;
     }
 
-
     public int getQuantity() {
         return quantity;
     }
@@ -58,6 +58,14 @@ public class Bill {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public Boolean getBillPrint() {
+        return billPrint;
+    }
+
+    public void setBillPrint(Boolean billPrint) {
+        this.billPrint = billPrint;
     }
 
     public User getUser() {
