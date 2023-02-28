@@ -4,11 +4,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+
 @Entity
 public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(columnDefinition = "varchar(6)", unique = true)
     private String code;
     private String name;
@@ -23,7 +24,7 @@ public class Supplier {
     public Supplier() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
