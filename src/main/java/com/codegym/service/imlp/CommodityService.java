@@ -18,6 +18,6 @@ public class CommodityService implements ICommodityService {
     }
 
     public Page<Commodity> getCommodityByQuantity(Pageable pageable){
-        return commodityRepository.getCommodityByQuantity(pageable);
+        return commodityRepository.getCommodityByQuantity(pageable, 20);
     }
 }
