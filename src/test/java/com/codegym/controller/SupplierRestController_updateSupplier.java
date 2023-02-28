@@ -26,6 +26,10 @@ public class SupplierRestController_updateSupplier {
     private ObjectMapper objectMapper;
 
 
+    /**
+     *
+     * This function is used to check an input name property is null
+     */
     @Test
     public void updateSupplier_name_19() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -45,6 +49,11 @@ public class SupplierRestController_updateSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input address property is null
+     */
     @Test
     public void updateSupplier_address_19() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -64,6 +73,11 @@ public class SupplierRestController_updateSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input phoneNumber property is null
+     */
     @Test
     public void updateSupplier_phoneNumber_19() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -83,6 +97,11 @@ public class SupplierRestController_updateSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input email property is null
+     */
     @Test
     public void updateSupplier_email_19() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -102,6 +121,11 @@ public class SupplierRestController_updateSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input name property is empty
+     */
     @Test
     public void updateSupplier_name_20() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -121,6 +145,11 @@ public class SupplierRestController_updateSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input address property is empty
+     */
     @Test
     public void updateSupplier_address_20() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -140,6 +169,11 @@ public class SupplierRestController_updateSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input phoneNumber property is empty
+     */
     @Test
     public void updateSupplier_phoneNumber_20() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -159,6 +193,11 @@ public class SupplierRestController_updateSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input email property is empty
+     */
     @Test
     public void updateSupplier_email_20() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -178,6 +217,11 @@ public class SupplierRestController_updateSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input phoneNumber property has correct format
+     */
     @Test
     public void updateSupplier_phoneNumber_21() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -197,6 +241,11 @@ public class SupplierRestController_updateSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check an input email property has correct format
+     */
     @Test
     public void updateSupplier_email_21() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
@@ -216,6 +265,11 @@ public class SupplierRestController_updateSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function is used to check when all input data is correct
+     */
     @Test
     public void updateSupplier_24() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
