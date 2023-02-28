@@ -189,6 +189,69 @@ public class BillRestController_createBill {
                 .andExpect(status().is4xxClientError());
     }
 
+    @Test
+    public void createBill_phoneNumber_14() throws Exception {
+        BillDto billDto = new BillDto();
+        billDto.setPaymentMethod("Thẻ tín dụng");
+
+        User user = new User();
+        user.setName("Nguyễn Anh Dũng");
+        user.setPhoneNumber("");
+        user.setAddress("21 Thanh Mai, Hà Nội");
+        user.setAge(37);
+        user.setEmail("dungct@gmail.com");
+
+        this.mockMvc.perform(MockMvcRequestBuilders
+                        .post("/api/bill/save")
+                        .content(this.objectMapper.writeValueAsString(billDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void createBill_address_14() throws Exception {
+        BillDto billDto = new BillDto();
+        billDto.setPaymentMethod("Thẻ tín dụng");
+
+        User user = new User();
+        user.setName("Nguyễn Anh Dũng");
+        user.setPhoneNumber("0905214365");
+        user.setAddress("");
+        user.setAge(37);
+        user.setEmail("dungct@gmail.com");
+
+        this.mockMvc.perform(MockMvcRequestBuilders
+                        .post("/api/bill/save")
+                        .content(this.objectMapper.writeValueAsString(billDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+
+
+    @Test
+    public void createBill_email_14() throws Exception {
+        BillDto billDto = new BillDto();
+        billDto.setPaymentMethod("Thẻ tín dụng");
+
+        User user = new User();
+        user.setName("Nguyễn Anh Dũng");
+        user.setPhoneNumber("0905214365");
+        user.setAddress("21 Thanh Mai, Hà Nội");
+        user.setAge(37);
+        user.setEmail("");
+
+        this.mockMvc.perform(MockMvcRequestBuilders
+                        .post("/api/bill/save")
+                        .content(this.objectMapper.writeValueAsString(billDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+
 
     /**
      *
