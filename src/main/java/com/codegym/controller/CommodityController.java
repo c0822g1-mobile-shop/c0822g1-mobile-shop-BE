@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/commodity")
-public class CommodityRestController {
+public class CommodityController {
     @Autowired
     private ICommodityService commodityService;
 

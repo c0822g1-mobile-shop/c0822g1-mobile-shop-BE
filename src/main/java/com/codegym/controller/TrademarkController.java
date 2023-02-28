@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/trademark")
-public class TrademarkRestController {
+public class TrademarkController {
     @Autowired
     private ITrademarkService trademarkService;
 

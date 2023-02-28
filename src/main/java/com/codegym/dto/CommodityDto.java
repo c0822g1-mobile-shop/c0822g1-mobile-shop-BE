@@ -2,7 +2,6 @@ package com.codegym.dto;
 
 import com.codegym.model.commodity.Trademark;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -10,29 +9,45 @@ import javax.validation.constraints.Pattern;
 public class CommodityDto {
     private Integer id;
     @NotBlank(message = "Không được để trống")
-    @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$",message = "Không chứa ký tự đặc biệt")
-    @Length(min = 1, max = 200)
+    @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$", message = "Không chứa ký tự đặc biệt")
+    @Length(min = 5, max = 200)
     private String name;
+    @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$", message = "Không chứa ký tự đặc biệt")
     @NotBlank(message = "Không được để trống")
-    @Length(min = 1, max = 50)
+    @Length(min = 5, max = 50)
     private String cpu;
+    @Length(min = 5, max = 20)
+    @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$", message = "Không chứa ký tự đặc biệt")
     @NotBlank(message = "Không được để trống")
     private String capacity;
     private Double price;
+    @Length(min = 5, max = 20)
     @NotBlank(message = "Không được để trống")
     private String image;
     @NotBlank(message = "Không được để trống")
+    @Length(min = 5, max = 50)
+    @Pattern(regexp = "^[a-zA-Z0-9\\+. ]*$", message = "Không chứa ký tự đặc biệt")
     private String camera;
+    @Length(min = 5, max = 50)
+    @Pattern(regexp = "^[a-zA-Z0-9\\+. ]*$", message = "Không chứa ký tự đặc biệt")
     @NotBlank(message = "Không được để trống")
     private String selfie;
+    @Length(min = 5, max = 20)
+    @Pattern(regexp = "^[a-zA-Z0-9\\+. ]*$", message = "Không chứa ký tự đặc biệt")
     @NotBlank(message = "Không được để trống")
     private String screenSize;
     @NotBlank(message = "Không được để trống")
+    @Length(min = 5, max = 20)
+    @Pattern(regexp = "^[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ0-9 ]*$", message = "Không chứa ký tự đặc biệt")
     private String guarantee;
     @NotBlank(message = "Không được để trống")
+    @Length(min = 5, max = 20)
+    @Pattern(regexp = "^[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđA-Z ]*$", message = "Không chứa ký tự đặc biệt và số")
     private String origin;
     private String description;
     @NotBlank(message = "Không được để trống")
+    @Length(min = 3, max = 10)
+    @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$", message = "Không chứa ký tự đặc biệt")
     private String codeQr;
     private Integer quantity;
     private Boolean flag_delete;
