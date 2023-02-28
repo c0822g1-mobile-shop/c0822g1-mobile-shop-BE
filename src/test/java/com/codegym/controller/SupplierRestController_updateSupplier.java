@@ -25,28 +25,12 @@ public class SupplierRestController_updateSupplier {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Test
-    public void updateSupplier_code_19() throws Exception {
-        SupplierDto supplierDto = new SupplierDto();
-        supplierDto.setCode(null);
-        supplierDto.setName("Sony");
-        supplierDto.setAddress("Bắc Giang");
-        supplierDto.setPhoneNumber("0976789098");
-        supplierDto.setEmail("sonyvn@gmail.com");
-
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/supplier/add")
-                        .content(this.objectMapper.writeValueAsString(supplierDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
 
     @Test
     public void updateSupplier_name_19() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
-        supplierDto.setCode("774912");
+        supplierDto.setId(1);
+        supplierDto.setCode("111111");
         supplierDto.setName(null);
         supplierDto.setAddress("Bắc Giang");
         supplierDto.setPhoneNumber("0976789090");
@@ -54,7 +38,7 @@ public class SupplierRestController_updateSupplier {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/supplier/add")
+                        .put("/supplier/update")
                         .content(this.objectMapper.writeValueAsString(supplierDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -64,7 +48,8 @@ public class SupplierRestController_updateSupplier {
     @Test
     public void updateSupplier_address_19() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
-        supplierDto.setCode("774913");
+        supplierDto.setId(1);
+        supplierDto.setCode("111111");
         supplierDto.setName("Sony");
         supplierDto.setAddress(null);
         supplierDto.setPhoneNumber("0976789200");
@@ -72,7 +57,7 @@ public class SupplierRestController_updateSupplier {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/supplier/add")
+                        .put("/supplier/update")
                         .content(this.objectMapper.writeValueAsString(supplierDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -82,7 +67,8 @@ public class SupplierRestController_updateSupplier {
     @Test
     public void updateSupplier_phoneNumber_19() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
-        supplierDto.setCode("774914");
+        supplierDto.setId(1);
+        supplierDto.setCode("111111");
         supplierDto.setName("Sony");
         supplierDto.setAddress("Bắc Giang");
         supplierDto.setPhoneNumber(null);
@@ -90,7 +76,7 @@ public class SupplierRestController_updateSupplier {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/supplier/add")
+                        .put("/supplier/update")
                         .content(this.objectMapper.writeValueAsString(supplierDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -100,7 +86,8 @@ public class SupplierRestController_updateSupplier {
     @Test
     public void updateSupplier_email_19() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
-        supplierDto.setCode("774914");
+        supplierDto.setId(1);
+        supplierDto.setCode("111111");
         supplierDto.setName("Sony");
         supplierDto.setAddress("Bắc Giang");
         supplierDto.setPhoneNumber("0976789044");
@@ -108,7 +95,7 @@ public class SupplierRestController_updateSupplier {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/supplier/add")
+                        .put("/supplier/update")
                         .content(this.objectMapper.writeValueAsString(supplierDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -116,27 +103,10 @@ public class SupplierRestController_updateSupplier {
     }
 
     @Test
-    public void updateSupplier_code_20() throws Exception {
+    public void updateSupplier_name_20() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
-        supplierDto.setCode("");
-        supplierDto.setName("Sony");
-        supplierDto.setAddress("Bắc Giang");
-        supplierDto.setPhoneNumber("0876789098");
-        supplierDto.setEmail("sonyvnv@gmail.com");
-
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/supplier/add")
-                        .content(this.objectMapper.writeValueAsString(supplierDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-
-    @Test
-    public void createSupplier_name_14() throws Exception {
-        SupplierDto supplierDto = new SupplierDto();
-        supplierDto.setCode("704912");
+        supplierDto.setId(1);
+        supplierDto.setCode("111111");
         supplierDto.setName("");
         supplierDto.setAddress("Bắc Giang");
         supplierDto.setPhoneNumber("0976799090");
@@ -144,7 +114,7 @@ public class SupplierRestController_updateSupplier {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/supplier/add")
+                        .put("/supplier/update")
                         .content(this.objectMapper.writeValueAsString(supplierDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -152,9 +122,10 @@ public class SupplierRestController_updateSupplier {
     }
 
     @Test
-    public void createSupplier_address_14() throws Exception {
+    public void updateSupplier_address_20() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
-        supplierDto.setCode("778913");
+        supplierDto.setId(1);
+        supplierDto.setCode("111111");
         supplierDto.setName("Sony");
         supplierDto.setAddress("");
         supplierDto.setPhoneNumber("0976289200");
@@ -162,7 +133,7 @@ public class SupplierRestController_updateSupplier {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/supplier/add")
+                        .put("/supplier/update")
                         .content(this.objectMapper.writeValueAsString(supplierDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -170,9 +141,10 @@ public class SupplierRestController_updateSupplier {
     }
 
     @Test
-    public void createSupplier_phoneNumber_14() throws Exception {
+    public void updateSupplier_phoneNumber_20() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
-        supplierDto.setCode("774904");
+        supplierDto.setId(1);
+        supplierDto.setCode("111111");
         supplierDto.setName("Sony");
         supplierDto.setAddress("Bắc Giang");
         supplierDto.setPhoneNumber("");
@@ -180,7 +152,7 @@ public class SupplierRestController_updateSupplier {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/supplier/add")
+                        .put("/supplier/update")
                         .content(this.objectMapper.writeValueAsString(supplierDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -188,9 +160,10 @@ public class SupplierRestController_updateSupplier {
     }
 
     @Test
-    public void createSupplier_email_14() throws Exception {
+    public void updateSupplier_email_20() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
-        supplierDto.setCode("700914");
+        supplierDto.setId(1);
+        supplierDto.setCode("111111");
         supplierDto.setName("Sony");
         supplierDto.setAddress("Bắc Giang");
         supplierDto.setPhoneNumber("0976700044");
@@ -198,7 +171,7 @@ public class SupplierRestController_updateSupplier {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/supplier/add")
+                        .put("/supplier/update")
                         .content(this.objectMapper.writeValueAsString(supplierDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -206,27 +179,10 @@ public class SupplierRestController_updateSupplier {
     }
 
     @Test
-    public void createSupplier_code_15() throws Exception {
+    public void updateSupplier_phoneNumber_21() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
-        supplierDto.setCode("abc000");
-        supplierDto.setName("Sony");
-        supplierDto.setAddress("Bắc Giang");
-        supplierDto.setPhoneNumber("0876000098");
-        supplierDto.setEmail("sonyvv@gmail.com");
-
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/supplier/add")
-                        .content(this.objectMapper.writeValueAsString(supplierDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-
-    @Test
-    public void createSupplier_phoneNumber_15() throws Exception {
-        SupplierDto supplierDto = new SupplierDto();
-        supplierDto.setCode("700004");
+        supplierDto.setId(1);
+        supplierDto.setCode("111111");
         supplierDto.setName("Sony");
         supplierDto.setAddress("Bắc Giang");
         supplierDto.setPhoneNumber("098989878");
@@ -234,7 +190,7 @@ public class SupplierRestController_updateSupplier {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/supplier/add")
+                        .put("/supplier/update")
                         .content(this.objectMapper.writeValueAsString(supplierDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -242,9 +198,10 @@ public class SupplierRestController_updateSupplier {
     }
 
     @Test
-    public void createSupplier_email_15() throws Exception {
+    public void updateSupplier_email_21() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
-        supplierDto.setCode("700944");
+        supplierDto.setId(1);
+        supplierDto.setCode("111111");
         supplierDto.setName("Sony");
         supplierDto.setAddress("Bắc Giang");
         supplierDto.setPhoneNumber("0976700004");
@@ -252,7 +209,7 @@ public class SupplierRestController_updateSupplier {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/supplier/add")
+                        .put("/supplier/update")
                         .content(this.objectMapper.writeValueAsString(supplierDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -260,17 +217,18 @@ public class SupplierRestController_updateSupplier {
     }
 
     @Test
-    public void createSupplier_18() throws Exception {
+    public void updateSupplier_24() throws Exception {
         SupplierDto supplierDto = new SupplierDto();
-        supplierDto.setCode("711944");
+        supplierDto.setId(1);
+        supplierDto.setCode("111111");
         supplierDto.setName("Sony");
         supplierDto.setAddress("Bắc Giang");
-        supplierDto.setPhoneNumber("0976708804");
-        supplierDto.setEmail("sonyvn123@gmail.com");
+        supplierDto.setPhoneNumber("0976707704");
+        supplierDto.setEmail("sonyvvn123@gmail.com");
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/supplier/add")
+                        .put("/supplier/update")
                         .content(this.objectMapper.writeValueAsString(supplierDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
