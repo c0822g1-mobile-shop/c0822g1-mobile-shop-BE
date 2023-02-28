@@ -28,9 +28,9 @@ public class HomeController {
     private ICommodityService commodityService;
 
     @GetMapping("search/{name}")
-    public ResponseEntity<Page<Commodity>> searchCommodity(@RequestParam(name = "name",defaultValue = "") String name, Pageable pageable) {
+    public ResponseEntity<Page<Commodity>> searchCommodity(@RequestParam(name = "name", defaultValue = "") String name, Pageable pageable) {
         Page<Commodity> commodityPage = commodityService.searchCommodity(name, pageable);
-        if(commodityPage.isEmpty()){
+        if (commodityPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(commodityPage, HttpStatus.OK);
