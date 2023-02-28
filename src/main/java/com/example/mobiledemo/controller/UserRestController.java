@@ -13,15 +13,26 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 @RequestMapping("/users")
 public class UserRestController {
-    //test
+
     @Autowired
     private IUserService userService;
 
+    /**
+     * Create by: HuyNL
+     * Date create: 27/2/2023
+     * Function: list customer & list bill history
+     *
+     * @param genderSearch
+     * @param ageSearch
+     * @param pageable
+     * @return HttpStatus.OK if result is not error
+     */
+
     @GetMapping("search/{gender}&{age}")
     public ResponseEntity<Page<User>> findAll(@PathVariable(name = "gender") String genderSearch,
-                                              @PathVariable(name = "age") String age,
+                                              @PathVariable(name = "ageSearch") String ageSearch,
                                               Pageable pageable) {
-        Page<User> userPage = userService.findAll(genderSearch, age, pageable);
+        Page<User> userPage = userService.findAll(genderSearch, ageSearch, pageable);
         return new ResponseEntity<>(userPage, HttpStatus.OK);
     }
 }
