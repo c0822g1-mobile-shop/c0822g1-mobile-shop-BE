@@ -18,6 +18,11 @@ public class SupplierRestController_findSupplier {
     @Autowired
     private MockMvc mockMvc;
 
+
+    /**
+     *
+     * This function checks  the input parameter is null
+     */
     @Test
     public void findSupplier_id_1() throws Exception {
         this.mockMvc.perform(
@@ -27,6 +32,11 @@ public class SupplierRestController_findSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function checks the input parameter empty
+     */
     @Test
     public void findSupplier_id_2() throws Exception {
         this.mockMvc.perform(
@@ -36,6 +46,11 @@ public class SupplierRestController_findSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function checks that the input parameter does not exist
+     */
     @Test
     public void findSupplier_id_3() throws Exception {
         this.mockMvc.perform(
@@ -45,6 +60,11 @@ public class SupplierRestController_findSupplier {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     *
+     * This function checks the correct input parameter
+     */
     @Test
     public void getInfoStudent_id_4() throws Exception {
 
