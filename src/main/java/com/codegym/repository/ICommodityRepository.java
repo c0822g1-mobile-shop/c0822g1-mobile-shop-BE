@@ -4,15 +4,14 @@ import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-<<<<<<< HEAD
+
 import org.springframework.data.jpa.repository.Modifying;
-=======
->>>>>>> origin/develop
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-<<<<<<< HEAD
+
 import javax.transaction.Transactional;
 import java.util.Optional;
 
@@ -50,16 +49,8 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
 
     @Query(value = "select * from commodity where id = :id and flag_delete = false",nativeQuery = true)
     Optional<Commodity> findById(@Param("id") int id);
-=======
-import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
 
-import javax.transaction.Transactional;
-
-@Transactional
-@Repository
-public interface ICommodityRepository extends JpaRepository<Commodity, Integer> {
     /**
      * Created by: LongPT
      * Date created: 27/2/2023
@@ -115,5 +106,5 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      */
     @Query(value = "SELECT * FROM commodity where codeqr=:QRCode",nativeQuery = true)
     Commodity findByQRCode(@Param("QRCode") String QRCode);
->>>>>>> origin/develop
+
 }

@@ -20,18 +20,11 @@ public class Commodity {
     private String guarantee;
     private String origin;
     private String description;
-<<<<<<< HEAD
     private String codeQr;
     private Integer quantity;
     private Boolean flagDelete;
-=======
-    private String codeQR;
-    private int quantity;
-    private boolean flagDelete;
-
-
     private int interestRate = 10;
->>>>>>> origin/develop
+
 
     public Commodity() {
 
@@ -165,19 +158,11 @@ public class Commodity {
         this.quantity = quantity;
     }
 
-<<<<<<< HEAD
     public Boolean getFlagDelete() {
         return flagDelete;
     }
 
     public void setFlagDelete(Boolean flagDelete) {
-=======
-    public boolean isFlagDelete() {
-        return flagDelete;
-    }
-
-    public void setFlagDelete(boolean flagDelete) {
->>>>>>> origin/develop
         this.flagDelete = flagDelete;
     }
 }
