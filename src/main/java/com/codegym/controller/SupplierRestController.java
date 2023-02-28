@@ -63,9 +63,13 @@ public class SupplierRestController {
      * Return: HttpStatus.OK if result is not error.
      */
 
-    @GetMapping("/supplier/{id}")
-    private ResponseEntity<Supplier> findSupplier(@PathVariable("id") Integer id) {
+    @GetMapping("/supplier")
+    private ResponseEntity<Supplier> findSupplier(@RequestParam(value = "id", defaultValue = "-1") Integer id) {
         Supplier supplier = supplierService.findSupplier(id);
+        if (supplier == null || id == null || id == -1){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
         return new ResponseEntity<>(supplier, HttpStatus.OK);
     }
 
