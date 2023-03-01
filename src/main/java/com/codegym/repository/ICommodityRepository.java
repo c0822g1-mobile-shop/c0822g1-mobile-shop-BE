@@ -1,13 +1,15 @@
 package com.codegym.repository;
 
 import com.codegym.model.commodity.Commodity;
-<<<<<<< HEAD
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 public interface ICommodityRepository extends JpaRepository<Commodity, Integer> {
 
@@ -101,23 +103,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             "and flag_delete = false ",
             nativeQuery = true)
     void editCommodity(@Param("commodity") Commodity commodity);
-=======
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
-
-import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
-
-import javax.transaction.Transactional;
-
-@Transactional
-@Repository
-public interface ICommodityRepository extends JpaRepository<Commodity, Integer> {
     /**
      * Created by: LongPT
      * Date created: 27/2/2023
@@ -173,5 +158,4 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      */
     @Query(value = "SELECT * FROM commodity where codeqr=:QRCode",nativeQuery = true)
     Commodity findByQRCode(@Param("QRCode") String QRCode);
->>>>>>> origin/develop
 }

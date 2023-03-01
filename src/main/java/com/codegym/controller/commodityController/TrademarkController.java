@@ -1,4 +1,4 @@
-package com.codegym.controller;
+package com.codegym.controller.commodityController;
 
 import com.codegym.model.commodity.Trademark;
 import com.codegym.service.ITrademarkService;
@@ -18,6 +18,14 @@ import java.util.List;
 public class TrademarkController {
     @Autowired
     private ITrademarkService trademarkService;
+
+    /**
+     * Created by: DanhHD
+     * Date Created: 01/03/2023
+     * Function: show trademark list
+     *
+     * @return HttpStatus.NO_CONTENT if list is empty or HttpStatus.OK if list is not empty
+     */
 
     @GetMapping("")
     public ResponseEntity<List<Trademark>> getAllTrademark() {

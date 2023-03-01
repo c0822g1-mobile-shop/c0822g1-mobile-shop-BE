@@ -16,38 +16,74 @@ public class CommodityService implements ICommodityService {
     private ICommodityRepository commodityRepository;
 
     /**
-     * Create by : DuongLTH
-     * Date create 27/02/2023
-     * @param:QRCode
+     * Created by: DanhHD
+     * Date Created: 27/02/2023
+     * Function: create commodity
+     *
+     * @param commodity
+     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
 
     @Override
-    public Commodity findByQRCode(String QRCode) {
-        return commodityRepository.findByQRCode(QRCode);
+    public void addCommodity(Commodity commodity) {
+        commodityRepository.addCommodity(commodity);
     }
 
-    @Autowired
-    private ICommodityRepository iCommodityRepository;
+    /**
+     * Created by: DanhHD
+     * Date Created: 27/02/2023
+     * Function: find commodity by id
+     *
+     * @param id
+     * @return HttpStatus.OK if id is found
+     */
+
+    @Override
+    public Commodity findCommodity(Integer id) {
+        return commodityRepository.findCommodity(id);
+    }
+
+    /**
+     * Created by: DanhHD
+     * Date Created: 27/02/2023
+     * Function: edit commodity by id
+     *
+     * @param commodity
+     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
+     */
+
+    @Override
+    public void editCommodity(Commodity commodity) {
+        commodityRepository.editCommodity(commodity);
+    }
+
     @Override
     public Page<Commodity> getAllCommodity(Pageable pageable, String name) {
-        return iCommodityRepository.getAllCommodity(pageable,name);
+        return commodityRepository.getAllCommodity(pageable,name);
     }
 
     @Override
     public Page<Commodity> getAllCommodityNoParam(Pageable pageable) {
-        return iCommodityRepository.getAllCommodityNoParam(pageable);
+        return commodityRepository.getAllCommodityNoParam(pageable);
     }
 
     @Override
     public Optional<Commodity> findCommodityById(Integer id) {
-        return iCommodityRepository.findCommodityById(id);
+        return commodityRepository.findCommodityById(id);
     }
 
-    public Page<Commodity> searchCommodity(String name, Pageable pageable){
-        return commodityRepository.searchCommodity(name,pageable);
-    }
-
-    public Page<Commodity> getCommodityByQuantity(Pageable pageable){
+    @Override
+    public Page<Commodity> getCommodityByQuantity(Pageable pageable) {
         return commodityRepository.getCommodityByQuantity(pageable, 20);
+    }
+
+    @Override
+    public Page<Commodity> searchCommodity(String name, Pageable pageable) {
+        return commodityRepository.searchCommodity(name, pageable);
+    }
+
+    @Override
+    public Commodity findByQRCode(String QRCode) {
+        return commodityRepository.findByQRCode(QRCode);
     }
 }
