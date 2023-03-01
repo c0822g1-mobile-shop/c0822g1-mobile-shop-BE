@@ -28,6 +28,40 @@ public class CommodityService implements ICommodityService {
 
     @Autowired
     private ICommodityRepository iCommodityRepository;
+
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: show commodity list
+     *
+     * @param pageable
+     * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
+     */
+    @Override
+    public Page<Commodity> findAll(String search,Pageable pageable) {
+        return commodityRepository.showListCommodity(search,pageable);
+    }
+
+
+
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: delete commodity
+     *
+     * @param id
+     * @Return HttpStatus.OK if result is not error
+     */
+    @Override
+    public void delete(Integer id) {
+        commodityRepository.deleteCommodity(id);
+    }
+
+    @Override
+    public Optional<Commodity> findById(int id) {
+        return commodityRepository.findById(id);
+    }
+
     @Override
     public Page<Commodity> getAllCommodity(Pageable pageable, String name) {
         return iCommodityRepository.getAllCommodity(pageable,name);
@@ -49,5 +83,47 @@ public class CommodityService implements ICommodityService {
 
     public Page<Commodity> getCommodityByQuantity(Pageable pageable){
         return commodityRepository.getCommodityByQuantity(pageable, 20);
+    }
+
+    /**
+     * Created by: DanhHD
+     * Date Created: 27/02/2023
+     * Function: create commodity
+     *
+     * @param commodity
+     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
+     */
+
+    @Override
+    public void addCommodity(Commodity commodity) {
+        commodityRepository.addCommodity(commodity);
+    }
+
+    /**
+     * Created by: DanhHD
+     * Date Created: 27/02/2023
+     * Function: find commodity by id
+     *
+     * @param id
+     * @return HttpStatus.OK if id is found
+     */
+
+    @Override
+    public Commodity findCommodity(Integer id) {
+        return commodityRepository.findCommodity(id);
+    }
+
+    /**
+     * Created by: DanhHD
+     * Date Created: 27/02/2023
+     * Function: edit commodity by id
+     *
+     * @param commodity
+     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
+     */
+
+    @Override
+    public void editCommodity(Commodity commodity) {
+        commodityRepository.editCommodity(commodity);
     }
 }
