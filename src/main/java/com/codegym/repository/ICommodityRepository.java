@@ -156,6 +156,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      * Date create 27/02/2023
      * @param: QRCode
      */
-    @Query(value = "SELECT * FROM commodity where codeqr=:QRCode",nativeQuery = true)
+    @Query(value = "SELECT * FROM commodity where code_qr=:QRCode",nativeQuery = true)
     Commodity findByQRCode(@Param("QRCode") String QRCode);
 }
