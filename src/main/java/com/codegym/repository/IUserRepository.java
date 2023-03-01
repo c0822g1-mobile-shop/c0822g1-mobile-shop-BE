@@ -32,6 +32,16 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     @Query(value = "select * from user where username = :username", nativeQuery = true)
     Optional<User> findByUsername(@Param("username") String username);
 
+
+   @Modifying
+    @Query(value = "update user set name = :name,phone_number = :phone_number,email = :email," +
+            " address = :address,age = :age,gender = :gender,date_of_birth = :date_of_birth,avatar = :avatar" +
+            " where username = :username  ",nativeQuery = true)
+    void updateUser(@Param("name") String name,@Param("phone_number") String phoneNumber,@Param("email") String email
+            ,@Param("address") String address,@Param("age") Integer age,@Param("gender") Boolean gender
+    ,@Param("date_of_birth") String dateOfBirth,@Param("avatar") String avatar,@Param("username") String username);
+
+
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023

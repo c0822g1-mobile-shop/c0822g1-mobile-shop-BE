@@ -3,6 +3,7 @@ package com.codegym.controller.authController;
 import com.codegym.dto.request.ChangePasswordForm;
 import com.codegym.dto.request.SignInForm;
 import com.codegym.dto.request.SignUpForm;
+import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.dto.response.JwtResponse;
 import com.codegym.dto.response.ResponseMessage;
 import com.codegym.model.user.Role;
@@ -147,6 +148,17 @@ public class AuthController {
             return new ResponseEntity<>(new ResponseMessage("Đăng xuất thành công"),HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>(new ResponseMessage("Đăng xuất thất bại"),HttpStatus.NOT_ACCEPTABLE);
-
+    }
+    @PostMapping("/update")
+    public ResponseEntity<?> updateUser(@Valid @RequestBody UpdateUserForm updateUserForm,BindingResult bindingResult) {
+       if (bindingResult.hasErrors()) {
+           return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.NOT_ACCEPTABLE);
+       }
+        iUserService.updateUser(updateUserForm);
+        return new ResponseEntity<>(new ResponseMessage("Chỉnh sửa thông tin thành công"),HttpStatus.ACCEPTED);
+    }
+    @GetMapping("/customer")
+    public ResponseEntity<?> getAll() {
+        return new ResponseEntity<>(iUserService.findAll(),HttpStatus.OK);
     }
 }

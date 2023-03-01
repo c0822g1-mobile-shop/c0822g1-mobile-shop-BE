@@ -1,5 +1,6 @@
 package com.codegym.service;
 
+import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.model.user.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,11 @@ public interface IUserService {
      * @param:username
      **/
     Optional<User> findByUsername(String username);
+
+
+    void updateUser(UpdateUserForm updateUserForm);
+
+
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023

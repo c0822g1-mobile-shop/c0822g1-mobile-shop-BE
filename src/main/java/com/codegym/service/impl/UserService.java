@@ -1,6 +1,7 @@
 package com.codegym.service.impl;
 
 //<<<<<<< HEAD
+import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.model.user.Role;
 import com.codegym.model.user.User;
 import com.codegym.repository.IUserRepository;
@@ -27,6 +28,26 @@ public class UserService implements IUserService {
     public Optional<User> findByUsername(String username) {
         return iUserRepository.findByUsername(username);
     }
+
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: update user table to change info user
+     * @param:UpdateUserForm
+     **/
+    @Override
+    public void updateUser(UpdateUserForm updateUserForm) {
+        iUserRepository.updateUser(updateUserForm.getName(),
+                updateUserForm.getPhoneNumber(),
+                updateUserForm.getEmail(),
+                updateUserForm.getAddress(),
+                updateUserForm.getAge(),
+                updateUserForm.getGender(),
+                updateUserForm.getDateOfBirth(),
+                updateUserForm.getAvatar(),
+                updateUserForm.getUsername());
+    }
+
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
