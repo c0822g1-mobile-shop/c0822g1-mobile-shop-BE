@@ -5,13 +5,11 @@ import com.codegym.service.ISalesReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
-@RestController("/salesReport")
+@RestController
+@RequestMapping("/api/salesReport")
 public class SalesReportController {
 
     @Autowired
@@ -32,7 +30,7 @@ public class SalesReportController {
                                                     @PathVariable("endDay") String endDay) {
         ISalesReport salesReport = salesReportService.salesReport(startDay,endDay);
         if (salesReport==null){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(salesReport, HttpStatus.OK);
     }
