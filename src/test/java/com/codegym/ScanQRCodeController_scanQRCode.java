@@ -28,7 +28,7 @@ public class ScanQRCodeController_scanQRCode {
     public void scanQRCode_1() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/scanQR?qrCode=null"))
+                                .get("/api/scanQR/null"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -45,7 +45,7 @@ public class ScanQRCodeController_scanQRCode {
     public void scanQRCode_2() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/scanQR?qrCode="))
+                                .get("/api/scanQR/"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -61,7 +61,7 @@ public class ScanQRCodeController_scanQRCode {
     public void scanQRCode_3() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/scanQR?qrCode=1233321"))
+                                .get("/api/scanQR/1233321"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -78,7 +78,7 @@ public class ScanQRCodeController_scanQRCode {
     public void scanQRCode_4() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/scanQR?qrCode=123"))
+                                .get("/api/scanQR/123"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
