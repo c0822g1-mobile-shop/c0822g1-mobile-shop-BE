@@ -14,7 +14,7 @@ public class BillHistoryService  implements IBillHistoryService {
     private IBillHistoryRepository billHistoryRepository;
 
     @Override
-    public List<BillHistory> findAll() {
-        return billHistoryRepository.findAll();
+    public List<BillHistory> findAll(Integer id) {
+        return billHistoryRepository.findAll(id);
     }
 }
