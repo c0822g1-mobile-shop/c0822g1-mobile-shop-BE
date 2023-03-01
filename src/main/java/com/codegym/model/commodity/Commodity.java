@@ -13,6 +13,7 @@ public class Commodity {
     private String capacity;
     private String tradeMark;
     private double price;
+    @Column(columnDefinition = "longtext")
     private String image;
     private String camera;
     private String selfie;
