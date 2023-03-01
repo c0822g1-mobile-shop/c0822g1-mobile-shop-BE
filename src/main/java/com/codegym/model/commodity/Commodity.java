@@ -1,19 +1,22 @@
 package com.codegym.model.commodity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Commodity {
+<<<<<<< HEAD
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+=======
+
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+>>>>>>> origin/develop
     private Integer id;
     private String name;
     private String cpu;
     private String capacity;
-    private String tradeMark;
-    private double price;
+    private Double price;
     private String image;
     private String camera;
     private String selfie;
@@ -21,10 +24,32 @@ public class Commodity {
     private String guarantee;
     private String origin;
     private String description;
+<<<<<<< HEAD
+    private String codeQr;
+    private Integer quantity;
+    private Boolean flagDelete;
+
+    @ManyToOne
+    private Trademark trademark;
+=======
     private String codeQR;
     private int quantity;
+    private boolean flagDelete;
+
+
+    private int interestRate = 10;
+>>>>>>> origin/develop
 
     public Commodity() {
+
+    }
+
+    public int getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(int interestRate) {
+        this.interestRate = interestRate;
     }
 
     public Integer getId() {
@@ -59,19 +84,11 @@ public class Commodity {
         this.capacity = capacity;
     }
 
-    public String getTradeMark() {
-        return tradeMark;
-    }
-
-    public void setTradeMark(String tradeMark) {
-        this.tradeMark = tradeMark;
-    }
-
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -131,19 +148,45 @@ public class Commodity {
         this.description = description;
     }
 
-    public String getCodeQR() {
-        return codeQR;
+    public String getCodeQr() {
+        return codeQr;
     }
 
-    public void setCodeQR(String codeQR) {
-        this.codeQR = codeQR;
+    public void setCodeQr(String codeQr) {
+        this.codeQr = codeQr;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+<<<<<<< HEAD
+    public Boolean getFlagDelete() {
+        return flagDelete;
+    }
+
+    public void setFlagDelete(Boolean flagDelete) {
+        this.flagDelete = flagDelete;
+    }
+
+    public Trademark getTrademark() {
+        return trademark;
+    }
+
+    public void setTrademark(Trademark trademark) {
+        this.trademark = trademark;
+    }
+=======
+    public boolean isFlagDelete() {
+        return flagDelete;
+    }
+
+    public void setFlagDelete(boolean flagDelete) {
+        this.flagDelete = flagDelete;
+    }
+>>>>>>> origin/develop
 }
