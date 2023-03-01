@@ -27,7 +27,7 @@ public class SalesReportController_salesReport {
     public void salesReport_1() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/salesReport?startDay=null&endDay=null"))
+                                .get("/api/salesReport/null&null"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -43,7 +43,7 @@ public class SalesReportController_salesReport {
     public void salesReport_startDay_1() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/salesReport?startDay=null&endDay=2023-02-02"))
+                                .get("/api/salesReport/null&2023-02-02"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -59,7 +59,7 @@ public class SalesReportController_salesReport {
     public void salesReport_endDay_1() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/salesReport?startDay=2023-02-02&endDay=null"))
+                                .get("/api/salesReport/2023-02-02&null"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -76,7 +76,7 @@ public class SalesReportController_salesReport {
     public void salesReport_2() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/salesReport?startDay=&endDay="))
+                                .get("/api/salesReport/"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -92,7 +92,7 @@ public class SalesReportController_salesReport {
     public void salesReport_startDay_2() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/salesReport?startDay=&endDay=2023-02-02"))
+                                .get("/api/salesReport/&2023-02-02"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -108,7 +108,7 @@ public class SalesReportController_salesReport {
     public void salesReport_endDay_2() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/salesReport?startDay=2023-02-02&endDay="))
+                                .get("/api/salesReport/2023-02-02"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -124,7 +124,7 @@ public class SalesReportController_salesReport {
     public void salesReport_3() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/salesReport?startDay=2023-02-02&endDay=2020-02-02"))
+                                .get("/api/salesReport/2023-02-02&2020-02-02"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -140,7 +140,7 @@ public class SalesReportController_salesReport {
     public void salesReport_4() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/salesReport?startDay=2022-02-02&endDay=2024-02-02"))
+                                .get("/api/salesReport/2020-02-02&2024-02-02"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("content[0].revenue").value(170000000))
