@@ -28,6 +28,22 @@ public class CommodityService implements ICommodityService {
 
     @Autowired
     private ICommodityRepository iCommodityRepository;
+
+    @Override
+    public void addCommodity(Commodity commodity) {
+
+    }
+
+    @Override
+    public Commodity findCommodity(Integer id) {
+        return null;
+    }
+
+    @Override
+    public void editCommodity(Commodity commodity) {
+
+    }
+
     @Override
     public Page<Commodity> getAllCommodity(Pageable pageable, String name) {
         return iCommodityRepository.getAllCommodity(pageable,name);
