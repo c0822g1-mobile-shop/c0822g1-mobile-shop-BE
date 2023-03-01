@@ -4,14 +4,11 @@ import javax.persistence.*;
 
 @Entity
 public class Commodity {
-
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String cpu;
     private String capacity;
-    private String tradeMark;
     private Double price;
     private String image;
     private String camera;
@@ -20,23 +17,15 @@ public class Commodity {
     private String guarantee;
     private String origin;
     private String description;
-    private String codeQR;
+    private String codeQr;
     private Integer quantity;
     private Boolean flagDelete;
-
-
+    @ManyToOne
+    private Trademark trademark;
     private Integer interestRate = 10;
 
     public Commodity() {
 
-    }
-
-    public int getInterestRate() {
-        return interestRate;
-    }
-
-    public void setInterestRate(int interestRate) {
-        this.interestRate = interestRate;
     }
 
     public Integer getId() {
@@ -71,19 +60,13 @@ public class Commodity {
         this.capacity = capacity;
     }
 
-    public String getTradeMark() {
-        return tradeMark;
-    }
 
-    public void setTradeMark(String tradeMark) {
-        this.tradeMark = tradeMark;
-    }
 
     public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -143,27 +126,44 @@ public class Commodity {
         this.description = description;
     }
 
-    public String getCodeQR() {
-        return codeQR;
+    public String getCodeQr() {
+        return codeQr;
     }
 
-    public void setCodeQR(String codeQR) {
-        this.codeQR = codeQR;
+    public void setCodeQr(String codeQr) {
+        this.codeQr = codeQr;
     }
 
     public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public Boolean isFlagDelete() {
+    public Boolean getFlagDelete() {
         return flagDelete;
     }
 
-    public void setFlagDelete(boolean flagDelete) {
+    public void setFlagDelete(Boolean flagDelete) {
         this.flagDelete = flagDelete;
+    }
+
+    public Trademark getTrademark() {
+        return trademark;
+    }
+
+    public void setTrademark(Trademark trademark) {
+        this.trademark = trademark;
+    }
+
+
+    public Integer getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(Integer interestRate) {
+        this.interestRate = interestRate;
     }
 }
