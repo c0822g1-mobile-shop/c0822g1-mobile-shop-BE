@@ -1,7 +1,8 @@
-package com.codegym.service;
+package com.codegym.service.impl;
 
 import com.codegym.model.user.User;
 import com.codegym.repository.IUserRepository;
+import com.codegym.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,4 +45,19 @@ public class UserService implements IUserService {
     public Page<User> findAllCustomerNoParam(Pageable pageable) {
         return userRepository.findAllCustomerNoParam(pageable);
     }
+
+    /**
+     * Created by: HuyNL
+     * Date created: 01/03/2023
+     * Function: get all customer
+     *
+     * @param ageSearch
+     * @param genderSearch
+     * @param pageable
+     */
+    @Override
+    public Page<User> findAll(String genderSearch, String ageSearch, Pageable pageable) {
+        return userRepository.findAll(genderSearch, ageSearch, pageable);
+    }
+
 }

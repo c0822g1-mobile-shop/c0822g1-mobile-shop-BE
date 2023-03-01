@@ -53,4 +53,15 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             countQuery = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.id = :id"
             ,nativeQuery = true)
     Optional<User> findCustomerById(@Param("id") Integer id);
+
+    /**
+     * Created by: HuyNL
+     * Date created: 01/03/2023
+     * Function: get all customer
+     * @param ageSearch
+     * @param genderSearch
+     * @param pageable
+     */
+    @Query(value = "select * from `user` where gender = :genderSearch and age = :ageSearch", nativeQuery = true)
+    Page<User> findAll(@Param("genderSearch") String genderSearch,@Param("ageSearch") String ageSearch,  Pageable pageable);
 }

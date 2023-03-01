@@ -23,6 +23,7 @@ public class CustomerController {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all customer
+     *
      * @param pageable
      * @param name
      * @param address
@@ -59,5 +60,24 @@ public class CustomerController {
             user = userService.findCustomerById(id);
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
+    }
+
+    /**
+     * Create by: HuyNL
+     * Date create: 27/2/2023
+     * Function: list customer & list bill history
+     *
+     * @param genderSearch
+     * @param ageSearch
+     * @param pageable
+     * @return HttpStatus.OK if result is not error
+     */
+
+    @GetMapping("search/{gender}&{age}")
+    public ResponseEntity<Page<User>> findAll(@PathVariable(name = "genderSearch") String genderSearch,
+                                              @PathVariable(name = "ageSearch") String ageSearch,
+                                              Pageable pageable) {
+        Page<User> userPage = userService.findAll(genderSearch, ageSearch, pageable);
+        return new ResponseEntity<>(userPage, HttpStatus.OK);
     }
 }

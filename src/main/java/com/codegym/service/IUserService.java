@@ -32,4 +32,15 @@ public interface IUserService {
      * @param pageable
      */
     Page<User> findAllCustomerNoParam(Pageable pageable);
+
+    /**
+     * Created by: HuyNL
+     * Date created: 01/03/2023
+     * Function: get all customer
+     * @param ageSearch
+     * @param genderSearch
+     * @param pageable
+     */
+    Page<User> findAll(String genderSearch, String ageSearch, Pageable pageable);
+
 }
