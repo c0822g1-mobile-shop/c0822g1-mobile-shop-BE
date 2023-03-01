@@ -7,7 +7,9 @@ public class Commodity {
 
 
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String cpu;
@@ -23,12 +25,13 @@ public class Commodity {
     private String codeQr;
     private Integer quantity;
     private Boolean flagDelete;
-
     @ManyToOne
     private Trademark trademark;
 
 
     private int interestRate = 10;
+
+
 
     public Commodity() {
 
@@ -176,6 +179,7 @@ public class Commodity {
     public void setFlagDelete(boolean flagDelete) {
         this.flagDelete = flagDelete;
     }
+
 
 
 }
