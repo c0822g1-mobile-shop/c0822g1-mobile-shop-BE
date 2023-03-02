@@ -5,7 +5,10 @@ import javax.persistence.*;
 @Entity
 public class Commodity {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+
     private Integer id;
     private String name;
     private String cpu;
@@ -23,7 +26,11 @@ public class Commodity {
     private Boolean flagDelete;
     @ManyToOne
     private Trademark trademark;
-    private Integer interestRate = 10;
+
+
+
+    private int interestRate = 10;
+
 
 
     public Commodity() {
@@ -160,13 +167,11 @@ public class Commodity {
         this.trademark = trademark;
     }
 
-    public Integer getInterestRate() {
-        return interestRate;
-    }
 
-    public void setInterestRate(Integer interestRate) {
-        this.interestRate = interestRate;
-    }
+    public boolean isFlagDelete() {
+        return flagDelete;
 
+
+    }
 
 }
