@@ -27,7 +27,7 @@ public class SupplierService implements ISupplierService {
     private ISupplierRepository iSupplierRepository;
 
     @Override
-    public Page<List<Supplier>> showList(String search, Pageable pageable) {
+    public Page<Supplier> showList(String search, Pageable pageable) {
         return iSupplierRepository.showList(search, pageable);
     }
 

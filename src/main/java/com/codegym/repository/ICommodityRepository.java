@@ -18,7 +18,7 @@ import javax.transaction.Transactional;
 @Repository
 public interface ICommodityRepository extends JpaRepository<Commodity, Integer> {
     
-     * Created by: LongPT
+     /** Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all commodity
      * @param name

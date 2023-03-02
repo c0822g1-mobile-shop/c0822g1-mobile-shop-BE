@@ -28,7 +28,7 @@ public interface ISupplierRepository extends JpaRepository<Supplier, Integer> {
     @Query(value = "select * from supplier where (name like concat('%', :search , '%') or address like concat('%', :search , '%') or phone_number like concat('%', :search , '%')) and flag_delete=false",
             countQuery = "select count(*) from (select * from supplier where (name like concat('%', :search , '%') or address like concat('%', :search , '%') or phone_number like concat('%', :search , '%')) and flag_delete=false) as s",
             nativeQuery = true)
-    Page<List<Supplier>> showList(@Param("search") String search, Pageable pageable);
+    Page<Supplier> showList(@Param("search") String search, Pageable pageable);
 
     @Modifying
     @Transactional

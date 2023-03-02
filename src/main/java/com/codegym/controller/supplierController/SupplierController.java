@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/supplier")
 @CrossOrigin("*")
 public class SupplierController {
     @Autowired
@@ -32,7 +32,7 @@ public class SupplierController {
     private ResponseEntity<?> showList(@RequestParam(defaultValue = "", required = false) String search,
                                        @PageableDefault(size = 3) Pageable pageable) {
         System.out.println(search);
-        Page<List<Supplier>> supplierListDtoList = supplierService.showList(search, pageable);
+        Page<Supplier> supplierListDtoList = supplierService.showList(search, pageable);
         return new ResponseEntity<>(supplierListDtoList, HttpStatus.OK);
     }
 
