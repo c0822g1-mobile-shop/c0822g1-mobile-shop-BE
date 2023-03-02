@@ -23,6 +23,10 @@ public class SupplierDto implements Validator {
     private String email;
     private boolean flagDelete;
 
+
+    public SupplierDto() {
+    }
+
     public boolean isFlagDelete() {
         return flagDelete;
     }
