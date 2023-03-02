@@ -21,14 +21,14 @@ public class CommodityDto {
     @NotBlank(message = "Không được để trống")
     private String capacity;
     private Double price;
-    @Length(min = 5, max = 20)
+    @Length(min = 5, max = 200)
     @NotBlank(message = "Không được để trống")
     private String image;
     @NotBlank(message = "Không được để trống")
-    @Length(min = 5, max = 50)
+    @Length(min = 3, max = 50)
     @Pattern(regexp = "^[a-zA-Z0-9\\+. ]*$", message = "Không chứa ký tự đặc biệt")
     private String camera;
-    @Length(min = 5, max = 50)
+    @Length(min = 3, max = 50)
     @Pattern(regexp = "^[a-zA-Z0-9\\+. ]*$", message = "Không chứa ký tự đặc biệt")
     @NotBlank(message = "Không được để trống")
     private String selfie;
@@ -41,7 +41,7 @@ public class CommodityDto {
     @Pattern(regexp = "^[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ0-9 ]*$", message = "Không chứa ký tự đặc biệt")
     private String guarantee;
     @NotBlank(message = "Không được để trống")
-    @Length(min = 5, max = 20)
+    @Length(min = 1, max = 20)
     @Pattern(regexp = "^[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđA-Z ]*$", message = "Không chứa ký tự đặc biệt và số")
     private String origin;
     private String description;
@@ -49,14 +49,15 @@ public class CommodityDto {
     @Length(min = 3, max = 10)
     @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$", message = "Không chứa ký tự đặc biệt")
     private String codeQr;
-    private Integer quantity;
-    private Boolean flag_delete;
+    private int quantity;
+    private Boolean flag_delete = false;
+    private int interestRate = 10;
     private Trademark trademark;
 
     public CommodityDto() {
     }
 
-    public CommodityDto(Integer id, String name, String cpu, String capacity, Double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, Integer quantity, Boolean flag_delete, Trademark trademark) {
+    public CommodityDto(Integer id, String name, String cpu, String capacity, Double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, int quantity, Boolean flag_delete, int interestRate, Trademark trademark) {
         this.id = id;
         this.name = name;
         this.cpu = cpu;
@@ -72,7 +73,16 @@ public class CommodityDto {
         this.codeQr = codeQr;
         this.quantity = quantity;
         this.flag_delete = flag_delete;
+        this.interestRate = interestRate;
         this.trademark = trademark;
+    }
+
+    public int getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(int interestRate) {
+        this.interestRate = interestRate;
     }
 
     public Integer getId() {
@@ -179,11 +189,11 @@ public class CommodityDto {
         this.codeQr = codeQr;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

@@ -26,6 +26,21 @@ public class CommodityService implements ICommodityService {
         return commodityRepository.findByQRCode(QRCode);
     }
 
+    @Override
+    public Page<Commodity> searchByQuantity(int quantity, Pageable pageable) {
+        return iCommodityRepository.searchByQuantity(quantity,pageable);
+    }
+
+    @Override
+    public Page<Commodity> searchByPrice(double price, Pageable pageable) {
+        return iCommodityRepository.searchByPrice(price,pageable);
+    }
+
+    @Override
+    public Page<Commodity> searchByName(String name, Pageable pageable) {
+        return iCommodityRepository.searchByName(name,pageable);
+    }
+
     @Autowired
     private ICommodityRepository iCommodityRepository;
 
