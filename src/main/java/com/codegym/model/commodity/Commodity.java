@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class Commodity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -23,27 +24,17 @@ public class Commodity {
     private String codeQr;
     private Integer quantity;
     private Boolean flagDelete;
-
     @ManyToOne
     private Trademark trademark;
 
-    private String codeQR;
-  /*  private int quantity;
-    private boolean flagDelete;*/
 
 
     private int interestRate = 10;
 
+
+
     public Commodity() {
 
-    }
-
-    public int getInterestRate() {
-        return interestRate;
-    }
-
-    public void setInterestRate(int interestRate) {
-        this.interestRate = interestRate;
     }
 
     public Integer getId() {
@@ -77,6 +68,8 @@ public class Commodity {
     public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
+
+
 
     public Double getPrice() {
         return price;
@@ -174,12 +167,11 @@ public class Commodity {
         this.trademark = trademark;
     }
 
+
     public boolean isFlagDelete() {
         return flagDelete;
-    }
 
-    public void setFlagDelete(boolean flagDelete) {
-        this.flagDelete = flagDelete;
+
     }
 
 }

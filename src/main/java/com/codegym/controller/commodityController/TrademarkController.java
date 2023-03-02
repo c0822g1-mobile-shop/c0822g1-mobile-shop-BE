@@ -1,4 +1,4 @@
-package com.codegym.controller;
+package com.codegym.controller.commodityController;
 
 import com.codegym.model.commodity.Trademark;
 import com.codegym.service.ITrademarkService;

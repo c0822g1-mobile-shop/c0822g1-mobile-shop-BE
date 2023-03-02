@@ -1,44 +1,40 @@
-package com.codegym.model.user;
+package com.codegym.dto.request;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-@Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class UpdateUserForm {
+    @NotBlank(message = "Vui lòng không bỏ trống họ và tên")
     private String name;
     private String username;
-    private String password;
+    @NotBlank(message = "Vui lòng nhập số điện thoại")
     private String phoneNumber;
+    @NotBlank(message = "Vui lòng nhập địa chỉ email")
     private String email;
+    @NotBlank(message = "Vui lòng không bỏ trống địa chỉ")
     private String address;
+    @NotNull(message = "Vui lòng nhập số tuổi")
     private Integer age;
+    @NotNull(message = "Vui lòng chọn giới tính")
     private Boolean gender;
+    @NotBlank(message = "Vui lòng không bỏ trống ngày sinh")
     private String dateOfBirth;
+    @NotBlank(message = "Vui lòng không bỏ trống ảnh đại diện")
     private String avatar;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles = new HashSet<>();
 
-    public User() {
+    public UpdateUserForm() {
     }
 
-
-    public User(String username, String password, String name, String email) {
-        this.username = username;
-        this.password = password;
+    public UpdateUserForm(String name, String username, String phoneNumber, String email, String address, Integer age, Boolean gender, String dateOfBirth, String avatar) {
         this.name = name;
+        this.username = username;
+        this.phoneNumber = phoneNumber;
         this.email = email;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        this.address = address;
+        this.age = age;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.avatar = avatar;
     }
 
     public String getName() {
@@ -55,14 +51,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getPhoneNumber() {
@@ -119,13 +107,5 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 }
