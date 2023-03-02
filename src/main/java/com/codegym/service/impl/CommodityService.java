@@ -21,7 +21,6 @@ public class CommodityService implements ICommodityService {
      * Function: create commodity
      *
      * @param commodity
-     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
 
     @Override
@@ -35,7 +34,6 @@ public class CommodityService implements ICommodityService {
      * Function: find commodity by id
      *
      * @param id
-     * @return HttpStatus.OK if id is found
      */
 
     @Override
@@ -49,7 +47,6 @@ public class CommodityService implements ICommodityService {
      * Function: edit commodity by id
      *
      * @param commodity
-     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
 
     @Override
@@ -59,7 +56,7 @@ public class CommodityService implements ICommodityService {
 
     @Override
     public Page<Commodity> getAllCommodity(Pageable pageable, String name) {
-        return commodityRepository.getAllCommodity(pageable,name);
+        return commodityRepository.getAllCommodity(pageable, name);
     }
 
     @Override
@@ -86,4 +83,39 @@ public class CommodityService implements ICommodityService {
     public Commodity findByQRCode(String QRCode) {
         return commodityRepository.findByQRCode(QRCode);
     }
+
+    @Autowired
+    private ICommodityRepository iCommodityRepository;
+
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: show commodity list
+     *
+     * @param pageable
+     * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
+     */
+    @Override
+    public Page<Commodity> findAll(String search, Pageable pageable) {
+        return commodityRepository.showListCommodity(search, pageable);
+    }
+
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: delete commodity
+     *
+     * @param id
+     * @Return HttpStatus.OK if result is not error
+     */
+    @Override
+    public void delete(Integer id) {
+        commodityRepository.deleteCommodity(id);
+    }
+
+    @Override
+    public Optional<Commodity> findById(int id) {
+        return commodityRepository.findById(id);
+    }
 }
+

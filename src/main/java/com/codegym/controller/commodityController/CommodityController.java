@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/commodity")
+@RequestMapping("/api/commodity")
 public class CommodityController {
     @Autowired
     private ICommodityService commodityService;
@@ -73,12 +73,15 @@ public class CommodityController {
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
 
-    @PutMapping("/edit")
-    public ResponseEntity<?> editCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult bindingResult) {
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<?> editCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult bindingResult, @PathVariable("id") Integer id) {
+        Commodity commodity = commodityService.findCommodity(id);
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
-        Commodity commodity = new Commodity();
+        if (commodity == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
         BeanUtils.copyProperties(commodityDto, commodity);
         commodityService.editCommodity(commodity);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -125,4 +128,47 @@ public class CommodityController {
             return new ResponseEntity<>(commodity, HttpStatus.OK);
         }
     }
+
+
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: show commodity list
+     *
+     * @param pageable
+     * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
+     */
+
+
+    @GetMapping("/list")
+    public ResponseEntity<Page<Commodity>> showList(@RequestParam(defaultValue = "", required = false) String search,
+                                                    @PageableDefault(value = 2) Pageable pageable) {
+        Page<Commodity> commodityList = commodityService.findAll(search, pageable);
+        if (commodityList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(commodityList, HttpStatus.OK);
+    }
+
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: delete commodity
+     *
+     * @param id
+     * @Return HttpStatus.OK if result is not error
+     */
+
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Commodity> delete(@PathVariable("id") Integer id) {
+        Commodity commodity = commodityService.findById(id).orElse(null);
+        if (commodity == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        commodityService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 }

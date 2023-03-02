@@ -3,6 +3,8 @@ package com.codegym.dto;
 import com.codegym.model.commodity.Trademark;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
@@ -20,15 +22,17 @@ public class CommodityDto {
     @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$", message = "Không chứa ký tự đặc biệt")
     @NotBlank(message = "Không được để trống")
     private String capacity;
+    @Min(0)
+    @Max(2000000000)
     private Double price;
-    @Length(min = 5, max = 20)
+    @Length(min = 5, max = 200)
     @NotBlank(message = "Không được để trống")
     private String image;
     @NotBlank(message = "Không được để trống")
-    @Length(min = 5, max = 50)
+    @Length(min = 2, max = 50)
     @Pattern(regexp = "^[a-zA-Z0-9\\+. ]*$", message = "Không chứa ký tự đặc biệt")
     private String camera;
-    @Length(min = 5, max = 50)
+    @Length(min = 3, max = 50)
     @Pattern(regexp = "^[a-zA-Z0-9\\+. ]*$", message = "Không chứa ký tự đặc biệt")
     @NotBlank(message = "Không được để trống")
     private String selfie;
@@ -38,10 +42,10 @@ public class CommodityDto {
     private String screenSize;
     @NotBlank(message = "Không được để trống")
     @Length(min = 5, max = 20)
-    @Pattern(regexp = "^[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ0-9 ]*$", message = "Không chứa ký tự đặc biệt")
+    @Pattern(regexp = "^[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ0-9A-Z ]*$", message = "Không chứa ký tự đặc biệt")
     private String guarantee;
     @NotBlank(message = "Không được để trống")
-    @Length(min = 5, max = 20)
+    @Length(min = 1, max = 20)
     @Pattern(regexp = "^[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđA-Z ]*$", message = "Không chứa ký tự đặc biệt và số")
     private String origin;
     private String description;
@@ -49,14 +53,15 @@ public class CommodityDto {
     @Length(min = 3, max = 10)
     @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$", message = "Không chứa ký tự đặc biệt")
     private String codeQr;
-    private Integer quantity;
-    private Boolean flag_delete;
+    private int quantity;
+    private Boolean flagDelete = false;
+    private Integer interestRate = 10;
     private Trademark trademark;
 
     public CommodityDto() {
     }
 
-    public CommodityDto(Integer id, String name, String cpu, String capacity, Double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, Integer quantity, Boolean flag_delete, Trademark trademark) {
+    public CommodityDto(Integer id, String name, String cpu, String capacity, Double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, int quantity, Integer interestRate, Boolean flag_delete, Trademark trademark) {
         this.id = id;
         this.name = name;
         this.cpu = cpu;
@@ -71,8 +76,17 @@ public class CommodityDto {
         this.description = description;
         this.codeQr = codeQr;
         this.quantity = quantity;
-        this.flag_delete = flag_delete;
+        this.interestRate = interestRate;
+        this.flagDelete = flag_delete;
         this.trademark = trademark;
+    }
+
+    public Integer getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(Integer interestRate) {
+        this.interestRate = interestRate;
     }
 
     public Integer getId() {
@@ -179,20 +193,28 @@ public class CommodityDto {
         this.codeQr = codeQr;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
+    public Boolean getFlagDelete() {
+        return flagDelete;
+    }
+
+    public void setFlagDelete(Boolean flagDelete) {
+        this.flagDelete = flagDelete;
+    }
+
     public Boolean getFlag_delete() {
-        return flag_delete;
+        return flagDelete;
     }
 
     public void setFlag_delete(Boolean flag_delete) {
-        this.flag_delete = flag_delete;
+        this.flagDelete = flag_delete;
     }
 
     public Trademark getTrademark() {
