@@ -7,12 +7,12 @@ import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.dto.response.JwtResponse;
 import com.codegym.dto.response.ResponseMessage;
 import com.codegym.model.user.Role;
-import com.codegym.model.user.RoleName;
 import com.codegym.model.user.User;
 import com.codegym.security.jwt.JwtProvider;
 import com.codegym.security.userPrincipcal.UserPrinciple;
 import com.codegym.service.IRoleService;
 import com.codegym.service.IUserService;
+import com.codegym.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +34,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -44,7 +43,7 @@ import java.util.Set;
 @CrossOrigin("*")
 public class AuthController {
     @Autowired
-    private IUserService iUserService;
+    private IUserService iUserService =new UserService();
     @Autowired
     private IRoleService iRoleService;
     @Autowired

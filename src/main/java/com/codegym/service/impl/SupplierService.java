@@ -30,7 +30,7 @@ public class SupplierService implements ISupplierService {
     private ISupplierRepository supplierRepository;
 
     @Override
-    public Page<List<Supplier>> showList(String search, Pageable pageable) {
+    public Page<Supplier> showList(String search, Pageable pageable) {
         return supplierRepository.showList(search, pageable);
     }
 
@@ -38,6 +38,7 @@ public class SupplierService implements ISupplierService {
     public void deleteSupplier(Integer id) {
         supplierRepository.deleteSupplier(id);
     }
+
     @Override
     public void addSupplier(String code, String name, String address, String phoneNumber, String email) {
 

@@ -15,6 +15,7 @@ import java.util.Optional;
 @Transactional
 public interface ICommodityRepository extends JpaRepository<Commodity, Integer> {
 
+
     /**
      * Created by: DanhHD
      * Date Created: 27/02/2023
@@ -162,6 +163,8 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
 
     @Query(value = "select * from commodity where id = :id and flag_delete = false",nativeQuery = true)
     Optional<Commodity> findById(@Param("id") int id);
+
+
 
 
 
