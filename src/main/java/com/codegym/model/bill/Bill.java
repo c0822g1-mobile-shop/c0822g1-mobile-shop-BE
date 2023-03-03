@@ -4,26 +4,29 @@ import com.codegym.model.user.User;
 
 import javax.persistence.*;
 
+
 @Entity
 public class Bill {
     @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String buyDate;
     private String detail;
     private int quantity;
     private String paymentMethod;
+//    private Boolean billPrint;
+    private Boolean billPrint;
     @ManyToOne
     private User user;
 
     public Bill() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -43,7 +46,6 @@ public class Bill {
         this.detail = detail;
     }
 
-
     public int getQuantity() {
         return quantity;
     }
@@ -60,6 +62,14 @@ public class Bill {
         this.paymentMethod = paymentMethod;
     }
 
+    public Boolean getBillPrint() {
+        return billPrint;
+    }
+
+    public void setBillPrint(Boolean billPrint) {
+        this.billPrint = billPrint;
+    }
+
     public User getUser() {
         return user;
     }
@@ -67,4 +77,6 @@ public class Bill {
     public void setUser(User user) {
         this.user = user;
     }
+
+
 }
