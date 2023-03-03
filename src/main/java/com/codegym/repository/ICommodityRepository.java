@@ -40,8 +40,9 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             "origin, " +
             "description, " +
             "code_qr," +
-            "quantity, " +
-            "flag_delete) " +
+            "quantity," +
+            "flag_delete," +
+            "interest_rate) " +
             "values " +
             "(:#{#commodity.name}, " +
             ":#{#commodity.cpu}, " +
@@ -56,7 +57,9 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             ":#{#commodity.origin}, " +
             ":#{#commodity.description}, " +
             ":#{#commodity.codeQr}, " +
-            ":#{#commodity.quantity}, false )",
+            ":#{#commodity.quantity}," +
+            ":#{#commodity.flagDelete}," +
+            ":#{#commodity.interestRate})",
             nativeQuery = true)
     void addCommodity(@Param("commodity") Commodity commodity);
 
@@ -106,6 +109,68 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             nativeQuery = true)
     void editCommodity(@Param("commodity") Commodity commodity);
 
+<<<<<<< HEAD
+=======
+
+
+
+
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: show commodity list
+     *
+     * @param pageable
+     */
+    @Query(value = "select * from commodity where flag_delete = false ", nativeQuery = true)
+    Page<Commodity> showListCommodity(@Param("search") String name,
+                                      Pageable pageable);
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: search name commodity
+     *
+     * @param name
+     */
+    @Query(value = "select * from commodity where name like %:name% and flag_delete = false ",nativeQuery = true)
+    Page<Commodity> searchByName(@Param("name") String name,Pageable pageable);
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: search price commodity
+     *
+     * @param price
+     */
+    @Query(value = "select * from commodity where price = :price and flag_delete = false ",nativeQuery = true)
+    Page<Commodity> searchByPrice(@Param("price")double price,Pageable pageable);
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: search quantity commodity
+     *
+     * @param quantity
+     */
+    @Query(value = "select * from commodity where quantity = :quantity and flag_delete = false ",nativeQuery = true)
+    Page<Commodity> searchByQuantity(@Param("quantity")int quantity,Pageable pageable);
+
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: delete commodity
+     *
+     * @param id
+     */
+    @Modifying
+    @Transactional
+    @Query(value = "update commodity  set flag_delete = true" +
+            " where id = :id", nativeQuery = true)
+    void deleteCommodity(@Param("id") Integer id);
+
+    @Query(value = "select * from commodity where id = :id and flag_delete = false",nativeQuery = true)
+    Optional<Commodity> findById(@Param("id") int id);
+
+
+>>>>>>> origin/commodity-CongBD
     /**
      * Created by: LongPT
      * Date created: 27/2/2023

@@ -6,6 +6,7 @@ import javax.persistence.*;
 public class Commodity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(unique = true)
     private String name;
     private String cpu;
     private String capacity;
@@ -17,10 +18,12 @@ public class Commodity {
     private String guarantee;
     private String origin;
     private String description;
+    @Column(unique = true)
     private String codeQr;
-    private Integer quantity;
-    private Boolean flagDelete;
+    private int quantity;
+    private Boolean flagDelete = false;
     @ManyToOne
+    @JoinColumn(name = "trademark_id", referencedColumnName = "id")
     private Trademark trademark;
     private Integer interestRate = 10;
 
@@ -134,11 +137,11 @@ public class Commodity {
         this.codeQr = codeQr;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
