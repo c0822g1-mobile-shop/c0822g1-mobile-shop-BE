@@ -1,7 +1,6 @@
 package com.codegym.service.impl;
 
 import com.codegym.model.SalesReport.ISalesReport;
-import com.codegym.model.SalesReport.SalesReport;
 import com.codegym.repository.ISalesReportRepository;
 import com.codegym.service.ISalesReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,7 @@ public class SalesReportService implements ISalesReportService {
      * @param startDay
      * @param endDay
      */
+
     @Override
     public ISalesReport salesReport(String startDay, String endDay) {
         return salesReportRepository.salesReport(startDay,endDay);

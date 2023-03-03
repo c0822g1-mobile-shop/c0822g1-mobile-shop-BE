@@ -28,21 +28,18 @@ public class CommodityService implements ICommodityService {
 
     @Override
     public Page<Commodity> searchByQuantity(int quantity, Pageable pageable) {
-        return iCommodityRepository.searchByQuantity(quantity,pageable);
+        return commodityRepository.searchByQuantity(quantity,pageable);
     }
 
     @Override
     public Page<Commodity> searchByPrice(double price, Pageable pageable) {
-        return iCommodityRepository.searchByPrice(price,pageable);
+        return commodityRepository.searchByPrice(price,pageable);
     }
 
     @Override
     public Page<Commodity> searchByName(String name, Pageable pageable) {
-        return iCommodityRepository.searchByName(name,pageable);
+        return commodityRepository.searchByName(name, pageable);
     }
-
-    @Autowired
-    private ICommodityRepository iCommodityRepository;
 
     /**
      * Created by: CongBD,
@@ -80,7 +77,7 @@ public class CommodityService implements ICommodityService {
 
     @Override
     public Page<Commodity> getAllCommodity(Pageable pageable, String name) {
-        return commodityRepository.getAllCommodity(pageable,name);
+        return commodityRepository.getAllCommodity(pageable, name);
     }
 
     @Override
@@ -140,9 +137,6 @@ public class CommodityService implements ICommodityService {
     public void editCommodity(Commodity commodity) {
         commodityRepository.editCommodity(commodity);
     }
-
-
-
 
     @Override
     public Page<Commodity> searchCommodity(String name, Pageable pageable) {

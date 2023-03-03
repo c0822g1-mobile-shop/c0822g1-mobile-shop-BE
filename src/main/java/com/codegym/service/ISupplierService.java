@@ -24,8 +24,8 @@ public interface ISupplierService {
 
     Page<Supplier> showList(String search, Pageable pageable);
 
-
     void deleteSupplier(Integer id);
+
 
     void addSupplier(String code, String name, String address, String phoneNumber, String email);
 

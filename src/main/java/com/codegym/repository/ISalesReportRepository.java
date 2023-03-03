@@ -5,10 +5,11 @@ import com.codegym.model.SalesReport.SalesReport;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
 import java.util.List;
 
 public interface ISalesReportRepository extends JpaRepository<SalesReport,Integer> {
+
+
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
@@ -17,7 +18,9 @@ public interface ISalesReportRepository extends JpaRepository<SalesReport,Intege
      * @return Sales report from 'startDay' to 'endDay'
      */
 
-    @Query(value = "SELECT SUM((b.quantity * (c.price + c.price * c.interest_rate/100)) - (b.quantity * c.price))\n" +
+
+
+    @Query(value = "SELECT SUM((b.quantity * (c.price + c.price * c.interest_rate)) - (b.quantity * c.price))\n" +
             "                       AS revenue,\n" +
             "       SUM(b.quantity) AS totalQuantity\n" +
             "FROM bill b\n" +

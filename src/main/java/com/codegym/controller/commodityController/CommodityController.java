@@ -1,9 +1,6 @@
 package com.codegym.controller.commodityController;
-
-
 import com.codegym.dto.CommodityDto;
 import com.codegym.model.commodity.Commodity;
-import com.codegym.model.user.User;
 import com.codegym.service.ICommodityService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+
 
 @CrossOrigin("*")
 @RequestMapping("/api/commodity")
@@ -25,11 +24,12 @@ public class CommodityController {
     @Autowired
     private ICommodityService commodityService;
 
+
+
     /**
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all commodity
-     *
      * @param pageable
      * @param name
      * @return HttpStatus.NOT_FOUND if result is error. HttpStatus.OK if result is not error.
@@ -47,7 +47,6 @@ public class CommodityController {
         }
         return new ResponseEntity<>(commodityPage, HttpStatus.OK);
     }
-
     /**
      * Created by: LongPT
      * Date created: 27/2/2023
@@ -193,8 +192,5 @@ public class CommodityController {
         commodityService.editCommodity(commodity);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
-
 
 }

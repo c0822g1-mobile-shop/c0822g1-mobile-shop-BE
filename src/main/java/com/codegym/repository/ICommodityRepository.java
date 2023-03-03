@@ -1,5 +1,6 @@
 package com.codegym.repository;
 
+import com.codegym.model.bill.Bill;
 import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -7,7 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -170,6 +170,37 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
 
 
     /**
+=======
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
+
+//    @Transactional
+//    @Modifying
+//    @Query(value = " insert into commodity (`name`, " +
+//            " cpu, " +
+//            " capacity, " +
+//            " tradeMark, " +
+//            " price, " +
+//            " image, " +
+//            " camera, " +
+//            " selfie, " +
+//            " screenSize, " +
+//            " guarantee, " +
+//            " origin, " +
+//            " description, " +
+//            " codeQR, " +
+//            " quantity)",nativeQuery = true)
+//    void saveCommodity(@Param("commodity") Commodity commodity);
+
+@Transactional
+@Repository
+public interface ICommodityRepository extends JpaRepository<Commodity, Integer> {
+
+        /**
+>>>>>>> origin/commodity-HocHH
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all commodity
@@ -222,6 +253,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      * Date create 27/02/2023
      * @param: QRCode
      */
+
     @Query(value = "SELECT * FROM commodity where code_qr=:QRCode",nativeQuery = true)
     Commodity findByQRCode(@Param("QRCode") String QRCode);
 

@@ -28,10 +28,9 @@ public class SupplierController {
      * Create by: DiemTTT,
      * Date created: 27/02/2023,
      * Function: show list supplier + delete supplier by id
-     *
-     * @return HttpStatus.NOT_FOUND if result is error or HttpStatus.OK if result is not error
      * @param:search
      * @param:pageable
+     * @return HttpStatus.NOT_FOUND if result is error or HttpStatus.OK if result is not error
      */
     @GetMapping("/list")
     private ResponseEntity<?> showList(@RequestParam(defaultValue = "", required = false) String search,
@@ -55,7 +54,6 @@ public class SupplierController {
      * Created By: CongTT
      * Date created: 27/02/2023
      * Function: create supplier
-     *
      * @Param: supplierDto
      * Return: HttpStatus.BAD_REQUEST if result is error or HttpStatus.CREATED if result is not error.
      */
@@ -90,7 +88,6 @@ public class SupplierController {
      * Created By: CongTT
      * Date created: 27/02/2023
      * Function: find supplier by id
-     *
      * @Param: id
      * Return: HttpStatus.OK if result is not error.
      */

@@ -1,15 +1,15 @@
 package com.codegym.service;
 
-import com.codegym.model.SalesReport.ISalesReport;
 import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Service;
+
 
 import java.util.Optional;
 
 public interface ICommodityService {
+
     /**
      * Created by: DanhHD
      * Date Created: 27/02/2023
@@ -101,7 +101,6 @@ public interface ICommodityService {
     
     Page<Commodity> searchCommodity(String name, Pageable pageable);
 
-    
 
 
     /**
@@ -110,8 +109,5 @@ public interface ICommodityService {
      * @param: qrCode
      */
     Commodity findByQRCode(String QRCode);
-
-
-
 
 }

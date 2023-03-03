@@ -33,11 +33,13 @@ public interface ISupplierRepository extends JpaRepository<Supplier, Integer> {
             nativeQuery = true)
     Page<Supplier> showList(@Param("search") String search, Pageable pageable);
 
+
+
     @Modifying
     @Transactional
     @Query(value = "update supplier set flag_delete = true where id = :id", nativeQuery = true)
     void deleteSupplier(@Param("id") Integer id);
-    
+
     @Modifying
     @Transactional
     @Query(value = "insert into supplier(code, name, address, phone_number, email, flag_delete) value(:code, :name, :address, :phone, :email, false )", nativeQuery = true)

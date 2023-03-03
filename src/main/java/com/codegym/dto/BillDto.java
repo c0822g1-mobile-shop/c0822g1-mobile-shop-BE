@@ -1,25 +1,23 @@
-package com.codegym.model.bill;
+package com.codegym.dto;
 
 import com.codegym.model.user.User;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
-
-@Entity
-public class Bill {
-    @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BillDto  implements Validator{
     private Integer id;
+
     private String buyDate;
     private String detail;
     private int quantity;
+
+    @NotBlank(message = "Không được để trống")
     private String paymentMethod;
-//    private Boolean billPrint;
-    private Boolean billPrint;
-    @ManyToOne
     private User user;
 
-    public Bill() {
+    public BillDto() {
     }
 
     public Integer getId() {
@@ -62,14 +60,6 @@ public class Bill {
         this.paymentMethod = paymentMethod;
     }
 
-    public Boolean getBillPrint() {
-        return billPrint;
-    }
-
-    public void setBillPrint(Boolean billPrint) {
-        this.billPrint = billPrint;
-    }
-
     public User getUser() {
         return user;
     }
@@ -78,5 +68,13 @@ public class Bill {
         this.user = user;
     }
 
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
 
+    @Override
+    public void validate(Object target, Errors errors) {
+
+    }
 }
