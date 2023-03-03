@@ -1,7 +1,6 @@
 package com.codegym.repository;
 
 import com.codegym.model.user.User;
-//<<<<<<< HEAD
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -77,16 +76,15 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     @Query(value = "select * from user join user_roles on user.id = user_roles.user_id join role r on user_roles.roles_id = r.id where r.name = 'ROLE_ADMIN'", nativeQuery = true)
     List<User> findAllAdmin();
 
-
     /**
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all customer
-     *
      * @param name
      * @param address
      * @param pageable
      */
+     
     @Query(value = "select `user`.*"+
             " from `user`\n" +
             "         join `user_roles` on `user`.id = `user_roles`.user_id\n" +
@@ -116,7 +114,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get customer by id
-     *
      * @param id
      */
     @Query(value = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.id = :id",

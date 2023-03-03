@@ -72,16 +72,12 @@ public interface ICommodityService {
     Optional<Commodity> findCommodityById(Integer id);
     
     Page<Commodity> getCommodityByQuantity(Pageable pageable);
-    
-    Page<Commodity> searchCommodity(String name, Pageable pageable);
 
-    
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
      * @param QRCode
      */
     Commodity findByQRCode(String QRCode);
-    
 
 }

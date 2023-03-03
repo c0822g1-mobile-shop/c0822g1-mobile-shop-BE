@@ -1,6 +1,5 @@
 package com.codegym.service.impl;
 
-//<<<<<<< HEAD
 import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.model.user.Role;
 import com.codegym.model.user.User;
@@ -11,7 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -135,8 +133,6 @@ public class UserService implements IUserService {
         return iUserRepository.findAllAdmin();
     }
 
-
-
     @Autowired
     private IUserRepository userRepository;
 
@@ -170,5 +166,4 @@ public class UserService implements IUserService {
     public Page<User> findAllCustomerNoParam(Pageable pageable) {
         return userRepository.findAllCustomerNoParam(pageable);
     }
-
 }

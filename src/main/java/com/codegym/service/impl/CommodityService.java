@@ -14,10 +14,15 @@ import java.util.Optional;
 public class CommodityService implements ICommodityService {
     @Autowired
     private ICommodityRepository commodityRepository;
-
+    @Autowired
+    private ICommodityRepository iCommodityRepository;
+    @Autowired
+    private ICommodityRepository iCommodityRepository;
+    
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
+     *
      * @param:QRCode
      */
 
@@ -26,8 +31,6 @@ public class CommodityService implements ICommodityService {
         return commodityRepository.findByQRCode(QRCode);
     }
 
-    @Autowired
-    private ICommodityRepository iCommodityRepository;
 
     /**
      * Created by: CongBD,
@@ -41,8 +44,6 @@ public class CommodityService implements ICommodityService {
     public Page<Commodity> findAll(String search,Pageable pageable) {
         return commodityRepository.showListCommodity(search,pageable);
     }
-
-
 
     /**
      * Created by: CongBD,
@@ -66,6 +67,7 @@ public class CommodityService implements ICommodityService {
     @Override
     public Page<Commodity> getAllCommodity(Pageable pageable, String name) {
         return commodityRepository.getAllCommodity(pageable,name);
+
     }
 
     @Override
