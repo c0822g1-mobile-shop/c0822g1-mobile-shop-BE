@@ -39,7 +39,8 @@ public class JwtResponse {
         this.roles = roles;
     }
 
-    public JwtResponse(String token, String name, int id, String username, String email, String password, String avatar, Collection<? extends GrantedAuthority> roles) {
+
+    public JwtResponse(String token, String name, int id, String username, String email, String password,String avatar, Collection<? extends GrantedAuthority> roles) {
         this.token = token;
         this.name = name;
         this.id = id;

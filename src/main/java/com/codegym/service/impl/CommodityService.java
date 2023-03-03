@@ -14,7 +14,8 @@ import java.util.Optional;
 public class CommodityService implements ICommodityService {
     @Autowired
     private ICommodityRepository commodityRepository;
-    
+
+
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
@@ -28,12 +29,12 @@ public class CommodityService implements ICommodityService {
 
     @Override
     public Page<Commodity> searchByQuantity(int quantity, Pageable pageable) {
-        return commodityRepository.searchByQuantity(quantity,pageable);
+        return commodityRepository.searchByQuantity(quantity, pageable);
     }
 
     @Override
     public Page<Commodity> searchByPrice(double price, Pageable pageable) {
-        return commodityRepository.searchByPrice(price,pageable);
+        return commodityRepository.searchByPrice(price, pageable);
     }
 
     @Override
@@ -54,6 +55,7 @@ public class CommodityService implements ICommodityService {
     public Page<Commodity> findAll(Pageable pageable) {
         return commodityRepository.showListCommodity(pageable);
     }
+
 
     /**
      * Created by: CongBD,
@@ -91,11 +93,14 @@ public class CommodityService implements ICommodityService {
 
     @Override
     public Page<Commodity> getCommodityByQuantity(Pageable pageable) {
-        return commodityRepository.getCommodityByQuantity(pageable,20);
+        return commodityRepository.getCommodityByQuantity(pageable, 20);
     }
 
 
-
+//    @Override
+//    public Page<Commodity> searchCommodity(String name, Pageable pageable) {
+//        return commodityRepository.searchCommodity(name, pageable);
+//    }
 
     /**
      * Created by: DanhHD

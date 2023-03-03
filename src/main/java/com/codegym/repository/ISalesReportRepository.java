@@ -17,9 +17,6 @@ public interface ISalesReportRepository extends JpaRepository<SalesReport,Intege
      * @param endDay
      * @return Sales report from 'startDay' to 'endDay'
      */
-
-
-
     @Query(value = "SELECT SUM((b.quantity * (c.price + c.price * c.interest_rate)) - (b.quantity * c.price))\n" +
             "                       AS revenue,\n" +
             "       SUM(b.quantity) AS totalQuantity\n" +
@@ -33,6 +30,7 @@ public interface ISalesReportRepository extends JpaRepository<SalesReport,Intege
             "WHERE b.buy_date >= :startDay\n" +
             "  AND b.buy_date <= :endDay", nativeQuery = true)
     ISalesReport salesReport(@Param("startDay") String startDay, @Param("endDay") String endDay);
+
 
 
 
@@ -51,4 +49,5 @@ public interface ISalesReportRepository extends JpaRepository<SalesReport,Intege
             "GROUP BY\n" +
             "    b.buy_date;", nativeQuery = true)
     List<ISalesReport> getAllSalesReport(@Param("startDay") String startDay, @Param("endDay") String endDay);
+
 }

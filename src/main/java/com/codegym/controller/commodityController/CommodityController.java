@@ -1,4 +1,5 @@
 package com.codegym.controller.commodityController;
+
 import com.codegym.dto.CommodityDto;
 import com.codegym.model.commodity.Commodity;
 import com.codegym.service.ICommodityService;
@@ -12,10 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
 
 @CrossOrigin("*")
 @RequestMapping("/api/commodity")
@@ -24,12 +25,11 @@ public class CommodityController {
     @Autowired
     private ICommodityService commodityService;
 
-
-
     /**
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all commodity
+     *
      * @param pageable
      * @param name
      * @return HttpStatus.NOT_FOUND if result is error. HttpStatus.OK if result is not error.
@@ -47,6 +47,7 @@ public class CommodityController {
         }
         return new ResponseEntity<>(commodityPage, HttpStatus.OK);
     }
+
     /**
      * Created by: LongPT
      * Date created: 27/2/2023
@@ -78,7 +79,7 @@ public class CommodityController {
 
     @GetMapping("/list")
     public ResponseEntity<Page<Commodity>> showList(
-                                                    @PageableDefault(value = 5) Pageable pageable) {
+            @PageableDefault(value = 5) Pageable pageable) {
         Page<Commodity> commodityList = commodityService.findAll(pageable);
         if (commodityList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -105,6 +106,7 @@ public class CommodityController {
         commodityService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -115,22 +117,24 @@ public class CommodityController {
      * @Return HttpStatus.OK if result is not error
      */
     @GetMapping("/search/{id}/{type}")
-    public ResponseEntity<Page<Commodity>> search(@PathVariable("id") int id,@PathVariable("type") String type,@PageableDefault(value = 5) Pageable pageable) {
-        switch (id){
+    public ResponseEntity<Page<Commodity>> search(@PathVariable("id") int id, @PathVariable("type") String type, @PageableDefault(value = 5) Pageable pageable) {
+        switch (id) {
             case 0:
                 return this.showList(pageable);
             case 1:
-                return new ResponseEntity<>(commodityService.searchByName(type,pageable),HttpStatus.ACCEPTED);
+                return new ResponseEntity<>(commodityService.searchByName(type, pageable), HttpStatus.ACCEPTED);
             case 2:
-                return new ResponseEntity<>(commodityService.searchByPrice(Double.parseDouble(type),pageable),HttpStatus.ACCEPTED);
+                return new ResponseEntity<>(commodityService.searchByPrice(Double.parseDouble(type), pageable), HttpStatus.ACCEPTED);
             case 3:
-                return new ResponseEntity<>(commodityService.searchByQuantity(Integer.parseInt(type),pageable),HttpStatus.ACCEPTED);
+                return new ResponseEntity<>(commodityService.searchByQuantity(Integer.parseInt(type), pageable), HttpStatus.ACCEPTED);
             default:
                 return ResponseEntity.ok(null);
         }
     }
 
     /**
+     * =======
+     * >>>>>>> origin/develop
      * Created by: DanhHD
      * Date Created: 27/02/2023
      * Function: create commodity
@@ -178,7 +182,6 @@ public class CommodityController {
      * @param bindingResult
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-
     @PutMapping("/edit/{id}")
     public ResponseEntity<?> editCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult bindingResult, @PathVariable("id") Integer id) {
         Commodity commodity = commodityService.findCommodity(id);
@@ -188,9 +191,21 @@ public class CommodityController {
         if (commodity == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        BeanUtils.copyProperties(commodityDto, commodity);
+        BeanUtils.copyProperties(commodityDto,commodity);
         commodityService.editCommodity(commodity);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PutMapping("/edit")
+    public ResponseEntity<?> editCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult
+            bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+        }
+        Commodity commodity = new Commodity();
+        BeanUtils.copyProperties(commodityDto, commodity);
+        commodityService.editCommodity(commodity);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
+

@@ -23,6 +23,7 @@ public interface ISupplierService {
      */
 
 
+
     Page<Supplier> showList(String search, Pageable pageable);
 
     void deleteSupplier(Integer id);

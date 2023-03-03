@@ -24,7 +24,6 @@ public class UserPrinciple implements UserDetails {
     private Collection<? extends GrantedAuthority> roles;
 
 
-
     public UserPrinciple() {
     }
 
@@ -35,6 +34,7 @@ public class UserPrinciple implements UserDetails {
     public void setId(int id) {
         this.id = id;
     }
+
     public String getAvatar() {
         return avatar;
     }
@@ -42,6 +42,7 @@ public class UserPrinciple implements UserDetails {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -70,13 +71,13 @@ public class UserPrinciple implements UserDetails {
         this.roles = roles;
     }
 
-    public UserPrinciple(int id, String username, String password, String name, String email,String avatar,
+    public UserPrinciple(int id, String username, String password, String name, String email, String avatar,
                          String phoneNumber,
                          String address,
                          Integer age,
                          Boolean gender,
                          String dateOfBirth
-                        , Collection<? extends GrantedAuthority> roles) {
+            , Collection<? extends GrantedAuthority> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -89,6 +90,18 @@ public class UserPrinciple implements UserDetails {
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.roles = roles;
+    }
+
+    public UserPrinciple(int id, String username, String password, String name, String email, String avatar, Collection<? extends GrantedAuthority> roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+        this.avatar = avatar;
+        this.roles = roles;
+
+
     }
 
     public void setId(Integer id) {
@@ -112,6 +125,7 @@ public class UserPrinciple implements UserDetails {
                 authorityList
         );
     }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

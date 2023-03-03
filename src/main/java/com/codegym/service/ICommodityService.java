@@ -3,7 +3,6 @@ package com.codegym.service;
 import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 
 
 import java.util.Optional;
@@ -41,6 +40,7 @@ public interface ICommodityService {
 
     void editCommodity(Commodity commodity);
 
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -50,6 +50,9 @@ public interface ICommodityService {
      * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
      */
     Page<Commodity> findAll(Pageable pageable);
+
+//    Page<Commodity> findAll(String search,Pageable pageable);
+
 
 
     /**
@@ -85,8 +88,6 @@ public interface ICommodityService {
      * @Return HttpStatus.OK if result is not error
      */
     Page<Commodity> searchByName( String name,Pageable pageable);
-
-
 
 
     Optional<Commodity> findById(int id);

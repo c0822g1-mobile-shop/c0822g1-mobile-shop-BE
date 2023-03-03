@@ -12,16 +12,9 @@ import com.codegym.security.jwt.JwtProvider;
 import com.codegym.security.userPrincipcal.UserPrinciple;
 import com.codegym.service.IRoleService;
 import com.codegym.service.IUserService;
-import com.codegym.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.security.authentication.AuthenticationManager;
-//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-//import org.springframework.security.core.Authentication;
-//import org.springframework.security.core.context.SecurityContextHolder;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -30,7 +23,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -43,7 +35,7 @@ import java.util.Set;
 @CrossOrigin("*")
 public class AuthController {
     @Autowired
-    private IUserService iUserService =new UserService();
+    private IUserService iUserService;
     @Autowired
     private IRoleService iRoleService;
     @Autowired
@@ -104,6 +96,7 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.createToken(authentication);
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
+
         return ResponseEntity.ok(new JwtResponse(token, userPrinciple.getName(), userPrinciple.getId(), userPrinciple.getUsername(), userPrinciple.getEmail(), userPrinciple.getPassword(), userPrinciple.getAvatar()
                 ,userPrinciple.getPhoneNumber(),
                 userPrinciple.getAddress(),
@@ -111,6 +104,8 @@ public class AuthController {
                 userPrinciple.getGender(),
                 userPrinciple.getDateOfBirth()
                 , userPrinciple.getAuthorities()));
+
+
 
     }
     /**
@@ -156,9 +151,9 @@ public class AuthController {
     }
     /**
      * Created by: CuongVV
-     * Date created: 27/2/2023
-     * Function: update user
-     * @param: none
+     * Date created: 1/3/2023
+     * Function: update user info
+     * @param: updateUserForm
      */
     @PostMapping("/update")
     public ResponseEntity<?> updateUser(@Valid @RequestBody UpdateUserForm updateUserForm,BindingResult bindingResult) {

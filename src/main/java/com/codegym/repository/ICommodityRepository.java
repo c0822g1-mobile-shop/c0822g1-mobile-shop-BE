@@ -1,6 +1,6 @@
 package com.codegym.repository;
 
-import com.codegym.model.bill.Bill;
+
 import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
 import javax.transaction.Transactional;
 import java.util.Optional;
 @Repository
@@ -41,9 +40,8 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             "origin, " +
             "description, " +
             "code_qr," +
-            "quantity," +
-            "flag_delete," +
-            "interest_rate) " +
+            "quantity, " +
+            "flag_delete) " +
             "values " +
             "(:#{#commodity.name}, " +
             ":#{#commodity.cpu}, " +
@@ -60,7 +58,8 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             ":#{#commodity.codeQr}, " +
             ":#{#commodity.quantity}," +
             ":#{#commodity.flagDelete}," +
-            ":#{#commodity.interestRate})",
+            ":#{#commodity.interestRate}" +
+            ":#{#commodity.quantity}, false )",
             nativeQuery = true)
     void addCommodity(@Param("commodity") Commodity commodity);
 
@@ -110,7 +109,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             nativeQuery = true)
     void editCommodity(@Param("commodity") Commodity commodity);
 
-
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -148,12 +146,20 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
     @Query(value = "select * from commodity where quantity = :quantity and flag_delete = false ",nativeQuery = true)
     Page<Commodity> searchByQuantity(@Param("quantity")int quantity, Pageable pageable);
 
+    @Query(value = "select * from commodity where flag_delete = false " +
+            "and (commodity.name like concat('%',:search ,'%')" +
+            " or commodity.price = :search " +
+            "or  commodity.quantity = :search)", nativeQuery = true)
+    Page<Commodity> showListCommodity(@Param("search") String name,
+                                      Pageable pageable);
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
      * function: delete commodity
      *
      * @param id
+     * @Return HttpStatus.OK if result is not error
      */
     @Modifying
     @Transactional
@@ -166,40 +172,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
 
 
 
-
-
-    /**
-=======
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-
-
-//    @Transactional
-//    @Modifying
-//    @Query(value = " insert into commodity (`name`, " +
-//            " cpu, " +
-//            " capacity, " +
-//            " tradeMark, " +
-//            " price, " +
-//            " image, " +
-//            " camera, " +
-//            " selfie, " +
-//            " screenSize, " +
-//            " guarantee, " +
-//            " origin, " +
-//            " description, " +
-//            " codeQR, " +
-//            " quantity)",nativeQuery = true)
-//    void saveCommodity(@Param("commodity") Commodity commodity);
-
-@Transactional
-@Repository
-public interface ICommodityRepository extends JpaRepository<Commodity, Integer> {
-
-        /**
->>>>>>> origin/commodity-HocHH
+     /**
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all commodity

@@ -36,6 +36,14 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             , @Param("address") String address, @Param("age") Integer age, @Param("gender") Boolean gender
             , @Param("date_of_birth") String dateOfBirth, @Param("avatar") String avatar, @Param("username") String username);
 
+//   @Modifying
+//    @Query(value = "update user set name = :name,phone_number = :phone_number,email = :email," +
+//            " address = :address,age = :age,gender = :gender,date_of_birth = :date_of_birth,avatar = :avatar" +
+//            " where username = :username  ",nativeQuery = true)
+//    void updateUser(@Param("name") String name,@Param("phone_number") String phoneNumber,@Param("email") String email
+//            ,@Param("address") String address,@Param("age") Integer age,@Param("gender") Boolean gender
+//    ,@Param("date_of_birth") String dateOfBirth,@Param("avatar") String avatar,@Param("username") String username);
+
 
     /**
      * Created by: CuongVV
@@ -89,31 +97,11 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all customer
-<<<<<<< HEAD
-     * <p>
-     * =======
-     * import com.codegym.model.user.User;
-     * import org.hibernate.metamodel.model.convert.spi.JpaAttributeConverter;
-     * import org.springframework.data.domain.Page;
-     * import org.springframework.data.domain.Pageable;
-     * import org.springframework.data.jpa.repository.JpaRepository;
-     * import org.springframework.data.jpa.repository.Query;
-     * import org.springframework.data.repository.query.Param;
-     * import org.springframework.stereotype.Repository;
-     * <p>
-     * import java.util.Optional;
      *
-=======
->>>>>>> origin/develop
      * @param name
      * @param address
      * @param pageable
      * @Repository public interface IUserRepository extends JpaRepository<User, Integer> {
-     * /**
-     * Created by: LongPT
-     * Date created: 27/2/2023
-     * Function: get all customer
-     * >>>>>>> origin/commodity-HocHH
      */
     @Query(value = "select `user`.* " +
             " from `user` " +
@@ -129,6 +117,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all customer
+     *
      * @param pageable
      */
     @Query(value = "select `user`.*" +
@@ -144,6 +133,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get customer by id
+     *
      * @param id
      */
     @Query(value = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.id = :id",
