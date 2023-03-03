@@ -149,12 +149,6 @@ public class AuthController {
         }
         return new ResponseEntity<>(new ResponseMessage("Đăng xuất thất bại"),HttpStatus.NOT_ACCEPTABLE);
     }
-    /**
-     * Created by: CuongVV
-     * Date created: 1/3/2023
-     * Function: update user info
-     * @param: updateUserForm
-     */
     @PostMapping("/update")
     public ResponseEntity<?> updateUser(@Valid @RequestBody UpdateUserForm updateUserForm,BindingResult bindingResult) {
        if (bindingResult.hasErrors()) {

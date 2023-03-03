@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 @Entity
 public class Commodity {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
@@ -24,7 +23,6 @@ public class Commodity {
     @ManyToOne
     private Trademark trademark;
     private Integer interestRate = 10;
-
 
     public Commodity() {
 
@@ -160,6 +158,7 @@ public class Commodity {
         this.trademark = trademark;
     }
 
+
     public Integer getInterestRate() {
         return interestRate;
     }
@@ -167,6 +166,4 @@ public class Commodity {
     public void setInterestRate(Integer interestRate) {
         this.interestRate = interestRate;
     }
-
-
 }
