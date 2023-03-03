@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -146,7 +147,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      * @param quantity
      */
     @Query(value = "select * from commodity where quantity = :quantity and flag_delete = false ",nativeQuery = true)
-    Page<Commodity> searchByQuantity(@Param("quantity")int quantity,Pageable pageable);
+    Page<Commodity> searchByQuantity(@Param("quantity")int quantity, Pageable pageable);
 
     /**
      * Created by: CongBD,
@@ -223,4 +224,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      */
     @Query(value = "SELECT * FROM commodity where code_qr=:QRCode",nativeQuery = true)
     Commodity findByQRCode(@Param("QRCode") String QRCode);
+
+
+
 }

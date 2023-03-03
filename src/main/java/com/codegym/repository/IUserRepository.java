@@ -1,5 +1,6 @@
 package com.codegym.repository;
 
+
 import com.codegym.model.user.User;
 //<<<<<<< HEAD
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -123,5 +124,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             countQuery = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.id = :id"
             , nativeQuery = true)
     Optional<User> findCustomerById(@Param("id") Integer id);
+
 }
 

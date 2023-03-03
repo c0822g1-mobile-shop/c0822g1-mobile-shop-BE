@@ -1,5 +1,6 @@
 package com.codegym.service;
 
+import com.codegym.model.SalesReport.ISalesReport;
 import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -101,13 +102,15 @@ public interface ICommodityService {
     Page<Commodity> searchCommodity(String name, Pageable pageable);
 
     
+
+
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
-     * @param QRCode
+     * @param: qrCode
      */
-
     Commodity findByQRCode(String QRCode);
+
 
 
 

@@ -1,7 +1,10 @@
 package com.codegym.service;
 
 import com.codegym.model.SalesReport.ISalesReport;
+import com.codegym.model.SalesReport.SalesReport;
 import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 public interface ISalesReportService {
 
@@ -11,5 +14,10 @@ public interface ISalesReportService {
      * @param startDay
      * @param endDay
      */
-    ISalesReport salesReport(@Param("startDay") String startDay, @Param("endDay") String endDay);
+    ISalesReport salesReport(String startDay,  String endDay);
+
+
+
+    List<ISalesReport> getAllSalesReport(String startDay, String endDay);
+
 }

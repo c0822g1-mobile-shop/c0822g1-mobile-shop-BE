@@ -1,5 +1,6 @@
 package com.codegym.service;
 
+
 import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.model.user.User;
 import org.springframework.data.domain.Page;
@@ -101,5 +102,5 @@ public interface IUserService {
      * @param pageable
      */
     Page<User> findAllCustomerNoParam(Pageable pageable);
-
+    
 }

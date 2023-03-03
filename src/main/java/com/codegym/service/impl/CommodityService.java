@@ -20,10 +20,9 @@ public class CommodityService implements ICommodityService {
      * Date create 27/02/2023
      * @param:QRCode
      */
-
     @Override
-    public Commodity findByQRCode(String QRCode) {
-        return commodityRepository.findByQRCode(QRCode);
+    public Commodity findByQRCode(String qrCode) {
+        return commodityRepository.findByQRCode(qrCode);
     }
 
 
