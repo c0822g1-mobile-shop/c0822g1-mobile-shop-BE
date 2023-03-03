@@ -7,16 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
 @Service
 public class CommodityService implements ICommodityService {
     @Autowired
     private ICommodityRepository commodityRepository;
+    @Autowired
+    private ICommodityRepository iCommodityRepository;
 
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
+     *
      * @param:QRCode
      */
 
@@ -25,11 +29,10 @@ public class CommodityService implements ICommodityService {
         return commodityRepository.findByQRCode(QRCode);
     }
 
-    @Autowired
-    private ICommodityRepository iCommodityRepository;
+
     @Override
     public Page<Commodity> getAllCommodity(Pageable pageable, String name) {
-        return iCommodityRepository.getAllCommodity(pageable,name);
+        return iCommodityRepository.getAllCommodity(pageable, name);
     }
 
     @Override
@@ -42,12 +45,8 @@ public class CommodityService implements ICommodityService {
         return iCommodityRepository.findCommodityById(id);
     }
 
-
-    public Page<Commodity> searchCommodity(String name, Pageable pageable){
-        return commodityRepository.searchCommodity(name,pageable);
-    }
-
-    public Page<Commodity> getCommodityByQuantity(Pageable pageable){
+    @Override
+    public Page<Commodity> getCommodityByQuantity(Pageable pageable) {
         return commodityRepository.getCommodityByQuantity(pageable, 20);
     }
 }

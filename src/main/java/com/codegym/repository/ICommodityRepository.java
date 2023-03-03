@@ -45,21 +45,11 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
     @Query(value = "select * from commodity where commodity.id = :id"
             ,nativeQuery = true)
     Optional<Commodity> findCommodityById(@Param("id") Integer id);
-    
-    /**
-     * Created by: PhucNT
-     * Date created: 27/2/2023
-     * Function: searchCommodity
-     * @param: name
-     */
-
-    @Query(value = "select * from `commodity` where name like concat('%',:name,'%')", nativeQuery = true)
-    Page<Commodity> searchCommodity(@Param("name") String name, Pageable pageable);
 
     /**
      * Created by: PhucNT
      * Date created: 27/2/2023
-     * Function: get conmmodity list bt quantity sold
+     * Function: get commodity list bt quantity sold
      */
 
     @Query(nativeQuery = true, value = "SELECT c.* , ifnull(sum(ifnull(wh.quantity,0))-ifnull(c.quantity,0),0) as quantity_sold" +
