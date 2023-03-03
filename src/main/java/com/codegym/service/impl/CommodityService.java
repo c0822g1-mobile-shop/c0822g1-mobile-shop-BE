@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -80,8 +81,28 @@ public class CommodityService implements ICommodityService {
     }
 
     @Override
+    public List<Commodity> getList() {
+        return commodityRepository.getList();
+    }
+
+    @Override
     public Commodity findByQRCode(String QRCode) {
         return commodityRepository.findByQRCode(QRCode);
+    }
+
+    @Override
+    public Page<Commodity> searchByQuantity(int quantity, Pageable pageable) {
+        return iCommodityRepository.searchByQuantity(quantity, pageable);
+    }
+
+    @Override
+    public Page<Commodity> searchByPrice(double price, Pageable pageable) {
+        return iCommodityRepository.searchByPrice(price, pageable);
+    }
+
+    @Override
+    public Page<Commodity> searchByName(String name, Pageable pageable) {
+        return iCommodityRepository.searchByName(name, pageable);
     }
 
     @Autowired
@@ -96,8 +117,8 @@ public class CommodityService implements ICommodityService {
      * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
      */
     @Override
-    public Page<Commodity> findAll(String search, Pageable pageable) {
-        return commodityRepository.showListCommodity(search, pageable);
+    public Page<Commodity> findAll(Pageable pageable) {
+        return commodityRepository.showListCommodity(pageable);
     }
 
     /**

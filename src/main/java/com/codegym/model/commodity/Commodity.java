@@ -7,14 +7,19 @@ public class Commodity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(unique = true)
+    @Column(unique = true, length = 200)
     private String name;
+    @Column(length = 50)
     private String cpu;
+    @Column(length = 50)
     private String capacity;
     private Double price;
     private String image;
+    @Column(length = 50)
     private String camera;
+    @Column(length = 50)
     private String selfie;
+    @Column(length = 20)
     private String screenSize;
     private String guarantee;
     private String origin;
@@ -23,23 +28,13 @@ public class Commodity {
     private String codeQr;
     private int quantity;
     private Boolean flagDelete = false;
-    private Integer interestRate = 10;
-
     @ManyToOne
     @JoinColumn(name = "trademark_id", referencedColumnName = "id")
     private Trademark trademark;
-
+    private int interestRate = 10;
 
     public Commodity() {
 
-    }
-
-    public int getInterestRate() {
-        return interestRate;
-    }
-
-    public void setInterestRate(int interestRate) {
-        this.interestRate = interestRate;
     }
 
     public Integer getId() {
@@ -154,10 +149,6 @@ public class Commodity {
         this.quantity = quantity;
     }
 
-    public void setInterestRate(Integer interestRate) {
-        this.interestRate = interestRate;
-    }
-
     public Boolean getFlagDelete() {
         return flagDelete;
     }
@@ -174,12 +165,11 @@ public class Commodity {
         this.trademark = trademark;
     }
 
-    public boolean isFlagDelete() {
-        return flagDelete;
+    public int getInterestRate() {
+        return interestRate;
     }
 
-    public void setFlagDelete(boolean flagDelete) {
-        this.flagDelete = flagDelete;
+    public void setInterestRate(int interestRate) {
+        this.interestRate = interestRate;
     }
-
 }

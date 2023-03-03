@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,70 +23,6 @@ import java.util.Optional;
 public class CommodityController {
     @Autowired
     private ICommodityService commodityService;
-
-
-    /**
-     * Created by: DanhHD
-     * Date Created: 27/02/2023
-     * Function: create commodity
-     *
-     * @param commodityDto
-     * @param bindingResult
-     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
-     */
-
-    @PostMapping("/create")
-    public ResponseEntity<?> createCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
-        }
-        Commodity commodity = new Commodity();
-        BeanUtils.copyProperties(commodityDto, commodity);
-        commodityService.addCommodity(commodity);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    /**
-     * Created by: DanhHD
-     * Date Created: 27/02/2023
-     * Function: find commodity by id
-     *
-     * @param id
-     * @return HttpStatus.BAD_REQUEST if id is not found or HttpStatus.OK if id is found
-     */
-
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Commodity> findById(@PathVariable("id") Integer id) {
-        Commodity commodity = commodityService.findCommodity(id);
-        if (commodity == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(commodity, HttpStatus.OK);
-    }
-
-    /**
-     * Created by: DanhHD
-     * Date Created: 27/02/2023
-     * Function: edit commodity by id
-     *
-     * @param commodityDto
-     * @param bindingResult
-     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
-     */
-
-    @PutMapping("/edit/{id}")
-    public ResponseEntity<?> editCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult bindingResult, @PathVariable("id") Integer id) {
-        Commodity commodity = commodityService.findCommodity(id);
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
-        }
-        if (commodity == null) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        BeanUtils.copyProperties(commodityDto, commodity);
-        commodityService.editCommodity(commodity);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     /**
      * Created by: LongPT
@@ -141,9 +78,9 @@ public class CommodityController {
 
 
     @GetMapping("/list")
-    public ResponseEntity<Page<Commodity>> showList(@RequestParam(defaultValue = "", required = false) String search,
-                                                    @PageableDefault(value = 2) Pageable pageable) {
-        Page<Commodity> commodityList = commodityService.findAll(search, pageable);
+    public ResponseEntity<Page<Commodity>> showList(
+            @PageableDefault(value = 5) Pageable pageable) {
+        Page<Commodity> commodityList = commodityService.findAll(pageable);
         if (commodityList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -170,5 +107,97 @@ public class CommodityController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: search commodity
+     *
+     * @param id
+     * @param type
+     * @Return HttpStatus.OK if result is not error
+     */
+    @GetMapping("/search/{id}/{type}")
+    public ResponseEntity<Page<Commodity>> search(@PathVariable("id") int id, @PathVariable("type") String type, @PageableDefault(value = 5) Pageable pageable) {
+        switch (id) {
+            case 0:
+                return this.showList(pageable);
+            case 1:
+                return new ResponseEntity<>(commodityService.searchByName(type, pageable), HttpStatus.ACCEPTED);
+            case 2:
+                return new ResponseEntity<>(commodityService.searchByPrice(Double.parseDouble(type), pageable), HttpStatus.ACCEPTED);
+            case 3:
+                return new ResponseEntity<>(commodityService.searchByQuantity(Integer.parseInt(type), pageable), HttpStatus.ACCEPTED);
+            default:
+                return ResponseEntity.ok(null);
+        }
+    }
 
+    /**
+     * Created by: DanhHD
+     * Date Created: 27/02/2023
+     * Function: create commodity
+     *
+     * @param commodityDto
+     * @param bindingResult
+     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
+     */
+
+    @PostMapping("/create")
+    public ResponseEntity<?> createCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
+        }
+        Commodity commodity = new Commodity();
+        BeanUtils.copyProperties(commodityDto, commodity);
+        commodityService.addCommodity(commodity);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Created by: DanhHD
+     * Date Created: 27/02/2023
+     * Function: find commodity by id
+     *
+     * @param id
+     * @return HttpStatus.BAD_REQUEST if id is not found or HttpStatus.OK if id is found
+     */
+
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Commodity> findById(@PathVariable("id") Integer id) {
+        Commodity commodity = commodityService.findCommodity(id);
+        if (commodity == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(commodity, HttpStatus.OK);
+    }
+
+    /**
+     * Created by: DanhHD
+     * Date Created: 27/02/2023
+     * Function: edit commodity by id
+     *
+     * @param commodityDto
+     * @param bindingResult
+     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
+     */
+
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<?> editCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult bindingResult, @PathVariable("id") Integer id) {
+        Commodity commodity = commodityService.findCommodity(id);
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
+        }
+        if (commodity == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        BeanUtils.copyProperties(commodityDto, commodity);
+        commodityService.editCommodity(commodity);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/getList")
+    public ResponseEntity<List<Commodity>> getList() {
+
+        return new ResponseEntity<>(commodityService.getList(), HttpStatus.OK);
+    }
 }

@@ -3,55 +3,51 @@ package com.codegym.dto;
 import com.codegym.model.commodity.Trademark;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 public class CommodityDto {
     private Integer id;
     @NotBlank(message = "Không được để trống")
-    @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$", message = "Không chứa ký tự đặc biệt")
-    @Length(min = 5, max = 200)
+    @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$", message = "Tên hàng không được nhập ký tự đặc biệt")
+    @Length(min = 5, max = 200, message = "Tên hàng không được nhập ít hơn 5 chữ và dài quá 200 chữ")
     private String name;
-    @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$", message = "Không chứa ký tự đặc biệt")
+    @Pattern(regexp = "^[-a-zA-Z0-9\\+ ]*$", message = "CPU không được nhập ký tự đặc biệt")
     @NotBlank(message = "Không được để trống")
-    @Length(min = 5, max = 50)
+    @Length(min = 5, max = 50, message = "CPU không được nhập ít hơn 5 chữ và dài quá 200 chữ")
     private String cpu;
-    @Length(min = 5, max = 20)
-    @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$", message = "Không chứa ký tự đặc biệt")
+    @Length(min = 5, max = 20, message = "Lưu trữ không được nhập ít hơn 5 chữ và dài quá 20 chữ")
+    @Pattern(regexp = "^[0-9]* [G][B]$", message = "Lưu trữ không được nhập ký tự đặc biệt")
     @NotBlank(message = "Không được để trống")
     private String capacity;
-    @Min(0)
-    @Max(2000000000)
+    @Min(value = 0, message = "Giá không được nhập nhỏ hơn 0")
+    @Max(value = 2000000000, message = "Giá không được nhập quá 2.000.000.000")
     private Double price;
-    @Length(min = 5, max = 200)
+    @Length(min = 5, max = 200, message = "Đường dẫn ảnh quá dài")
     @NotBlank(message = "Không được để trống")
     private String image;
     @NotBlank(message = "Không được để trống")
-    @Length(min = 2, max = 50)
-    @Pattern(regexp = "^[a-zA-Z0-9\\+. ]*$", message = "Không chứa ký tự đặc biệt")
+    @Length(min = 2, max = 50, message = "Camera không được nhập ít hơn 5 chữ và dài quá 50 chữ")
+    @Pattern(regexp = "^[0-9]* [M][P]$", message = "Camera không được nhập ký tự đặc biệt")
     private String camera;
-    @Length(min = 3, max = 50)
-    @Pattern(regexp = "^[a-zA-Z0-9\\+. ]*$", message = "Không chứa ký tự đặc biệt")
+    @Length(min = 2, max = 50)
+    @Pattern(regexp = "^[0-9]* [M][P]$", message = "Selfie không được nhập ký tự đặc biệt")
     @NotBlank(message = "Không được để trống")
     private String selfie;
     @Length(min = 5, max = 20)
-    @Pattern(regexp = "^[a-zA-Z0-9\\+. ]*$", message = "Không chứa ký tự đặc biệt")
+    @Pattern(regexp = "^[0-9.]* [a-z]*$", message = "Kích thước màn hình không được nhập ký tự đặc biệt")
     @NotBlank(message = "Không được để trống")
     private String screenSize;
     @NotBlank(message = "Không được để trống")
-    @Length(min = 5, max = 20)
-    @Pattern(regexp = "^[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ0-9A-Z ]*$", message = "Không chứa ký tự đặc biệt")
+    @Length(max = 2)
+    @Pattern(regexp = "^[0-9]*$", message = "Thời gian bảo hành không được nhập ký tự đặc biệt")
     private String guarantee;
     @NotBlank(message = "Không được để trống")
     @Length(min = 1, max = 20)
-    @Pattern(regexp = "^[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđA-Z ]*$", message = "Không chứa ký tự đặc biệt và số")
+    @Pattern(regexp = "^[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđA-Z ]*$", message = "Xuất xứ không được nhập ký tự đặc biệt và số")
     private String origin;
     private String description;
     @NotBlank(message = "Không được để trống")
-    @Length(min = 3, max = 10)
-    @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$", message = "Không chứa ký tự đặc biệt")
+    @Pattern(regexp = "^[Q][R][0-9]*$", message = "Mã QR không được nhập ký tự đặc biệt")
     private String codeQr;
     private int quantity;
     private Boolean flagDelete = false;
@@ -61,7 +57,7 @@ public class CommodityDto {
     public CommodityDto() {
     }
 
-    public CommodityDto(Integer id, String name, String cpu, String capacity, Double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, int quantity, Integer interestRate, Boolean flag_delete, Trademark trademark) {
+    public CommodityDto(Integer id, String name, String cpu, String capacity, Double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, int quantity, Boolean flag_delete, int interestRate, Trademark trademark) {
         this.id = id;
         this.name = name;
         this.cpu = cpu;
@@ -81,11 +77,11 @@ public class CommodityDto {
         this.trademark = trademark;
     }
 
-    public Integer getInterestRate() {
+    public int getInterestRate() {
         return interestRate;
     }
 
-    public void setInterestRate(Integer interestRate) {
+    public void setInterestRate(int interestRate) {
         this.interestRate = interestRate;
     }
 
