@@ -133,4 +133,19 @@ public class SupplierController {
         supplierService.updateSupplier(supplier.getName(), supplier.getAddress(), supplier.getPhoneNumber(), supplier.getEmail(), supplier.getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    /**
+     * Create by: TanTH,
+     * Date created: 27/02/2023,
+     * Function: show list supplier +Search supplier
+     *
+     * @param pageable
+     * @return HttpStatus.OK
+     */
+
+    @GetMapping("/findSupplier")
+    private ResponseEntity<?> showLists(@RequestParam(value = "name", defaultValue = "") String name, @RequestParam(value = "address", defaultValue = "") String address , @RequestParam(value = "email", defaultValue = "") String email, @PageableDefault(value = 2)Pageable pageable) {
+        Page<Supplier> lists = supplierService.showSupplierList(name,address,email,pageable);
+        return new ResponseEntity<>(lists, HttpStatus.OK);
+    }
 }
