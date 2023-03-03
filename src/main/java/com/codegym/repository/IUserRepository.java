@@ -85,11 +85,11 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     @Query(value = "select * from user join user_roles on user.id = user_roles.user_id join role r on user_roles.roles_id = r.id where r.name = 'ROLE_ADMIN'", nativeQuery = true)
     List<User> findAllAdmin();
 
-
     /**
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all customer
+<<<<<<< HEAD
      * <p>
      * =======
      * import com.codegym.model.user.User;
@@ -103,6 +103,8 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * <p>
      * import java.util.Optional;
      *
+=======
+>>>>>>> origin/develop
      * @param name
      * @param address
      * @param pageable
@@ -113,12 +115,12 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Function: get all customer
      * >>>>>>> origin/commodity-HocHH
      */
-    @Query(value = "select `user`.*" +
-            " from `user`\n" +
-            "         join `user_roles` on `user`.id = `user_roles`.user_id\n" +
-            "         join `role` on `role`.id = `user_roles`.roles_id\n" +
-            "where role.id = 1\n" +
-            "  and user.name like concat('%', :name, '%')\n" +
+    @Query(value = "select `user`.* " +
+            " from `user` " +
+            "         join `user_roles` on `user`.id = `user_roles`.user_id " +
+            "         join `role` on `role`.id = `user_roles`.roles_id " +
+            "where role.id = 1 " +
+            "  and user.name like concat('%', :name, '%') " +
             "  and user.address like concat('%', :address, '%')"
             , nativeQuery = true)
     Page<User> findAllCustomer(Pageable pageable, @Param("name") String name, @Param("address") String address);
@@ -127,17 +129,12 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all customer
-     * <<<<<<< HEAD
-     * <p>
-     * =======
-     * >>>>>>> origin/commodity-HocHH
-     *
      * @param pageable
      */
     @Query(value = "select `user`.*" +
-            " from `user`\n" +
-            "         join `user_roles` on `user`.id = `user_roles`.user_id\n" +
-            "         join `role` on `role`.id = `user_roles`.roles_id\n" +
+            " from `user` " +
+            "         join `user_roles` on `user`.id = `user_roles`.user_id " +
+            "         join `role` on `role`.id = `user_roles`.roles_id " +
             "where role.id = 1"
             , nativeQuery = true)
     Page<User> findAllCustomerNoParam(Pageable pageable);
@@ -147,7 +144,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get customer by id
-     *
      * @param id
      */
     @Query(value = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.id = :id",

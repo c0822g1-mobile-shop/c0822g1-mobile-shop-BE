@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 public interface ISupplierService {
     /**
@@ -36,4 +37,16 @@ public interface ISupplierService {
     Map<String, String> checkCreate(SupplierDto supplierDto);
 
     Map<String, String> checkUpdate(SupplierDto supplierDto);
+
+    /**
+     * Create by: TanTH,
+     * Date created: 27/02/2023,
+     * Function: show list supplier +Search supplier
+     *
+     * @param pageable
+     * @return HttpStatus.OK
+     */
+
+
+    Page<Supplier> showSupplierList(String name, String address , String email, Pageable pageable);
 }

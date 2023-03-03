@@ -4,8 +4,6 @@ import javax.persistence.*;
 
 @Entity
 public class Commodity {
-
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true)
@@ -27,7 +25,11 @@ public class Commodity {
     @ManyToOne
     @JoinColumn(name = "trademark_id", referencedColumnName = "id")
     private Trademark trademark;
-    private Integer interestRate = 10;
+
+
+
+    private int interestRate = 10;
+
 
 
     public Commodity() {
@@ -172,5 +174,8 @@ public class Commodity {
 
     public void setInterestRate(Integer interestRate) {
         this.interestRate = interestRate;
+    }
+    public boolean isFlagDelete() {
+        return flagDelete;
     }
 }

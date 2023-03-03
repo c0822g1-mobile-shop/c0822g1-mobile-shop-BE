@@ -104,7 +104,13 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.createToken(authentication);
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
-        return ResponseEntity.ok(new JwtResponse(token, userPrinciple.getName(), userPrinciple.getId(), userPrinciple.getUsername(), userPrinciple.getEmail(), userPrinciple.getPassword(), userPrinciple.getAvatar(), userPrinciple.getAuthorities()));
+        return ResponseEntity.ok(new JwtResponse(token, userPrinciple.getName(), userPrinciple.getId(), userPrinciple.getUsername(), userPrinciple.getEmail(), userPrinciple.getPassword(), userPrinciple.getAvatar()
+                ,userPrinciple.getPhoneNumber(),
+                userPrinciple.getAddress(),
+                userPrinciple.getAge(),
+                userPrinciple.getGender(),
+                userPrinciple.getDateOfBirth()
+                , userPrinciple.getAuthorities()));
 
     }
     /**
@@ -148,6 +154,12 @@ public class AuthController {
         }
         return new ResponseEntity<>(new ResponseMessage("Đăng xuất thất bại"),HttpStatus.NOT_ACCEPTABLE);
     }
+    /**
+     * Created by: CuongVV
+     * Date created: 27/2/2023
+     * Function: update user
+     * @param: none
+     */
     @PostMapping("/update")
     public ResponseEntity<?> updateUser(@Valid @RequestBody UpdateUserForm updateUserForm,BindingResult bindingResult) {
        if (bindingResult.hasErrors()) {
@@ -156,6 +168,12 @@ public class AuthController {
         iUserService.updateUser(updateUserForm);
         return new ResponseEntity<>(new ResponseMessage("Chỉnh sửa thông tin thành công"),HttpStatus.ACCEPTED);
     }
+    /**
+     * Created by: CuongVV
+     * Date created: 27/2/2023
+     * Function: get all customer
+     * @param: none
+     */
     @GetMapping("/customer")
     public ResponseEntity<?> getAll() {
         return new ResponseEntity<>(iUserService.findAll(),HttpStatus.OK);

@@ -23,9 +23,9 @@ public interface ISupplierRepository extends JpaRepository<Supplier, Integer> {
      * Date created: 27/02/2023,
      * Function: show list supplier + delete supplier by id
      *
-     * @param search
-     * @param pageable
-     * @return HttpStatus.NOT_FOUND if result is error or HttpStatus.OK if result is not error
+     * @param: search
+     * @param: pageable
+     * @return: HttpStatus.NOT_FOUND if result is error or HttpStatus.OK if result is not error
      */
 
     @Query(value = "select * from supplier where (name like concat('%', :search , '%') or address like concat('%', :search , '%') or phone_number like concat('%', :search , '%')) and flag_delete=false",
@@ -55,4 +55,16 @@ public interface ISupplierRepository extends JpaRepository<Supplier, Integer> {
 
     @Query(value = "select * from supplier", nativeQuery = true)
     List<Supplier> supplierList();
+
+
+    /**
+     * Create by: TanTH,
+     * Date created: 27/02/2023,
+     * Function: show list supplier +Search supplier
+     *
+     * @param pageable
+     */
+
+    @Query(value = "select * from supplier where (name like concat('%', :name , '%') and address like concat('%', :address , '%') and email like concat('%', :email , '%')) and flag_delete=false", nativeQuery = true)
+    Page<Supplier> showSupplierList(@Param("name") String name, @Param("address") String address , @Param("email") String email,  Pageable pageable);
 }

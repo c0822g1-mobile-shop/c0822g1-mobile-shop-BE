@@ -1,6 +1,5 @@
 package com.codegym.service.impl;
 
-
 import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.model.user.Role;
 import com.codegym.model.user.User;
@@ -150,7 +149,6 @@ public class UserService implements IUserService {
         return iUserRepository.findAllAdmin();
     }
 
-
     @Autowired
     private IUserRepository userRepository;
 
@@ -184,5 +182,4 @@ public class UserService implements IUserService {
     public Page<User> findAllCustomerNoParam(Pageable pageable) {
         return userRepository.findAllCustomerNoParam(pageable);
     }
-
 }

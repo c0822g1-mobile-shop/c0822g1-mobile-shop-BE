@@ -74,10 +74,13 @@ public interface IUserService {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all customer
+<<<<<<< HEAD
 
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all customer
+=======
+>>>>>>> origin/develop
      * @param name
      * @param address
      * @param pageable
@@ -98,6 +101,7 @@ public interface IUserService {
      * Function: get customer by id
      * @param pageable
      */
+     
     Page<User> findAllCustomerNoParam(Pageable pageable);
 
 }

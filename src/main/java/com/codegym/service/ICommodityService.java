@@ -98,10 +98,6 @@ public interface ICommodityService {
     Optional<Commodity> findCommodityById(Integer id);
     
     Page<Commodity> getCommodityByQuantity(Pageable pageable);
-    
-    Page<Commodity> searchCommodity(String name, Pageable pageable);
-
-
 
     /**
      * Create by : DuongLTH
