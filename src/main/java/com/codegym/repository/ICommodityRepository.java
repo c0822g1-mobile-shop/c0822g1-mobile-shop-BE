@@ -109,11 +109,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             nativeQuery = true)
     void editCommodity(@Param("commodity") Commodity commodity);
 
-<<<<<<< HEAD
-=======
-
-
-
 
     /**
      * Created by: CongBD,
@@ -123,8 +118,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      * @param pageable
      */
     @Query(value = "select * from commodity where flag_delete = false ", nativeQuery = true)
-    Page<Commodity> showListCommodity(@Param("search") String name,
-                                      Pageable pageable);
+    Page<Commodity> showListCommodity(Pageable pageable);
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -170,7 +164,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
     Optional<Commodity> findById(@Param("id") int id);
 
 
->>>>>>> origin/commodity-CongBD
+
     /**
      * Created by: LongPT
      * Date created: 27/2/2023

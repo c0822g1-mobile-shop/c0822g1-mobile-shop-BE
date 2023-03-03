@@ -40,8 +40,6 @@ public interface ICommodityService {
 
     void editCommodity(Commodity commodity);
 
-<<<<<<< HEAD
-=======
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -50,7 +48,7 @@ public interface ICommodityService {
      * @param pageable
      * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
      */
-    Page<Commodity> findAll(String search,Pageable pageable);
+    Page<Commodity> findAll(Pageable pageable);
 
 
     /**
@@ -92,7 +90,6 @@ public interface ICommodityService {
 
     Optional<Commodity> findById(int id);
 
->>>>>>> origin/commodity-CongBD
     Page<Commodity> getAllCommodity(Pageable pageable, String name);
     
     Page<Commodity> getAllCommodityNoParam(Pageable pageable);
@@ -109,12 +106,9 @@ public interface ICommodityService {
      * Date create 27/02/2023
      * @param QRCode
      */
-<<<<<<< HEAD
-    Commodity findByQRCode(String QRCode);
-    
-=======
-    Commodity findByQRCode(@Param("QRCode") String QRCode);
 
->>>>>>> origin/commodity-CongBD
+    Commodity findByQRCode(String QRCode);
+
+
 
 }

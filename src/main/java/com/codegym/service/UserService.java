@@ -1,9 +1,12 @@
 package com.codegym.service;
 
+import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.model.user.Role;
 import com.codegym.model.user.User;
 import com.codegym.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +20,11 @@ public class UserService implements IUserService{
     @Override
     public Optional<User> findByUsername(String username) {
         return iUserRepository.findByUsername(username);
+    }
+
+    @Override
+    public void updateUser(UpdateUserForm updateUserForm) {
+
     }
 
     @Override
@@ -68,6 +76,21 @@ public class UserService implements IUserService{
     @Override
     public List<User> findAllAdmin() {
         return iUserRepository.findAllAdmin();
+    }
+
+    @Override
+    public Page<User> findAllCustomer(Pageable pageable, String name, String address) {
+        return null;
+    }
+
+    @Override
+    public Optional<User> findCustomerById(Integer id) {
+        return iUserRepository.findCustomerById(id);
+    }
+
+    @Override
+    public Page<User> findAllCustomerNoParam(Pageable pageable) {
+        return null;
     }
 
 
