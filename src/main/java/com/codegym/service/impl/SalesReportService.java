@@ -37,4 +37,14 @@ public class SalesReportService implements ISalesReportService {
         return salesReportRepository.getAllSalesReport(startDay, endDay);
     }
 
+    @Override
+    public ISalesReport salesReportById(String startDay, String endDay, Integer id) {
+        return salesReportRepository.salesReportById(startDay, endDay, id);
+    }
+
+    @Override
+    public List<ISalesReport> getAllSalesReportById(String startDay, String endDay, Integer id) {
+        return salesReportRepository.getAllSalesReportById(startDay, endDay, id);
+    }
+
 }

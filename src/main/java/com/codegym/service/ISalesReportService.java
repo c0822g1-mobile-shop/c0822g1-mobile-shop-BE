@@ -20,4 +20,12 @@ public interface ISalesReportService {
 
     List<ISalesReport> getAllSalesReport(String startDay, String endDay);
 
+
+
+    ISalesReport salesReportById(String startDay, String endDay, Integer id);
+
+
+    List<ISalesReport> getAllSalesReportById(String startDay,  String endDay,Integer id);
+
+
 }

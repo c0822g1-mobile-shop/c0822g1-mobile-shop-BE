@@ -17,35 +17,67 @@ public interface ISalesReportRepository extends JpaRepository<SalesReport,Intege
      * @return Sales report from 'startDay' to 'endDay'
      */
 
-    @Query(value = "SELECT SUM((b.quantity * (c.price + c.price * c.interest_rate/100)) - (b.quantity * c.price))\n" +
-            "                       AS revenue,\n" +
-            "       SUM(b.quantity) AS totalQuantity\n" +
+    @Query(value = "SELECT c.id AS commodityId,\n" +
+            "       SUM((b.quantity * (c.price + c.price * c.interest_rate / 100)) - (b.quantity * c.price))\n" +
+            "           AS revenue,\n" +
+            "       SUM(b.quantity) AS totalQuantity,\n" +
+            "       b.buy_date AS buyDate\n" +
             "FROM bill b\n" +
-            "         JOIN bill_history bc \n" +
-            "             ON b.id = bc.bill_id\n" +
-            "         JOIN commodity c \n" +
-            "             ON bc.commodity_id = c.id\n" +
-            "         LEFT JOIN ware_housing w \n" +
-            "             ON c.id = w.commodity_id\n" +
-            "WHERE b.buy_date >= :startDay\n" +
-            "  AND b.buy_date <= :endDay", nativeQuery = true)
+            "         JOIN bill_history bc ON b.id = bc.bill_id\n" +
+            "         JOIN commodity c ON bc.commodity_id = c.id\n" +
+            "         LEFT JOIN ware_housing w ON c.id = w.commodity_id\n" +
+            "WHERE (b.buy_date >= :startDay AND b.buy_date <= :endDay)", nativeQuery = true)
     ISalesReport salesReport(@Param("startDay") String startDay, @Param("endDay") String endDay);
 
 
 
-    @Query(value = "SELECT\n" +
-            "    SUM((b.quantity * (c.price + c.price * c.interest_rate/100)) - (b.quantity * c.price))" +
-            " AS revenue,\n" +
-            "    SUM(b.quantity) AS totalQuantity,\n" +
-            "    b.buy_date AS buyDate\n" +
-            "FROM\n" +
-            "    bill b\n" +
-            "        JOIN bill_history bc ON b.id = bc.bill_id\n" +
-            "        JOIN commodity c ON bc.commodity_id = c.id\n" +
-            "        LEFT JOIN ware_housing w ON c.id = w.commodity_id\n" +
-            "WHERE\n" +
-            "    (b.buy_date >= :startDay AND b.buy_date <= :endDay)\n" +
-            "GROUP BY\n" +
-            "    b.buy_date;", nativeQuery = true)
+
+    @Query(value = "SELECT c.id AS commodityId,\n" +
+            "       SUM((b.quantity * (c.price + c.price * c.interest_rate / 100)) - (b.quantity * c.price))\n" +
+            "           AS revenue,\n" +
+            "       SUM(b.quantity) AS totalQuantity,\n" +
+            "       b.buy_date AS buyDate\n" +
+            "FROM bill b\n" +
+            "         JOIN bill_history bc ON b.id = bc.bill_id\n" +
+            "         JOIN commodity c ON bc.commodity_id = c.id\n" +
+            "         LEFT JOIN ware_housing w ON c.id = w.commodity_id\n" +
+            "WHERE (b.buy_date >= :startDay AND b.buy_date <= :endDay)\n" +
+            "GROUP BY b.buy_date;", nativeQuery = true)
     List<ISalesReport> getAllSalesReport(@Param("startDay") String startDay, @Param("endDay") String endDay);
+
+
+
+
+    @Query(value = "SELECT c.id AS commodityId,\n" +
+            "       SUM((b.quantity * (c.price + c.price * c.interest_rate / 100)) - (b.quantity * c.price))\n" +
+            "           AS revenue,\n" +
+            "       SUM(b.quantity) AS totalQuantity,\n" +
+            "       b.buy_date AS buyDate\n" +
+            "FROM bill b\n" +
+            "         JOIN bill_history bc ON b.id = bc.bill_id\n" +
+            "         JOIN commodity c ON bc.commodity_id = c.id\n" +
+            "         LEFT JOIN ware_housing w ON c.id = w.commodity_id\n" +
+            "WHERE (b.buy_date >= :startDay AND b.buy_date <= :endDay)\n" +
+            "  AND (c.id = IFNULL(:commodityId, c.id))",nativeQuery = true)
+    ISalesReport salesReportById(@Param("startDay") String startDay, @Param("endDay") String endDay, @Param("commodityId") Integer id);
+
+
+
+    @Query(value = "SELECT c.id AS commodityId,\n" +
+            "       SUM((b.quantity * (c.price + c.price * c.interest_rate / 100)) - (b.quantity * c.price))\n" +
+            "           AS revenue,\n" +
+            "       SUM(b.quantity) AS totalQuantity,\n" +
+            "       b.buy_date AS buyDate\n" +
+            "FROM bill b\n" +
+            "         JOIN bill_history bc ON b.id = bc.bill_id\n" +
+            "         JOIN commodity c ON bc.commodity_id = c.id\n" +
+            "         LEFT JOIN ware_housing w ON c.id = w.commodity_id\n" +
+            "WHERE (b.buy_date >= :startDay AND b.buy_date <= :endDay)\n" +
+            "  AND (c.id = IFNULL(:commodityId, c.id))\n" +
+            "GROUP BY c.id, b.buy_date;", nativeQuery = true)
+    List<ISalesReport> getAllSalesReportById(@Param("startDay") String startDay, @Param("endDay") String endDay, @Param("commodityId") Integer id);
+
+
+
+
 }
