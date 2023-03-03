@@ -12,6 +12,6 @@ public interface IBillService {
      *
      * @param
      */
-//    void saveBill(Bill bill);
     void saveBill(String paymentMethod,  Boolean billPrint,  String name,  String phoneNumber,  String address, int age,  String email);
+
 }

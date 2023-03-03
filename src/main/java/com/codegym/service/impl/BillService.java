@@ -23,19 +23,9 @@ public class BillService implements IBillService {
      *
      * @param
      */
-//    @Override
-//    public void saveBill(Bill bill) {
-//        iBillRepository.saveBill(bill.getPaymentMethod(),bill.getBillPrint(),bill.getUser().getName(),bill.getUser().getPhoneNumber(),bill.getUser().getAddress(), bill.getUser().getAge(), bill.getUser().getEmail());
-//        Bill bill1 = iBillRepository.findByBill(bill.getId()).orElse(null);
-//        for (BillHistory x : bill.getBillHistorySet()){
-//            assert bill1 != null;
-//            iBillRepository.insertBillHistory(bill1.getId(), x.getId());
-//        }
-//    }
     @Override
     public void saveBill(String paymentMethod, Boolean billPrint, String name, String phoneNumber, String address, int age, String email) {
         iBillRepository.saveBill(paymentMethod, billPrint, name, phoneNumber, address, age, email);
 
     }
-
 }
