@@ -52,7 +52,7 @@ public interface ICommodityService {
      * @param pageable
      * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
      */
-    Page<Commodity> findAll(String search,Pageable pageable);
+    Page<Commodity> findAll(Pageable pageable);
 
 
     /**

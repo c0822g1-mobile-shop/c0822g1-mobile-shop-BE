@@ -78,9 +78,9 @@ public class CommodityController {
 
 
     @GetMapping("/list")
-    public ResponseEntity<Page<Commodity>> showList(@RequestParam(defaultValue = "", required = false) String search,
+    public ResponseEntity<Page<Commodity>> showList(
                                                     @PageableDefault(value = 5) Pageable pageable) {
-        Page<Commodity> commodityList = commodityService.findAll(search, pageable);
+        Page<Commodity> commodityList = commodityService.findAll(pageable);
         if (commodityList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -118,9 +118,10 @@ public class CommodityController {
     @GetMapping("/search/{id}/{type}")
     public ResponseEntity<Page<Commodity>> search(@PathVariable("id") int id,@PathVariable("type") String type,@PageableDefault(value = 5) Pageable pageable) {
         switch (id){
+            case 0:
+                return this.showList(pageable);
             case 1:
                 return new ResponseEntity<>(commodityService.searchByName(type,pageable),HttpStatus.ACCEPTED);
-
             case 2:
                 return new ResponseEntity<>(commodityService.searchByPrice(Double.parseDouble(type),pageable),HttpStatus.ACCEPTED);
             case 3:

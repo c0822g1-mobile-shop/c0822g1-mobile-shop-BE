@@ -53,8 +53,8 @@ public class CommodityService implements ICommodityService {
      * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
      */
     @Override
-    public Page<Commodity> findAll(String search,Pageable pageable) {
-        return commodityRepository.showListCommodity(search,pageable);
+    public Page<Commodity> findAll(Pageable pageable) {
+        return commodityRepository.showListCommodity(pageable);
     }
 
 
