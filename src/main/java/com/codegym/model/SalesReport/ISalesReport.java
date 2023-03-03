@@ -1,7 +1,7 @@
 package com.codegym.model.SalesReport;
 
 public interface ISalesReport {
-    Integer getId();
+    String getBuyDate();
 
     Double getRevenue();
 

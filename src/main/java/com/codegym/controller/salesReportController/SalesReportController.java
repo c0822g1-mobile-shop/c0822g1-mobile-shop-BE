@@ -1,11 +1,14 @@
 package com.codegym.controller.salesReportController;
 
 import com.codegym.model.SalesReport.ISalesReport;
+import com.codegym.model.SalesReport.SalesReport;
 import com.codegym.service.ISalesReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -33,5 +36,16 @@ public class SalesReportController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(salesReport, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/getAll/{startDay}&{endDay}")
+    public ResponseEntity<List<ISalesReport>> getAllSalesReport(@PathVariable("startDay") String startDay,
+                                                    @PathVariable("endDay") String endDay) {
+        List<ISalesReport> reportList = salesReportService.getAllSalesReport(startDay,endDay);
+        if (reportList.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(reportList, HttpStatus.OK);
     }
 }
