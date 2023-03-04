@@ -31,13 +31,14 @@ public interface ISupplierRepository extends JpaRepository<Supplier, Integer> {
     @Query(value = "select * from supplier where (name like concat('%', :search , '%') or address like concat('%', :search , '%') or phone_number like concat('%', :search , '%')) and flag_delete=false",
             countQuery = "select count(*) from (select * from supplier where (name like concat('%', :search , '%') or address like concat('%', :search , '%') or phone_number like concat('%', :search , '%')) and flag_delete=false) as s",
             nativeQuery = true)
-    Page<List<Supplier>> showList(@Param("search") String search, Pageable pageable);
+    Page<Supplier> showList(@Param("search") String search, Pageable pageable);
+
 
     @Modifying
     @Transactional
     @Query(value = "update supplier set flag_delete = true where id = :id", nativeQuery = true)
     void deleteSupplier(@Param("id") Integer id);
-    
+
     @Modifying
     @Transactional
     @Query(value = "insert into supplier(code, name, address, phone_number, email, flag_delete) value(:code, :name, :address, :phone, :email, false )", nativeQuery = true)

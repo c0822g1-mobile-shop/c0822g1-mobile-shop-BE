@@ -1,4 +1,10 @@
 package com.codegym.service;
+import com.codegym.dto.request.UpdateUserForm;
+import com.codegym.model.user.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import java.util.List;
+import java.util.Optional;
 
 import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.model.user.User;
@@ -77,6 +83,16 @@ public interface IUserService {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all customer
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+     * Created by: LongPT
+     * Date created: 27/2/2023
+     * Function: get all customer
+=======
+>>>>>>> origin/develop
+=======
+>>>>>>> origin/develop
      * @param name
      * @param address
      * @param pageable
