@@ -23,20 +23,20 @@ public class HomeController {
      * Date create: 27/02/2023
      * Function: list Commodity search & List Commodity order by quantity sold
      *
-     * @Param name
      * @return HttpStatus.OK if result not error
      * @return HttpStatus.badRequest if result not found
      * @return List Commodity order by quantity sold
+     * @Param name
      */
      
     @GetMapping("search")
-    public ResponseEntity<Page<Commodity>> searchCommodity(@RequestParam(name = "name", defaultValue = "",required = false) String name,@PageableDefault(size = 5) Pageable pageable) {
-        if(name.equals("null")){
-            name ="";
+    public ResponseEntity<?> searchCommodity(@RequestParam(name = "name", defaultValue = "", required = false) String name, @PageableDefault(size = 5) Pageable pageable) {
+        if (name.equals("null")) {
+            name = "";
         }
-        Page<Commodity> commodityPage = commodityService.getAllCommodity(pageable,name);
+        Page<Commodity> commodityPage = commodityService.getAllCommodity(pageable, name);
         if (commodityPage.getTotalElements() == 0) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(name, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(commodityPage, HttpStatus.OK);
     }
