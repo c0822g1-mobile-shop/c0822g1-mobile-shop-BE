@@ -34,7 +34,7 @@ public class SupplierController {
      */
     @GetMapping("/list")
     private ResponseEntity<?> showList(@RequestParam(defaultValue = "", required = false) String search,
-                                       @PageableDefault(size = 3) Pageable pageable) {
+                                       @PageableDefault(size = 5) Pageable pageable) {
         System.out.println(search);
         Page<Supplier> supplierListDtoList = supplierService.showList(search, pageable);
         return new ResponseEntity<>(supplierListDtoList, HttpStatus.OK);
