@@ -6,6 +6,8 @@ import com.codegym.service.ISalesReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SalesReportService implements ISalesReportService {
     @Autowired
@@ -22,6 +24,17 @@ public class SalesReportService implements ISalesReportService {
     @Override
     public ISalesReport salesReport(String startDay, String endDay) {
         return salesReportRepository.salesReport(startDay,endDay);
+    }
+
+    /**
+     * Create by : DuongLTH
+     * Date create 27/02/2023
+     * @param startDay
+     * @param endDay
+     */
+    @Override
+    public List<ISalesReport> getAllSalesReport(String startDay, String endDay) {
+        return salesReportRepository.getAllSalesReport(startDay, endDay);
     }
 
 }

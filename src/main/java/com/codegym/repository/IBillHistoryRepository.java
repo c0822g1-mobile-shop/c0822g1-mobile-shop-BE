@@ -1,6 +1,5 @@
 package com.codegym.repository;
 
-import com.codegym.model.bill.BillHistory;
 import com.codegym.model.bill.IBillHistory;
 import com.codegym.model.bill.IBillHistoryInfo;
 import com.codegym.model.user.User;
@@ -11,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import javax.transaction.Transactional;
 import java.util.List;
 
-
+@Repository
 @Transactional
 public interface IBillHistoryRepository extends JpaRepository<BillHistory, Integer> {
 
@@ -28,7 +27,28 @@ public interface IBillHistoryRepository extends JpaRepository<BillHistory, Integ
     @Query(value = "select u.name as name,u.age as age,u.gender as gender,u.email as email,u.phone_number as phoneNumber ,count(c.id) as numberOfPurchases,b.buy_date as buyDate,c.name as product,sum(ifnull(c.price,0) * ifnull(b.quantity,0)) as total from `bill_history` as  bh join `bill` b on b.id = bh.bill_id join `user` u on b.user_id = u.id join `commodity` c on c.id = bh.commodity_id  where u.id = :id group by bh.id", nativeQuery = true)
     List<IBillHistory> findById2(@Param("id") Integer id);
 
+     * Create by: HocHH
+     * Date created: 27/02/2023
+     * Function: create bill(bill, commodity, user).
+     *
+     * @param commodityId
+     * @param userId
+     */
 
+    @Modifying
+    @Query(value = " insert into bill_history (commodity_id, user_id) values (:commodityId, :userId)", nativeQuery = true)
+    void addBill(@Param("commodityId") Integer commodityId,
+                 @Param("userId") Integer userId);
 
+    /**
+     * Create by: HocHH
+     * Date created: 27/02/2023
+     * Function: used to check user display
+     *
+     * @return all user
+     */
+    @Modifying
+    @Query(value = " select  * from bill_history",nativeQuery = true)
+    void  showHistory();
 
 }

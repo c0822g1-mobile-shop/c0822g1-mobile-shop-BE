@@ -4,9 +4,11 @@ import javax.persistence.*;
 
 @Entity
 public class Commodity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(unique = true)
     private String name;
     private String cpu;
     private String capacity;
@@ -18,25 +20,22 @@ public class Commodity {
     private String guarantee;
     private String origin;
     private String description;
+    @Column(unique = true)
     private String codeQr;
-    private Integer quantity;
-    private Boolean flagDelete;
+    private int quantity;
+    private Boolean flagDelete = false;
+    @JoinColumn(name = "trademark_id", referencedColumnName = "id")
     @ManyToOne
     private Trademark trademark;
+
+
+
     private int interestRate = 10;
 
 
 
     public Commodity() {
 
-    }
-
-    public int getInterestRate() {
-        return interestRate;
-    }
-
-    public void setInterestRate(int interestRate) {
-        this.interestRate = interestRate;
     }
 
     public Integer getId() {
@@ -70,6 +69,8 @@ public class Commodity {
     public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
+
+
 
     public Double getPrice() {
         return price;
@@ -166,5 +167,20 @@ public class Commodity {
     public void setTrademark(Trademark trademark) {
         this.trademark = trademark;
     }
+
+
+
+    public Integer getInterestRate() {
+        return interestRate;
+    }
+
+
+    public void setInterestRate(Integer interestRate) {
+        this.interestRate = interestRate;
+    }
+    public boolean isFlagDelete() {
+        return flagDelete;
+    }
+
 
 }

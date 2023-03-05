@@ -54,6 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/**").permitAll()
 //                .antMatchers("/api/auth/products").access("hasAnyRole('ADMIN','CUSTOMER')")
 //                .antMatchers("/api/auth/admin").access("hasRole('ADMIN')")
+//                .antMatchers("/api/auth/users").access("hasRole('ADMIN')")
 //                .antMatchers("/api/auth/customer").access("hasRole('CUSTOMER')")
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
@@ -61,7 +62,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-
 
     }
 }

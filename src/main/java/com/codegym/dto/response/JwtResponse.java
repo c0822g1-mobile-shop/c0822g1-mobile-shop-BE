@@ -10,10 +10,14 @@ public class JwtResponse {
     private String name;
     private int id;
     private String username;
-
     private String email;
     private String password;
     private String avatar;
+    private String phoneNumber;
+    private String address;
+    private Integer age;
+    private Boolean gender;
+    private String dateOfBirth;
     private Collection<? extends GrantedAuthority> roles;
 
     public JwtResponse() {

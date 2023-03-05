@@ -7,7 +7,7 @@ import java.util.Set;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String username;
@@ -23,21 +23,6 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     public User() {
-    }
-
-    public User(Integer id, String name, String username, String password, String phoneNumber, String email, String address, int age, boolean gender, String dateOfBirth, String avatar, Set<Role> roles) {
-        this.id = id;
-        this.name = name;
-        this.username = username;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.address = address;
-        this.age = age;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.avatar = avatar;
-        this.roles = roles;
     }
 
     public User(String username, String password, String name, String email) {
@@ -107,11 +92,11 @@ public class User {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public Boolean isGender() {
+    public Boolean getGender() {
         return gender;
     }
 

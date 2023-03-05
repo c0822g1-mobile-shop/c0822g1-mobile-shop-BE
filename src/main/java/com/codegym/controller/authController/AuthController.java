@@ -3,10 +3,10 @@ package com.codegym.controller.authController;
 import com.codegym.dto.request.ChangePasswordForm;
 import com.codegym.dto.request.SignInForm;
 import com.codegym.dto.request.SignUpForm;
+import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.dto.response.JwtResponse;
 import com.codegym.dto.response.ResponseMessage;
 import com.codegym.model.user.Role;
-import com.codegym.model.user.RoleName;
 import com.codegym.model.user.User;
 import com.codegym.security.jwt.JwtProvider;
 import com.codegym.security.userPrincipcal.UserPrinciple;
@@ -20,8 +20,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Objects;
@@ -54,7 +57,7 @@ public class AuthController {
             return new ResponseEntity<>(new ResponseMessage("Tên đăng " + signUpForm.getUsername() + " nhập đã được sử dụng, vui lòng chọn tên khác"), HttpStatus.BAD_REQUEST);
         }
         if (iUserService.existsByEmail(signUpForm.getEmail())) {
-            return new ResponseEntity<>(new ResponseMessage("Email"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ResponseMessage("Email " + signUpForm.getEmail() + " đã được sử dụng"), HttpStatus.BAD_REQUEST);
         }
         User user = new User(signUpForm.getUsername(), passwordEncoder.encode(signUpForm.getPassword()), signUpForm.getName(), signUpForm.getEmail());
         Set<String> strRoles = signUpForm.getRoles();
@@ -62,15 +65,15 @@ public class AuthController {
         strRoles.forEach(role -> {
             switch (role) {
                 case "admin":
-                    Role roleAdmin = iRoleService.findByName(RoleName.ROLE_ADMIN).orElseThrow(() -> new RuntimeException("Role not found"));
+                    Role roleAdmin = iRoleService.roleAdmin().orElseThrow(() -> new RuntimeException("Role not found 1"));
                     roles.add(roleAdmin);
                     break;
                 case "employee":
-                    Role roleEmployee = iRoleService.findByName(RoleName.ROLE_EMPLOYEE).orElseThrow(() -> new RuntimeException("Role not found"));
+                    Role roleEmployee = iRoleService.roleEmployee().orElseThrow(() -> new RuntimeException("Role not found 2"));
                     roles.add(roleEmployee);
                     break;
                 default:
-                    Role roleCustomer = iRoleService.findByName(RoleName.ROLE_CUSTOMER).orElseThrow(() -> new RuntimeException("Role not found"));
+                    Role roleCustomer = iRoleService.roleCustomer().orElseThrow(() -> new RuntimeException("Role not found 3"));
                     roles.add(roleCustomer);
             }
         });
@@ -86,14 +89,20 @@ public class AuthController {
      * @return
      */
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody SignInForm signInForm) {
+
+    public ResponseEntity<?> login( @RequestBody SignInForm signInForm ) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(signInForm.getUsername(), signInForm.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.createToken(authentication);
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
-        return ResponseEntity.ok(new JwtResponse(token, userPrinciple.getName(), userPrinciple.getId(), userPrinciple.getUsername(), userPrinciple.getEmail(), userPrinciple.getPassword(), userPrinciple.getAvatar(), userPrinciple.getAuthorities()));
-
+        return ResponseEntity.ok(new JwtResponse(token, userPrinciple.getName(), userPrinciple.getId(), userPrinciple.getUsername(), userPrinciple.getEmail(), userPrinciple.getPassword(), userPrinciple.getAvatar()
+                ,userPrinciple.getPhoneNumber(),
+                userPrinciple.getAddress(),
+                userPrinciple.getAge(),
+                userPrinciple.getGender(),
+                userPrinciple.getDateOfBirth()
+                , userPrinciple.getAuthorities()));
     }
     /**
      * Created by: CuongVV
@@ -119,5 +128,46 @@ public class AuthController {
             }
         }
         return new ResponseEntity<>(new ResponseMessage("Thay đổi mật khẩu thất bại"),HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     * Created by: CuongVV
+     * Date created: 27/2/2023
+     * Function: logout to close connect to server
+     * @param: none
+     */
+    @GetMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+
+            return new ResponseEntity<>(new ResponseMessage("Đăng xuất thành công"),HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity<>(new ResponseMessage("Đăng xuất thất bại"),HttpStatus.NOT_ACCEPTABLE);
+    }
+    /**
+     * Created by: CuongVV
+     * Date created: 1/3/2023
+     * Function: update user info
+     * @param: updateUserForm
+     */
+    @PostMapping("/update")
+    public ResponseEntity<?> updateUser(@Valid @RequestBody UpdateUserForm updateUserForm,BindingResult bindingResult) {
+       if (bindingResult.hasErrors()) {
+           return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.NOT_ACCEPTABLE);
+       }
+        iUserService.updateUser(updateUserForm);
+        return new ResponseEntity<>(new ResponseMessage("Chỉnh sửa thông tin thành công"),HttpStatus.ACCEPTED);
+    }
+    /**
+     * Created by: CuongVV
+     * Date created: 27/2/2023
+     * Function: get all customer
+     * @param: none
+     */
+    @GetMapping("/customer")
+    public ResponseEntity<?> getAll() {
+        return new ResponseEntity<>(iUserService.findAll(),HttpStatus.OK);
     }
 }
