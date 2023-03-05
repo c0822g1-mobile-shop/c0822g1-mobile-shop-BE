@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/scanQR")
 @CrossOrigin
 public class ScanQRCodeController {
+
     @Autowired
     private ICommodityService commodityService;
 
