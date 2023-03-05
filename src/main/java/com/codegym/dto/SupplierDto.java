@@ -5,14 +5,17 @@ import org.springframework.validation.Validator;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class SupplierDto implements Validator {
     private int id;
     @Pattern(regexp = "^\\d{6}$", message = "Mã số không đúng định dạng")
     @NotBlank(message = "Không được để trống")
     private String code;
+    @Size(max = 100, message = "Tên nhà cung cấp không được quá 100 ký tự")
     @NotBlank(message = "Không được để trống")
     private String name;
+    @Size(max = 200, message = "Địa chỉ không được quá 200 ký tự")
     @NotBlank(message = "Không được để trống")
     private String address;
     @NotBlank(message = "Không được để trống")

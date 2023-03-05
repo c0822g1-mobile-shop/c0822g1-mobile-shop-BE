@@ -7,9 +7,8 @@ public class Commodity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-
     private Integer id;
+    @Column(unique = true)
     private String name;
     private String cpu;
     private String capacity;
@@ -21,9 +20,11 @@ public class Commodity {
     private String guarantee;
     private String origin;
     private String description;
+    @Column(unique = true)
     private String codeQr;
-    private Integer quantity;
-    private Boolean flagDelete;
+    private int quantity;
+    private Boolean flagDelete = false;
+    @JoinColumn(name = "trademark_id", referencedColumnName = "id")
     @ManyToOne
     private Trademark trademark;
 
@@ -168,10 +169,18 @@ public class Commodity {
     }
 
 
+
+    public Integer getInterestRate() {
+        return interestRate;
+    }
+
+
+    public void setInterestRate(Integer interestRate) {
+        this.interestRate = interestRate;
+    }
     public boolean isFlagDelete() {
         return flagDelete;
-
-
     }
+
 
 }

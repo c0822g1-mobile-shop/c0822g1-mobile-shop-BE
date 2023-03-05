@@ -26,12 +26,12 @@ public class WareHousingController {
     private IWareHousingService wareHousingService;
 
 
-
    @PutMapping("{id}&{quantityNew}")
-    private ResponseEntity<?> wareHousing(@PathVariable("id") Integer id, @PathVariable( "quantityNew") Integer quantityNew){
+    private ResponseEntity<?> wareHousing(@PathVariable("id") Integer id, @PathVariable( "quantityNew") Integer quantityNew) {
        wareHousingService.wareHousing(quantityNew, id);
-        return  new ResponseEntity<>(HttpStatus.OK);
-    }
+       return  new ResponseEntity<>(HttpStatus.OK);
+   }
+
 
 
 }

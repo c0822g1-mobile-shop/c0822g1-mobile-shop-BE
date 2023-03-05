@@ -22,10 +22,13 @@ public interface ISupplierService {
      * @return HttpStatus.NOT_FOUND if result is error or HttpStatus.OK if result is not error
      */
 
-    Page<List<Supplier>> showList(String search, Pageable pageable);
-  
+
+
+    Page<Supplier> showList(String search, Pageable pageable);
+
     void deleteSupplier(Integer id);
-    
+
+
     void addSupplier(String code, String name, String address, String phoneNumber, String email);
 
     Supplier findSupplier(Integer id);

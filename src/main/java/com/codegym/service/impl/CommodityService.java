@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,19 +16,33 @@ public class CommodityService implements ICommodityService {
     @Autowired
     private ICommodityRepository commodityRepository;
 
+
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
+     *
      * @param:QRCode
      */
-
     @Override
-    public Commodity findByQRCode(String QRCode) {
-        return commodityRepository.findByQRCode(QRCode);
+    public Commodity findByQRCode(String qrCode) {
+        return commodityRepository.findByQRCode(qrCode);
     }
 
-    @Autowired
-    private ICommodityRepository iCommodityRepository;
+    @Override
+    public Page<Commodity> searchByQuantity(int quantity, Pageable pageable) {
+        return commodityRepository.searchByQuantity(quantity, pageable);
+    }
+
+    @Override
+    public Page<Commodity> searchByPrice(double price, Pageable pageable) {
+        return commodityRepository.searchByPrice(price, pageable);
+    }
+
+    @Override
+    public Page<Commodity> searchByName(String name, Pageable pageable) {
+        return commodityRepository.searchByName(name, pageable);
+    }
+
 
     /**
      * Created by: CongBD,
@@ -38,10 +53,9 @@ public class CommodityService implements ICommodityService {
      * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
      */
     @Override
-    public Page<Commodity> findAll(String search,Pageable pageable) {
-        return commodityRepository.showListCommodity(search,pageable);
+    public Page<Commodity> findAll(Pageable pageable) {
+        return commodityRepository.showListCommodity(pageable);
     }
-
 
 
     /**
@@ -65,7 +79,7 @@ public class CommodityService implements ICommodityService {
 
     @Override
     public Page<Commodity> getAllCommodity(Pageable pageable, String name) {
-        return commodityRepository.getAllCommodity(pageable,name);
+        return commodityRepository.getAllCommodity(pageable, name);
     }
 
     @Override
@@ -80,22 +94,23 @@ public class CommodityService implements ICommodityService {
 
     @Override
     public Page<Commodity> getCommodityByQuantity(Pageable pageable) {
-        return commodityRepository.getCommodityByQuantity(pageable,20);
+        return commodityRepository.getCommodityByQuantity(pageable, 20);
     }
 
-    @Override
-    public Page<Commodity> searchCommodity(String name, Pageable pageable) {
-        return commodityRepository.searchCommodity(name,pageable);
-    }
+
+//    @Override
+//    public Page<Commodity> searchCommodity(String name, Pageable pageable) {
+//        return commodityRepository.searchCommodity(name, pageable);
+//    }
 
     /**
      * Created by: DanhHD
      * Date Created: 27/02/2023
      * Function: create commodity
-     *
-     * @param commodity
+     * @param: commodity
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
+
     @Override
     public void addCommodity(Commodity commodity) {
         commodityRepository.addCommodity(commodity);
@@ -126,4 +141,13 @@ public class CommodityService implements ICommodityService {
     public void editCommodity(Commodity commodity) {
         commodityRepository.editCommodity(commodity);
     }
+
+    /**
+     * Created by: PhucNT
+     * Date Created: 5/3/2023
+     * @param name
+     * @param offset
+     * @return 5 record commodity
+     */
 }
+

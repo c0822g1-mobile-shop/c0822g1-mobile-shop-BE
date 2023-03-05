@@ -1,6 +1,5 @@
 package com.codegym.service.impl;
 
-//<<<<<<< HEAD
 import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.model.user.Role;
 import com.codegym.model.user.User;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -48,6 +46,7 @@ public class UserService implements IUserService {
                 updateUserForm.getUsername());
     }
 
+
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
@@ -69,6 +68,7 @@ public class UserService implements IUserService {
      * Function: check exists user by username
      * @param:username
      **/
+
     @Override
     public Boolean existsByUsername(String username) {
         for (int i = 0; i < iUserRepository.getAllUser().size(); i++) {
@@ -77,14 +77,15 @@ public class UserService implements IUserService {
             }
         }
         return false;
-
     }
+
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
      * Function: check exists user by email
      * @param:email
      **/
+
     @Override
     public Boolean existsByEmail(String email) {
         for (int i = 0; i < iUserRepository.getAllUser().size(); i++) {
@@ -94,22 +95,28 @@ public class UserService implements IUserService {
         }
         return false;
     }
+
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
      * Function: get all user
      * @param:none
      **/
+
+
     @Override
     public List<User> findAll() {
         return iUserRepository.getAllUser();
     }
+
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
      * Function: get all user customer
      * @param:email
      **/
+
+
     @Override
     public List<User> findAllCustomer() {
         return iUserRepository.findAllCustomer();
@@ -120,10 +127,13 @@ public class UserService implements IUserService {
      * Function: get all user employee
      * @param:email
      **/
+
+
     @Override
     public List<User> findAllEmployee() {
         return iUserRepository.findAllEmployee();
     }
+
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
@@ -134,8 +144,6 @@ public class UserService implements IUserService {
     public List<User> findAllAdmin() {
         return iUserRepository.findAllAdmin();
     }
-
-
 
     @Autowired
     private IUserRepository userRepository;
@@ -170,5 +178,4 @@ public class UserService implements IUserService {
     public Page<User> findAllCustomerNoParam(Pageable pageable) {
         return userRepository.findAllCustomerNoParam(pageable);
     }
-
 }
