@@ -1,7 +1,9 @@
 package com.codegym.controller.billHistoryController;
 
-import com.codegym.model.bill.BillHistory;
+import com.codegym.dto.billHistory.BillHistoryDTO;
+import com.codegym.model.bill.IBillHistory;
 import com.codegym.service.IBillHistoryService;
+import com.codegym.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/bill-history")
+@RequestMapping("bill-history")
 public class BillHistoryController {
     /**
      * Created by: HuyNL
@@ -22,9 +24,20 @@ public class BillHistoryController {
     @Autowired
     private IBillHistoryService billHistoryService;
 
-    @GetMapping("/list/{id}")
-    public ResponseEntity<List<BillHistory>> findAll(@PathVariable("id") Integer id) {
-        List<BillHistory> billHistoryList = billHistoryService.findAll(id);
+    @Autowired
+    private IUserService iUserService;
+
+    @GetMapping("/list")
+    public ResponseEntity<List<BillHistoryDTO>> findAll() {
+        List<BillHistoryDTO> billHistoryList = iUserService.getUserHasBuy();
         return new ResponseEntity<>(billHistoryList, HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable("id") Integer id) {
+        List<IBillHistory> billHistorys = billHistoryService.findById2(id);
+        return new ResponseEntity<>(billHistorys, HttpStatus.OK);
+    }
+
+
 }

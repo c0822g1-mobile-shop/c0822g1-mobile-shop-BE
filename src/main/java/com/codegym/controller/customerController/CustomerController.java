@@ -30,7 +30,9 @@ public class CustomerController {
      * @return HttpStatus.NOT_FOUND if result is error. HttpStatus.OK if result is not error.
      */
     @GetMapping("")
-    public ResponseEntity<Page<User>> getAllCustomer(@PageableDefault(size = 5) Pageable pageable, @RequestParam(required = false, defaultValue = "") String name, @RequestParam(required = false, defaultValue = "") String address) {
+    public ResponseEntity<Page<User>> getAllCustomer(
+            @PageableDefault(size = 5) Pageable pageable,
+            @RequestParam(required = false, defaultValue = "") String name, @RequestParam(required = false, defaultValue = "") String address) {
         Page<User> userPage;
         if (name == null && address == null) {
             userPage = userService.findAllCustomerNoParam(pageable);
@@ -71,10 +73,10 @@ public class CustomerController {
      * @param genderSearch
      * @param pageable
      */
-    @GetMapping("search/{gender}&{age}")
-    public ResponseEntity<Page<User>> findAll(@PathVariable(name = "gender") String genderSearch,
-                                              @PathVariable(name = "ageSearch") String ageSearch,
-                                              Pageable pageable) {
+    @GetMapping("/search")
+    public ResponseEntity<Page<User>> findAll(@RequestParam(defaultValue = "") String genderSearch,
+                                              @RequestParam(defaultValue = "") String ageSearch,
+                                              @PageableDefault(size = 5) Pageable pageable) {
         Page<User> userPage = userService.findAll(genderSearch, ageSearch, pageable);
         return new ResponseEntity<>(userPage, HttpStatus.OK);
     }
