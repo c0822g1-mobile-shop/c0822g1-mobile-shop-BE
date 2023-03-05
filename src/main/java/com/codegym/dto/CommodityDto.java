@@ -37,7 +37,7 @@ public class CommodityDto {
     @NotBlank(message = "Không được để trống")
     private String screenSize;
     @NotBlank(message = "Không được để trống")
-    @Length(min = 5, max = 20)
+    @Length(min = 1, max = 2)
     @Pattern(regexp = "^[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ0-9 ]*$", message = "Không chứa ký tự đặc biệt")
     private String guarantee;
     @NotBlank(message = "Không được để trống")

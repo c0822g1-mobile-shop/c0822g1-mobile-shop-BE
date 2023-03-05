@@ -75,17 +75,16 @@ public class CommodityController {
      * @param pageable
      * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
      */
-
-
     @GetMapping("/list")
     public ResponseEntity<Page<Commodity>> showList(
-                                                    @PageableDefault(value = 5) Pageable pageable) {
+            @PageableDefault(value = 5) Pageable pageable) {
         Page<Commodity> commodityList = commodityService.findAll(pageable);
         if (commodityList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(commodityList, HttpStatus.OK);
     }
+
 
     /**
      * Created by: CongBD,

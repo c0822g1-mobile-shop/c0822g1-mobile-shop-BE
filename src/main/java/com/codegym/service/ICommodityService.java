@@ -54,7 +54,6 @@ public interface ICommodityService {
      */
     Page<Commodity> findAll(Pageable pageable);
 
-
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
