@@ -89,14 +89,13 @@ public class AuthController {
      * @return
      */
     @PostMapping("/login")
-    public ResponseEntity<?> login( @RequestBody SignInForm signInForm ) {
 
+    public ResponseEntity<?> login( @RequestBody SignInForm signInForm ) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(signInForm.getUsername(), signInForm.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.createToken(authentication);
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
-
         return ResponseEntity.ok(new JwtResponse(token, userPrinciple.getName(), userPrinciple.getId(), userPrinciple.getUsername(), userPrinciple.getEmail(), userPrinciple.getPassword(), userPrinciple.getAvatar()
                 ,userPrinciple.getPhoneNumber(),
                 userPrinciple.getAddress(),
@@ -104,9 +103,6 @@ public class AuthController {
                 userPrinciple.getGender(),
                 userPrinciple.getDateOfBirth()
                 , userPrinciple.getAuthorities()));
-
-
-
     }
     /**
      * Created by: CuongVV
@@ -133,6 +129,7 @@ public class AuthController {
         }
         return new ResponseEntity<>(new ResponseMessage("Thay đổi mật khẩu thất bại"),HttpStatus.BAD_REQUEST);
     }
+
     /**
      * Created by: CuongVV
      * Date created: 27/2/2023

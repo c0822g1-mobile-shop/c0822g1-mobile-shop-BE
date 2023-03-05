@@ -12,6 +12,20 @@ import java.util.List;
 public class BillHistoryService implements IBillHistoryService {
 
     @Autowired
+    private IBillHistoryRepository billHistoryRepository;
+
+    @Override
+    public List<BillHistory> findAll(Integer id) {
+        return billHistoryRepository.findAll(id);
+    }
+
+    @Override
+    public List<IBillHistory> findById2(Integer id) {
+        return billHistoryRepository.findById2(id);
+    }
+
+
+    @Autowired
     private IBillHistoryRepository iBillHistoryRepository;
 
     /**
