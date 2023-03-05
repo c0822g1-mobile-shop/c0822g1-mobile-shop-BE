@@ -5,13 +5,11 @@ import com.codegym.model.supplier.Supplier;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-@Entity
+
 public class WareHousingDto {
-    @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer id;
     private String dateImport;
-    @NotBlank
+    @NotBlank(message = "không được để trống")
     private Integer quantity;
     @ManyToOne
     private Commodity commodity;
