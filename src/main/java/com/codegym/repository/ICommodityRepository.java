@@ -9,8 +9,11 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
+
 @Repository
 @Transactional
 public interface ICommodityRepository extends JpaRepository<Commodity, Integer> {
@@ -118,6 +121,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      */
     @Query(value = "select * from commodity where flag_delete = false ", nativeQuery = true)
     Page<Commodity> showListCommodity(Pageable pageable);
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -125,8 +129,9 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      *
      * @param name
      */
-    @Query(value = "select * from commodity where name like %:name% and flag_delete = false ",nativeQuery = true)
-    Page<Commodity> searchByName(@Param("name") String name,Pageable pageable);
+    @Query(value = "select * from commodity where name like %:name% and flag_delete = false ", nativeQuery = true)
+    Page<Commodity> searchByName(@Param("name") String name, Pageable pageable);
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -134,8 +139,9 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      *
      * @param price
      */
-    @Query(value = "select * from commodity where price = :price and flag_delete = false ",nativeQuery = true)
-    Page<Commodity> searchByPrice(@Param("price")double price,Pageable pageable);
+    @Query(value = "select * from commodity where price = :price and flag_delete = false ", nativeQuery = true)
+    Page<Commodity> searchByPrice(@Param("price") double price, Pageable pageable);
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -143,8 +149,8 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      *
      * @param quantity
      */
-    @Query(value = "select * from commodity where quantity = :quantity and flag_delete = false ",nativeQuery = true)
-    Page<Commodity> searchByQuantity(@Param("quantity")int quantity, Pageable pageable);
+    @Query(value = "select * from commodity where quantity = :quantity and flag_delete = false ", nativeQuery = true)
+    Page<Commodity> searchByQuantity(@Param("quantity") int quantity, Pageable pageable);
 
     @Query(value = "select * from commodity where flag_delete = false " +
             "and (commodity.name like concat('%',:search ,'%')" +
@@ -167,15 +173,15 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             " where id = :id", nativeQuery = true)
     void deleteCommodity(@Param("id") Integer id);
 
-    @Query(value = "select * from commodity where id = :id and flag_delete = false",nativeQuery = true)
+    @Query(value = "select * from commodity where id = :id and flag_delete = false", nativeQuery = true)
     Optional<Commodity> findById(@Param("id") int id);
 
 
-
-     /**
+    /**
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all commodity
+     *
      * @param:name
      * @param:pageable
      **/
@@ -186,6 +192,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all commodity
+     *
      * @param: pageable
      */
 
@@ -196,11 +203,12 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get commodity by id
+     *
      * @param: id
      */
 
     @Query(value = "select * from commodity where commodity.id = :id"
-            ,nativeQuery = true)
+            , nativeQuery = true)
     Optional<Commodity> findCommodityById(@Param("id") Integer id);
 
     /**
@@ -212,14 +220,15 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
     @Query(nativeQuery = true, value = "SELECT c.* , ifnull(sum(ifnull(wh.quantity,0))-ifnull(c.quantity,0),0) as quantity_sold" +
             " FROM `commodity` c JOIN `ware_housing` wh on c.id = wh.commodity_id GROUP BY c.id " +
             "ORDER BY quantity_sold")
-    Page<Commodity> getCommodityByQuantity(Pageable pageable, @Param("limit") Integer limit );
-    
+    Page<Commodity> getCommodityByQuantity(Pageable pageable, @Param("limit") Integer limit);
+
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
+     *
      * @param: QRCode
      */
-    @Query(value = "SELECT * FROM commodity where code_qr=:QRCode",nativeQuery = true)
+    @Query(value = "SELECT * FROM commodity where code_qr=:QRCode", nativeQuery = true)
     Commodity findByQRCode(@Param("QRCode") String QRCode);
 
 

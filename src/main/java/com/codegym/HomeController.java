@@ -1,4 +1,4 @@
-package com.codegym.controller.homeController;
+package com.codegym;
 
 import com.codegym.model.commodity.Commodity;
 import com.codegym.service.ICommodityService;
