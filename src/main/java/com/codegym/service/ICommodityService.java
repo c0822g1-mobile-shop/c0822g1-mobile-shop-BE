@@ -95,8 +95,6 @@ public interface ICommodityService {
 
     Page<Commodity> getAllCommodityNoParam(Pageable pageable);
 
-    Optional<Commodity> findCommodityById(Integer id);
-
     Page<Commodity> getCommodityByQuantity(Pageable pageable);
 
     Page<Commodity> searchCommodity(String name, Pageable pageable);

@@ -164,9 +164,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             " where id = :id", nativeQuery = true)
     void deleteCommodity(@Param("id") Integer id);
 
-    @Query(value = "select * from commodity where id = :id and flag_delete = false", nativeQuery = true)
-    Optional<Commodity> findById(@Param("id") int id);
-
 
     /**
      * Created by: LongPT

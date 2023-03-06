@@ -38,7 +38,7 @@ public class CommodityDto {
     @NotBlank(message = "Không được để trống")
     private String screenSize;
     @NotBlank(message = "Không được để trống")
-    @Length(max = 2)
+    @Length(min = 1, max = 2)
     @Pattern(regexp = "^[0-9]*$", message = "Thời gian bảo hành không được nhập ký tự đặc biệt")
     private String guarantee;
     @NotBlank(message = "Không được để trống")

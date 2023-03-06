@@ -66,11 +66,6 @@ public class CommodityService implements ICommodityService {
     }
 
     @Override
-    public Optional<Commodity> findCommodityById(Integer id) {
-        return commodityRepository.findCommodityById(id);
-    }
-
-    @Override
     public Page<Commodity> getCommodityByQuantity(Pageable pageable) {
         return commodityRepository.getCommodityByQuantity(pageable, 20);
     }
