@@ -1,5 +1,7 @@
+
 package com.codegym.model.commodity;
 
+import com.codegym.model.commodity.Commodity;
 import com.codegym.model.supplier.Supplier;
 
 import javax.persistence.*;
@@ -59,3 +61,4 @@ public class WareHousingDto {
         this.supplier = supplier;
     }
 }
+

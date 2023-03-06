@@ -44,6 +44,16 @@ public class CommodityService implements ICommodityService {
     }
 
 
+    @Override
+    public List<Commodity> getList() {
+        return commodityRepository.getList();
+    }
+
+
+    @Autowired
+    private ICommodityRepository iCommodityRepository;
+
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023

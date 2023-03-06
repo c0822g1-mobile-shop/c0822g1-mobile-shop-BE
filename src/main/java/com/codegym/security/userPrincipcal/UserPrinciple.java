@@ -23,7 +23,6 @@ public class UserPrinciple implements UserDetails {
     private String dateOfBirth;
     private Collection<? extends GrantedAuthority> roles;
 
-
     public UserPrinciple() {
     }
 
@@ -71,6 +70,7 @@ public class UserPrinciple implements UserDetails {
         this.roles = roles;
     }
 
+
     public UserPrinciple(int id, String username, String password, String name, String email, String avatar,
                          String phoneNumber,
                          String address,
@@ -100,7 +100,6 @@ public class UserPrinciple implements UserDetails {
         this.email = email;
         this.avatar = avatar;
         this.roles = roles;
-
 
     }
 

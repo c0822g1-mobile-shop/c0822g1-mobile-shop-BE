@@ -1,9 +1,14 @@
 package com.codegym.dto.request;
 
+import javax.validation.constraints.NotBlank;
+
 public class ChangePasswordForm {
     private String username;
+    @NotBlank(message = "Mật khẩu cũ không được để trống")
     private String password;
+    @NotBlank(message = "Mật khẩu mới không được để trống")
     private String newPassword;
+    @NotBlank(message = "Mật khẩu xác nhận không được để trống")
     private String confirmPassword;
 
     public ChangePasswordForm() {

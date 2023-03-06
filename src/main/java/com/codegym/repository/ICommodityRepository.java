@@ -43,8 +43,9 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             "origin, " +
             "description, " +
             "code_qr," +
-            "quantity, " +
-            "flag_delete) " +
+            "quantity," +
+            "flag_delete," +
+            "interest_rate) " +
             "values " +
             "(:#{#commodity.name}, " +
             ":#{#commodity.cpu}, " +
@@ -112,6 +113,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             nativeQuery = true)
     void editCommodity(@Param("commodity") Commodity commodity);
 
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -159,13 +161,13 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
     Page<Commodity> showListCommodity(@Param("search") String name,
                                       Pageable pageable);
 
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
      * function: delete commodity
      *
      * @param id
-     * @Return HttpStatus.OK if result is not error
      */
     @Modifying
     @Transactional
@@ -214,6 +216,17 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
     /**
      * Created by: PhucNT
      * Date created: 27/2/2023
+     * Function: searchCommodity
+     *
+     * @param: name
+     */
+    @Query(value = "select * from `commodity` where name like concat('%',:name,'%')", nativeQuery = true)
+    Page<Commodity> searchCommodity(@Param("name") String name, Pageable pageable);
+
+
+    /**
+     * Created by: PhucNT
+     * Date created: 27/2/2023
      * Function: get commodity list bt quantity sold
      */
 
@@ -231,5 +244,8 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
     @Query(value = "SELECT * FROM commodity where code_qr=:QRCode", nativeQuery = true)
     Commodity findByQRCode(@Param("QRCode") String QRCode);
 
+
+    @Query(value = "select * from commodity", nativeQuery = true)
+    List<Commodity> getList();
 
 }
