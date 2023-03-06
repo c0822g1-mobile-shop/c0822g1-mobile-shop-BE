@@ -44,7 +44,7 @@ public class SalesReportController {
                                                     @PathVariable("endDay") String endDay) {
         List<ISalesReport> reportList = salesReportService.getAllSalesReport(startDay,endDay);
         if (reportList.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(reportList, HttpStatus.OK);
     }
@@ -69,7 +69,7 @@ public class SalesReportController {
                                                                 @PathVariable("commodityId") Integer commodityId) {
         List<ISalesReport> reportList = salesReportService.getAllSalesReportById(startDay,endDay,commodityId);
         if (reportList.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(reportList, HttpStatus.OK);
     }
