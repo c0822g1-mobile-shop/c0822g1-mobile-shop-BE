@@ -45,6 +45,16 @@ public class UserService implements IUserService {
                 updateUserForm.getAvatar(),
                 updateUserForm.getUsername());
     }
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: change password
+     * @param:password,username
+     **/
+    @Override
+    public void changePassword(String password, String username) {
+        iUserRepository.changePassword(password,username);
+    }
 
 
     /**

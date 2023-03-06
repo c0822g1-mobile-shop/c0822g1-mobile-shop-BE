@@ -44,6 +44,16 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
 //            ,@Param("address") String address,@Param("age") Integer age,@Param("gender") Boolean gender
 //    ,@Param("date_of_birth") String dateOfBirth,@Param("avatar") String avatar,@Param("username") String username);
 
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: change password
+     *
+     * @param:username,password
+     **/
+    @Modifying
+@Query(value = "update user set password = :password where username = :username",nativeQuery = true)
+    void changePassword(@Param("password") String password,@Param("username") String username);
 
     /**
      * Created by: CuongVV

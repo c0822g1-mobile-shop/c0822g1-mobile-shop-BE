@@ -10,6 +10,7 @@ import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.model.user.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 
 import java.util.List;
@@ -24,10 +25,20 @@ public interface IUserService {
      **/
     Optional<User> findByUsername(String username);
 
-
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: update user
+     * @param:updateUserForm
+     **/
     void updateUser(UpdateUserForm updateUserForm);
-
-
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: changer password
+     * @param:password,username
+     **/
+    void changePassword(String password,String username);
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
