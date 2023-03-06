@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -105,6 +106,7 @@ public class CommodityController {
         commodityService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -115,16 +117,16 @@ public class CommodityController {
      * @Return HttpStatus.OK if result is not error
      */
     @GetMapping("/search/{id}/{type}")
-    public ResponseEntity<Page<Commodity>> search(@PathVariable("id") int id,@PathVariable("type") String type,@PageableDefault(value = 5) Pageable pageable) {
-        switch (id){
+    public ResponseEntity<Page<Commodity>> search(@PathVariable("id") int id, @PathVariable("type") String type, @PageableDefault(value = 5) Pageable pageable) {
+        switch (id) {
             case 0:
                 return this.showList(pageable);
             case 1:
-                return new ResponseEntity<>(commodityService.searchByName(type,pageable),HttpStatus.ACCEPTED);
+                return new ResponseEntity<>(commodityService.searchByName(type, pageable), HttpStatus.ACCEPTED);
             case 2:
-                return new ResponseEntity<>(commodityService.searchByPrice(Double.parseDouble(type),pageable),HttpStatus.ACCEPTED);
+                return new ResponseEntity<>(commodityService.searchByPrice(Double.parseDouble(type), pageable), HttpStatus.ACCEPTED);
             case 3:
-                return new ResponseEntity<>(commodityService.searchByQuantity(Integer.parseInt(type),pageable),HttpStatus.ACCEPTED);
+                return new ResponseEntity<>(commodityService.searchByQuantity(Integer.parseInt(type), pageable), HttpStatus.ACCEPTED);
             default:
                 return ResponseEntity.ok(null);
         }
@@ -194,5 +196,9 @@ public class CommodityController {
     }
 
 
+    @GetMapping("/getList")
+    public ResponseEntity<List<Commodity>> getList() {
 
+        return new ResponseEntity<>(commodityService.getList(), HttpStatus.OK);
+    }
 }

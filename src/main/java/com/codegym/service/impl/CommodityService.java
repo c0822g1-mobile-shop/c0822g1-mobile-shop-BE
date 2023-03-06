@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,6 +25,11 @@ public class CommodityService implements ICommodityService {
     @Override
     public Commodity findByQRCode(String QRCode) {
         return commodityRepository.findByQRCode(QRCode);
+    }
+
+    @Override
+    public List<Commodity> getList() {
+        return commodityRepository.getList();
     }
 
     @Override
