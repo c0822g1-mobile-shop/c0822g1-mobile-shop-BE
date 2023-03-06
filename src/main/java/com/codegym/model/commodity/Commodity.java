@@ -24,8 +24,8 @@ public class Commodity {
     private String codeQr;
     private int quantity;
     private Boolean flagDelete = false;
-    @JoinColumn(name = "trademark_id", referencedColumnName = "id")
     @ManyToOne
+    @JoinColumn(name = "trademark_id", referencedColumnName = "id")
     private Trademark trademark;
 
 
@@ -144,11 +144,11 @@ public class Commodity {
         this.codeQr = codeQr;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
