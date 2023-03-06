@@ -10,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -89,4 +88,20 @@ public class SupplierService implements ISupplierService {
         }
         return checkMap;
     }
+
+    /**
+     * Create by: TanTH,
+     * Date created: 27/02/2023,
+     * Function: show list supplier +Search supplier
+     *
+     * @param pageable
+     * @return HttpStatus.OK
+     */
+
+
+    @Override
+    public Page<Supplier> showSupplierList(String name, String address, String email, Pageable pageable) {
+        return supplierRepository.showSupplierList(name, address, email, pageable);
+    }
+
 }
