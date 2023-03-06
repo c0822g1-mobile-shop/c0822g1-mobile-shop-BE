@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin("*")
@@ -75,8 +76,6 @@ public class CommodityController {
      * @param pageable
      * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
      */
-
-
     @GetMapping("/list")
     public ResponseEntity<Page<Commodity>> showList(
             @PageableDefault(value = 5) Pageable pageable) {
@@ -86,6 +85,7 @@ public class CommodityController {
         }
         return new ResponseEntity<>(commodityList, HttpStatus.OK);
     }
+
 
     /**
      * Created by: CongBD,
@@ -106,6 +106,8 @@ public class CommodityController {
         commodityService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
 
     /**
      * Created by: CongBD,
@@ -196,16 +198,12 @@ public class CommodityController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/edit")
-    public ResponseEntity<?> editCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult
-            bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
-        }
-        Commodity commodity = new Commodity();
-        BeanUtils.copyProperties(commodityDto, commodity);
-        commodityService.editCommodity(commodity);
-        return new ResponseEntity<>(HttpStatus.OK);
+
+
+    @GetMapping("/getList")
+    public ResponseEntity<List<Commodity>> getList() {
+
+        return new ResponseEntity<>(commodityService.getList(), HttpStatus.OK);
     }
 }
 

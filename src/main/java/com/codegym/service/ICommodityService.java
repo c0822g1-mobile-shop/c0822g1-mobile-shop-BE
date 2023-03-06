@@ -52,10 +52,6 @@ public interface ICommodityService {
      */
     Page<Commodity> findAll(Pageable pageable);
 
-//    Page<Commodity> findAll(String search,Pageable pageable);
-
-
-
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -90,7 +86,6 @@ public interface ICommodityService {
      */
     Page<Commodity> searchByName( String name,Pageable pageable);
 
-
     Optional<Commodity> findById(int id);
 
     Page<Commodity> getAllCommodity(Pageable pageable, String name);
@@ -108,4 +103,6 @@ public interface ICommodityService {
      */
     Commodity findByQRCode(String QRCode);
 
+
+    List<Commodity> getList();
 }

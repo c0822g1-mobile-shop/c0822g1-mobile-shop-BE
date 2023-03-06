@@ -1,7 +1,12 @@
 package com.codegym.dto.request;
 
+import com.codegym.model.user.User;
+import org.springframework.validation.Errors;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
+import java.util.Objects;
 
 public class UpdateUserForm {
     @NotBlank(message = "Vui lòng không bỏ trống họ và tên")
@@ -107,5 +112,30 @@ public class UpdateUserForm {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+   public void validate(List<User> list, UpdateUserForm updateUserForm, Errors error) {
+       for (int i = 0; i < list.size(); i++) {
+           if (Objects.equals(list.get(i).getUsername(), updateUserForm.getUsername())) {
+               continue;
+           }
+           if (Objects.equals(list.get(i).getEmail(), updateUserForm.getEmail())) {
+               error.rejectValue("email","email","Email " + updateUserForm.getEmail() + " đã được sử dụng vui lòng nhập email khác" );
+
+           }
+       }
+   }
+    @Override
+    public String toString() {
+        return "UpdateUserForm{" +
+                "name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", avatar='" + avatar + '\'' +
+                '}';
     }
 }

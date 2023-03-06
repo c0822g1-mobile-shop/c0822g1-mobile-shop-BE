@@ -1,22 +1,22 @@
 package com.codegym.repository;
 
 import com.codegym.model.user.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 @Transactional
 @Repository
 public interface IUserRepository extends JpaRepository<User, Integer> {
+
+
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
@@ -36,14 +36,16 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             , @Param("address") String address, @Param("age") Integer age, @Param("gender") Boolean gender
             , @Param("date_of_birth") String dateOfBirth, @Param("avatar") String avatar, @Param("username") String username);
 
-//   @Modifying
-//    @Query(value = "update user set name = :name,phone_number = :phone_number,email = :email," +
-//            " address = :address,age = :age,gender = :gender,date_of_birth = :date_of_birth,avatar = :avatar" +
-//            " where username = :username  ",nativeQuery = true)
-//    void updateUser(@Param("name") String name,@Param("phone_number") String phoneNumber,@Param("email") String email
-//            ,@Param("address") String address,@Param("age") Integer age,@Param("gender") Boolean gender
-//    ,@Param("date_of_birth") String dateOfBirth,@Param("avatar") String avatar,@Param("username") String username);
-
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: change password
+     *
+     * @param:username,password
+     **/
+    @Modifying
+@Query(value = "update user set password = :password where username = :username",nativeQuery = true)
+    void changePassword(@Param("password") String password,@Param("username") String username);
 
     /**
      * Created by: CuongVV
@@ -103,6 +105,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param pageable
      * @Repository public interface IUserRepository extends JpaRepository<User, Integer> {
      */
+
     @Query(value = "select `user`.* " +
             " from `user` " +
             "         join `user_roles` on `user`.id = `user_roles`.user_id " +
@@ -128,7 +131,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             , nativeQuery = true)
     Page<User> findAllCustomerNoParam(Pageable pageable);
 
-
     /**
      * Created by: LongPT
      * Date created: 27/2/2023
@@ -137,8 +139,29 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param id
      */
     @Query(value = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.id = :id",
-            countQuery = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.id = :id", nativeQuery = true)
+            countQuery = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.id = :id"
+            , nativeQuery = true)
     Optional<User> findCustomerById(@Param("id") Integer id);
+
+    /**
+     * Created by: HuyNL
+     * Date created: 1/3/2023
+     * Function: get customer list & search
+     */
+
+    @Query(value = "select * from `user` where gender like %:genderSearch% and age like %:ageSearch%", countQuery = "select * from `user` where gender like %:genderSearch% and age like %:ageSearch%", nativeQuery = true)
+    Page<User> findAll(@Param("genderSearch") String genderSearch, @Param("ageSearch") String age, Pageable pageable);
+
+    @Query(value = "select * from `user` where gender = :genderSearch and age like %:ageSearch%", countQuery = "select * from `user` where gender like %:genderSearch% and age like %:ageSearch%", nativeQuery = true)
+    Page<User> findAllByGender(@Param("genderSearch") boolean genderSearch, @Param("ageSearch") String age, Pageable pageable);
+
+    @Query(value = "select count(u.id) from `user` u join `bill` b on u.id = b.user_id " +
+            "    join `bill_history` bh on b.id = bh.bill_id where u.id =:id group by u.id", nativeQuery = true)
+    Integer selectQuantity(@Param("id") int id);
+
+    @Query(value = "select u.* from `user` u join `bill` b on u.id = b.user_id join `bill_history` bh on b.id = bh.bill_id group by u.id", nativeQuery = true)
+    List<User> getUserHasBuy();
+
 
 
 }
