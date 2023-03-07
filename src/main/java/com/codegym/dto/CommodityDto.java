@@ -53,19 +53,15 @@ public class CommodityDto {
     @Pattern(regexp = "^[Q][R][0-9]*$", message = "Mã QR không được nhập ký tự đặc biệt")
     private String codeQr;
     private int quantity;
-
-
     private Boolean flagDelete = false;
     private Integer interestRate = 10;
-
     private Trademark trademark;
 
     public CommodityDto() {
     }
 
 
-    public CommodityDto(Integer id, String name, String cpu, String capacity, Double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, int quantity, Boolean flagDelete, int interestRate, Trademark trademark) {
-
+    public CommodityDto(Integer id, String name, String cpu, String capacity, Double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, int quantity, Boolean flagDelete, Integer interestRate, Trademark trademark) {
         this.id = id;
         this.name = name;
         this.cpu = cpu;
@@ -84,15 +80,6 @@ public class CommodityDto {
         this.interestRate = interestRate;
         this.trademark = trademark;
     }
-
-    public int getInterestRate() {
-        return interestRate;
-    }
-
-    public void setInterestRate(int interestRate) {
-        this.interestRate = interestRate;
-    }
-
 
     public Integer getId() {
         return id;
@@ -198,15 +185,8 @@ public class CommodityDto {
         this.codeQr = codeQr;
     }
 
-
     public int getQuantity() {
-        return this.quantity;
-
-
-    }
-
-    public void setInterestRate(Integer interestRate) {
-        this.interestRate = interestRate;
+        return quantity;
     }
 
     public void setQuantity(int quantity) {
@@ -219,6 +199,14 @@ public class CommodityDto {
 
     public void setFlagDelete(Boolean flagDelete) {
         this.flagDelete = flagDelete;
+    }
+
+    public Integer getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(Integer interestRate) {
+        this.interestRate = interestRate;
     }
 
     public Trademark getTrademark() {

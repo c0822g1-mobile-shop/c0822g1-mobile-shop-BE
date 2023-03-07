@@ -55,7 +55,7 @@ public class AuthController {
     public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm,BindingResult bindingResult) {
         new SignUpForm().validate(iUserService.findAll(),signUpForm,bindingResult);
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.BAD_REQUEST); 
+            return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.BAD_REQUEST);
         }
         if (iUserService.existsByUsername(signUpForm.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("Tên đăng " + signUpForm.getUsername() + " nhập đã được sử dụng, vui lòng chọn tên khác"), HttpStatus.BAD_REQUEST);
@@ -178,5 +178,10 @@ public class AuthController {
     @GetMapping("/customer")
     public ResponseEntity<?> getAll() {
         return new ResponseEntity<>(iUserService.findAll(),HttpStatus.OK);
+    }
+
+    @GetMapping("/profile/{username}")
+    public ResponseEntity<?> profile(@PathVariable("username") String username) {
+        return new ResponseEntity<>(iUserService.userLogin(username),HttpStatus.ACCEPTED);
     }
 }

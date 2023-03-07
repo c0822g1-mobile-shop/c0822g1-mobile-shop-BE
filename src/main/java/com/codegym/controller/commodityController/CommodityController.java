@@ -1,5 +1,4 @@
 package com.codegym.controller.commodityController;
-
 import com.codegym.dto.CommodityDto;
 import com.codegym.model.commodity.Commodity;
 import com.codegym.service.ICommodityService;
@@ -12,12 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
+
 
 @CrossOrigin("*")
 @RequestMapping("/api/commodity")
@@ -49,24 +47,6 @@ public class CommodityController {
         return new ResponseEntity<>(commodityPage, HttpStatus.OK);
     }
 
-    /**
-     * Created by: LongPT
-     * Date created: 27/2/2023
-     * Function: get commodity by id
-     *
-     * @param id
-     * @return HttpStatus.NOT_FOUND if result is error, id null or id not in database. HttpStatus.OK if result is not error.
-     */
-    @GetMapping("{id}")
-    public ResponseEntity<Optional<Commodity>> getCommodityById(@PathVariable("id") Integer id) {
-        Optional<Commodity> commodity;
-        if (id == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            commodity = commodityService.findCommodityById(id);
-            return new ResponseEntity<>(commodity, HttpStatus.OK);
-        }
-    }
 
     /**
      * Created by: CongBD,
@@ -99,15 +79,13 @@ public class CommodityController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Commodity> delete(@PathVariable("id") Integer id) {
-        Commodity commodity = commodityService.findById(id).orElse(null);
+        Commodity commodity = commodityService.findCommodity(id);
         if (commodity == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         commodityService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 
     /**
      * Created by: CongBD,
@@ -135,8 +113,6 @@ public class CommodityController {
     }
 
     /**
-     * =======
-     * >>>>>>> origin/develop
      * Created by: DanhHD
      * Date Created: 27/02/2023
      * Function: create commodity
@@ -148,8 +124,15 @@ public class CommodityController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult bindingResult) {
+        Map<String, String> check = commodityService.checkCreate(commodityDto);
+        if (check.get("errorName") != null) {
+            bindingResult.rejectValue("name", "name", check.get("errorName"));
+        }
+        if (check.get("errorCode") != null) {
+            bindingResult.rejectValue("codeQr", "codeQr", check.get("errorCode"));
+        }
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
         }
         Commodity commodity = new Commodity();
         BeanUtils.copyProperties(commodityDto, commodity);
@@ -166,7 +149,7 @@ public class CommodityController {
      * @return HttpStatus.BAD_REQUEST if id is not found or HttpStatus.OK if id is found
      */
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Commodity> findById(@PathVariable("id") Integer id) {
         Commodity commodity = commodityService.findCommodity(id);
         if (commodity == null) {
@@ -187,22 +170,26 @@ public class CommodityController {
     @PutMapping("/edit/{id}")
     public ResponseEntity<?> editCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult bindingResult, @PathVariable("id") Integer id) {
         Commodity commodity = commodityService.findCommodity(id);
+        Map<String, String> check = commodityService.checkUpdate(commodityDto);
+        if (check.get("errorName") != null) {
+            bindingResult.rejectValue("name", "name", check.get("errorName"));
+        }
+        if (check.get("errorCode") != null) {
+            bindingResult.rejectValue("code", "code", check.get("errorCode"));
+        }
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
         }
         if (commodity == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        BeanUtils.copyProperties(commodityDto,commodity);
+        BeanUtils.copyProperties(commodityDto, commodity);
         commodityService.editCommodity(commodity);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
-
     @GetMapping("/getList")
     public ResponseEntity<List<Commodity>> getList() {
-
         return new ResponseEntity<>(commodityService.getList(), HttpStatus.OK);
     }
 }
