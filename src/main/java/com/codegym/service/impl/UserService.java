@@ -217,6 +217,11 @@ public class UserService implements IUserService {
         }
         return list;
     }
+
+    @Override
+    public User userLogin(String username) {
+        return iUserRepository.userLogin(username);
+    }
 }
 
 
