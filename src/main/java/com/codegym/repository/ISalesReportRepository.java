@@ -32,9 +32,10 @@ public interface ISalesReportRepository extends JpaRepository<SalesReport,Intege
 
 
 
-    @Query(value = "SELECT c.id AS commodityId,\n" +
+    @Query(value = "SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));\n" +
+            "SELECT c.id AS commodityId,\n" +
             "       SUM((b.quantity * (c.price + c.price * c.interest_rate / 100)) - (b.quantity * c.price))\n" +
-            "           AS revenue,\n" +
+            "            AS revenue,\n" +
             "       SUM(b.quantity) AS totalQuantity,\n" +
             "       b.buy_date AS buyDate\n" +
             "FROM bill b\n" +
