@@ -1,6 +1,4 @@
 package com.codegym.repository;
-
-
 import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +19,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      * Function: create commodity
      *
      * @param commodity
-     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
 
     @Modifying
@@ -69,7 +66,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      * Function: find commodity by id
      *
      * @param id
-     * @return HttpStatus.OK if id is found
      */
 
     @Query(value = "select * from commodity " +
@@ -78,15 +74,15 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
             nativeQuery = true)
     Commodity findCommodity(@Param("id") Integer id);
 
+
+
     /**
      * Created by: DanhHD
      * Date Created: 27/02/2023
      * Function: edit commodity by id
      *
      * @param commodity
-     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-
     @Modifying
     @Transactional
     @Query(value = "update commodity set " +
