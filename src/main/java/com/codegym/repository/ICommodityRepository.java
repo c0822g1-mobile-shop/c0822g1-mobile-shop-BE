@@ -10,11 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
-@Repository
-@Transactional
-public interface ICommodityRepository extends JpaRepository<Commodity, Integer> {
+public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
 
     /**
      * Created by: DanhHD
@@ -78,8 +75,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
     Commodity findCommodity(@Param("id") Integer id);
 
 
-    @Query(value = "select * from commodity", nativeQuery = true)
-    List<Commodity> getList();
 
     /**
      * Created by: DanhHD
@@ -186,7 +181,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
     @Query(value = "select * from commodity", nativeQuery = true)
     Page<Commodity> getAllCommodityNoParam(Pageable pageable);
 
-
     /**
      * Created by: PhucNT
      * Date created: 27/2/2023
@@ -217,4 +211,8 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      */
     @Query(value = "SELECT * FROM commodity where code_qr=:QRCode", nativeQuery = true)
     Commodity findByQRCode(@Param("QRCode") String QRCode);
+
+
+    @Query(value = "select * from commodity", nativeQuery = true)
+    List<Commodity> getList();
 }

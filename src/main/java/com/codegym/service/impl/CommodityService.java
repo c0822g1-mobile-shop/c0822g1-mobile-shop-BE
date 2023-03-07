@@ -44,35 +44,6 @@ public class CommodityService implements ICommodityService {
         return commodityRepository.findCommodity(id);
     }
 
-    /**
-     * Created by: DanhHD
-     * Date Created: 27/02/2023
-     * Function: edit commodity by id
-     *
-     * @param commodity
-     */
-
-    @Override
-    public void editCommodity(Commodity commodity) {
-        commodityRepository.editCommodity(commodity);
-    }
-
-    @Override
-    public Page<Commodity> getAllCommodity(Pageable pageable, String name) {
-        return commodityRepository.getAllCommodity(pageable, name);
-    }
-
-    @Override
-    public Page<Commodity> getAllCommodityNoParam(Pageable pageable) {
-        return commodityRepository.getAllCommodityNoParam(pageable);
-    }
-
-    @Override
-    public Page<Commodity> getCommodityByQuantity(Pageable pageable) {
-        return commodityRepository.getCommodityByQuantity(pageable, 20);
-    }
-
-
     @Override
     public List<Commodity> getList() {
         return commodityRepository.getList();
@@ -112,20 +83,7 @@ public class CommodityService implements ICommodityService {
         return check;
     }
 
-    @Override
-    public Page<Commodity> searchByQuantity(int quantity, Pageable pageable) {
-        return commodityRepository.searchByQuantity(quantity, pageable);
-    }
 
-    @Override
-    public Page<Commodity> searchByPrice(double price, Pageable pageable) {
-        return commodityRepository.searchByPrice(price, pageable);
-    }
-
-    @Override
-    public Page<Commodity> searchByName(String name, Pageable pageable) {
-        return commodityRepository.searchByName(name, pageable);
-    }
 
 
     /**
@@ -139,6 +97,20 @@ public class CommodityService implements ICommodityService {
     @Override
     public Page<Commodity> findAll(Pageable pageable) {
         return commodityRepository.showListCommodity(pageable);
+    }
+
+    public Page<Commodity> searchByQuantity(int quantity, Pageable pageable) {
+        return commodityRepository.searchByQuantity(quantity, pageable);
+    }
+
+    @Override
+    public Page<Commodity> searchByPrice(double price, Pageable pageable) {
+        return commodityRepository.searchByPrice(price, pageable);
+    }
+
+    @Override
+    public Page<Commodity> searchByName(String name, Pageable pageable) {
+        return commodityRepository.searchByName(name, pageable);
     }
 
     /**
@@ -158,6 +130,35 @@ public class CommodityService implements ICommodityService {
 //    public Page<Commodity> searchCommodity(String name, Pageable pageable) {
 //        return commodityRepository.searchCommodity(name, pageable);
 //    }
+
+    @Override
+    public Page<Commodity> getAllCommodity(Pageable pageable, String name) {
+        return commodityRepository.getAllCommodity(pageable, name);
+    }
+
+    @Override
+    public Page<Commodity> getAllCommodityNoParam(Pageable pageable) {
+        return commodityRepository.getAllCommodityNoParam(pageable);
+    }
+
+
+    @Override
+    public Page<Commodity> getCommodityByQuantity(Pageable pageable) {
+        return commodityRepository.getCommodityByQuantity(pageable, 20);
+    }
+
+    /**
+     * Created by: DanhHD
+     * Date Created: 27/02/2023
+     * Function: edit commodity by iduser
+     *
+     * @param commodity
+     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
+     */
+    @Override
+    public void editCommodity(Commodity commodity) {
+        commodityRepository.editCommodity(commodity);
+    }
 }
 
 
