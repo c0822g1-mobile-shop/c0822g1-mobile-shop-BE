@@ -19,6 +19,14 @@ public class TrademarkController {
     @Autowired
     private ITrademarkService trademarkService;
 
+    /**
+     * Created by: DanhHD
+     * Date Created: 01/03/2023
+     * Function: show trademark list
+     *
+     * @return HttpStatus.NO_CONTENT if list is empty or HttpStatus.OK if list is not empty
+     */
+
     @GetMapping("")
     public ResponseEntity<List<Trademark>> getAllTrademark() {
         List<Trademark> trademarks = trademarkService.getAllTrademark();
