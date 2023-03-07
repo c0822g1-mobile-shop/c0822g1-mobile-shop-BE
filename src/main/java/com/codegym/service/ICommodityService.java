@@ -1,10 +1,12 @@
 package com.codegym.service;
 
+import com.codegym.model.SalesReport.ISalesReport;
 import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
-
+import java.awt.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,7 +70,7 @@ public interface ICommodityService {
      * @param quantity
      * @Return HttpStatus.OK if result is not error
      */
-    Page<Commodity> searchByQuantity(int quantity,Pageable pageable);
+    Page<Commodity> searchByQuantity(int quantity, Pageable pageable);
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -92,8 +94,7 @@ public interface ICommodityService {
     
     Page<Commodity> getAllCommodityNoParam(Pageable pageable);
     
-    Optional<Commodity> findCommodityById(Integer id);
-    
+
     Page<Commodity> getCommodityByQuantity(Pageable pageable);
 
     /**

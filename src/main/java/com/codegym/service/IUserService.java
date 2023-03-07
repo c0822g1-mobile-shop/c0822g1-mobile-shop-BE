@@ -1,23 +1,15 @@
 package com.codegym.service;
+
+import com.codegym.dto.billHistory.BillHistoryDTO;
 import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.model.user.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import java.util.List;
-import java.util.Optional;
-import com.codegym.dto.billHistory.BillHistoryDTO;
-import com.codegym.model.user.User;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
-
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
-
-
 
     /**
      * Created by: CuongVV
