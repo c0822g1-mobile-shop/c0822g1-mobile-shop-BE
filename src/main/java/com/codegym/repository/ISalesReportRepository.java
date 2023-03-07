@@ -5,10 +5,12 @@ import com.codegym.model.SalesReport.SalesReport;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import java.util.List;
 
 import java.util.List;
 
 public interface ISalesReportRepository extends JpaRepository<SalesReport,Integer> {
+
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
@@ -17,11 +19,9 @@ public interface ISalesReportRepository extends JpaRepository<SalesReport,Intege
      * @return Sales report from 'startDay' to 'endDay'
      */
 
-    @Query(value = "SELECT c.id AS commodityId,\n" +
-            "       SUM((b.quantity * (c.price + c.price * c.interest_rate / 100)) - (b.quantity * c.price))\n" +
-            "           AS revenue,\n" +
-            "       SUM(b.quantity) AS totalQuantity,\n" +
-            "       b.buy_date AS buyDate\n" +
+    @Query(value = "SELECT SUM((b.quantity * (c.price + c.price * c.interest_rate / 100)) - (b.quantity * c.price))\n" +
+            "                       AS revenue,\n" +
+            "       SUM(b.quantity) AS totalQuantity\n" +
             "FROM bill b\n" +
             "         JOIN bill_history bc ON b.id = bc.bill_id\n" +
             "         JOIN commodity c ON bc.commodity_id = c.id\n" +
@@ -76,8 +76,5 @@ public interface ISalesReportRepository extends JpaRepository<SalesReport,Intege
             "  AND (c.id = IFNULL(:commodityId, c.id))\n" +
             "GROUP BY c.id, b.buy_date;", nativeQuery = true)
     List<ISalesReport> getAllSalesReportById(@Param("startDay") String startDay, @Param("endDay") String endDay, @Param("commodityId") Integer id);
-
-
-
 
 }

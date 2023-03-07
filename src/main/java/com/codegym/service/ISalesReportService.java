@@ -5,6 +5,7 @@ import com.codegym.model.SalesReport.SalesReport;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ISalesReportService {
 
@@ -14,9 +15,9 @@ public interface ISalesReportService {
      * @param startDay
      * @param endDay
      */
-    ISalesReport salesReport(String startDay,  String endDay);
 
 
+    ISalesReport salesReport(String startDay, String endDay);
 
     List<ISalesReport> getAllSalesReport(String startDay, String endDay);
 
@@ -26,6 +27,5 @@ public interface ISalesReportService {
 
 
     List<ISalesReport> getAllSalesReportById(String startDay,  String endDay,Integer id);
-
 
 }
