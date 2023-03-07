@@ -4,9 +4,7 @@ import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-
 import java.util.List;
-import java.util.Optional;
 
 public interface ICommodityService {
 
@@ -56,6 +54,7 @@ public interface ICommodityService {
      * Created by: CongBD,
      * Date Created: 27/02/2023
      * function: delete commodity
+     *
      * @param id
      * @Return HttpStatus.OK if result is not error
      */
@@ -65,40 +64,43 @@ public interface ICommodityService {
      * Created by: CongBD,
      * Date Created: 27/02/2023
      * function: search quantity commodity
+     *
      * @param quantity
      * @Return HttpStatus.OK if result is not error
      */
-    Page<Commodity> searchByQuantity(int quantity,Pageable pageable);
+    Page<Commodity> searchByQuantity(int quantity, Pageable pageable);
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
      * function: search price commodity
+     *
      * @param price
      * @Return HttpStatus.OK if result is not error
      */
-    Page<Commodity> searchByPrice(double price,Pageable pageable);
+    Page<Commodity> searchByPrice(double price, Pageable pageable);
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
      * function: search name commodity
+     *
      * @param name
      * @Return HttpStatus.OK if result is not error
      */
-    Page<Commodity> searchByName( String name,Pageable pageable);
-
-    Optional<Commodity> findById(int id);
+    Page<Commodity> searchByName(String name, Pageable pageable);
 
     Page<Commodity> getAllCommodity(Pageable pageable, String name);
-    
+
     Page<Commodity> getAllCommodityNoParam(Pageable pageable);
-    
-    Optional<Commodity> findCommodityById(Integer id);
-    
+
+
     Page<Commodity> getCommodityByQuantity(Pageable pageable);
 
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
+     *
      * @param: qrCode
      */
     Commodity findByQRCode(String QRCode);

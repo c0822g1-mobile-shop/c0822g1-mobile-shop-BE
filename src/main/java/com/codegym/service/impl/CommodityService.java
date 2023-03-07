@@ -82,12 +82,6 @@ public class CommodityService implements ICommodityService {
     }
 
     @Override
-    public Optional<Commodity> findById(int id) {
-        return commodityRepository.findById(id);
-    }
-
-
-    @Override
     public Page<Commodity> getAllCommodity(Pageable pageable, String name) {
         return commodityRepository.getAllCommodity(pageable, name);
     }
@@ -95,11 +89,6 @@ public class CommodityService implements ICommodityService {
     @Override
     public Page<Commodity> getAllCommodityNoParam(Pageable pageable) {
         return commodityRepository.getAllCommodityNoParam(pageable);
-    }
-
-    @Override
-    public Optional<Commodity> findCommodityById(Integer id) {
-        return commodityRepository.findCommodityById(id);
     }
 
     @Override
@@ -142,7 +131,7 @@ public class CommodityService implements ICommodityService {
     /**
      * Created by: DanhHD
      * Date Created: 27/02/2023
-     * Function: edit commodity by id
+     * Function: edit commodity by iduser
      *
      * @param commodity
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
@@ -151,13 +140,5 @@ public class CommodityService implements ICommodityService {
     public void editCommodity(Commodity commodity) {
         commodityRepository.editCommodity(commodity);
     }
-
-    /**
-     * Created by: PhucNT
-     * Date Created: 5/3/2023
-     * @param name
-     * @param offset
-     * @return 5 record commodity
-     */
 }
 
