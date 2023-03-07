@@ -47,7 +47,6 @@ public class CommodityController {
         return new ResponseEntity<>(commodityPage, HttpStatus.OK);
     }
 
-
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023

@@ -154,6 +154,10 @@ public class CommodityService implements ICommodityService {
         commodityRepository.deleteCommodity(id);
     }
 
+//    @Override
+//    public Page<Commodity> searchCommodity(String name, Pageable pageable) {
+//        return commodityRepository.searchCommodity(name, pageable);
+//    }
 }
 
 

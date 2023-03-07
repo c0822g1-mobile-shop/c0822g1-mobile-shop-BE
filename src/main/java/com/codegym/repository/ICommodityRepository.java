@@ -205,7 +205,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      */
 
     @Query(nativeQuery = true, value = "SELECT c.* , ifnull(sum(ifnull(wh.quantity,0))-ifnull(c.quantity,0),0) as quantity_sold" +
-            " FROM `commodity` c JOIN `ware_housing` wh on c.id = wh.commodity_id GROUP BY c.id " +
+            " FROM `commodity` c left JOIN `ware_housing` wh on c.id = wh.commodity_id GROUP BY c.id having c.flag_delete = false " +
             "ORDER BY quantity_sold")
     Page<Commodity> getCommodityByQuantity(Pageable pageable, @Param("limit") Integer limit);
 
