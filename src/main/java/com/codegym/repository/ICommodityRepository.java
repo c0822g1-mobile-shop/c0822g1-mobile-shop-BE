@@ -12,11 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
-@Repository
-@Transactional
-public interface ICommodityRepository extends JpaRepository<Commodity, Integer> {
+public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
 
     /** Created by: LongPT
      *
@@ -178,8 +175,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             " where id = :id", nativeQuery = true)
     void deleteCommodity(@Param("id") Integer id);
 
-    @Query(value = "select * from commodity where id = :id and flag_delete = false", nativeQuery = true)
-    Optional<Commodity> findById(@Param("id") int id);
 
     /**
      * Created by: LongPT
@@ -203,17 +198,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
     @Query(value = "select * from commodity", nativeQuery = true)
     Page<Commodity> getAllCommodityNoParam(Pageable pageable);
 
-    /**
-     * Created by: LongPT
-     * Date created: 27/2/2023
-     * Function: get commodity by id
-     *
-     * @param: id
-     */
-
-    @Query(value = "select * from commodity where commodity.id = :id"
-            , nativeQuery = true)
-    Optional<Commodity> findCommodityById(@Param("id") Integer id);
 
     /**
      * Created by: PhucNT
@@ -249,5 +233,4 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
 
     @Query(value = "select * from commodity", nativeQuery = true)
     List<Commodity> getList();
-
 }
