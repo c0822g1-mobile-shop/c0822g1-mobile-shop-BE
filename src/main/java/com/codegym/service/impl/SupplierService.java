@@ -39,6 +39,13 @@ public class SupplierService implements ISupplierService {
         supplierRepository.deleteSupplier(id);
     }
 
+
+    /**
+     * Create by: CongTT,
+     * Date created: 27/02/2023,
+     * Function: add supplier + find supplier by id + update supplier
+     */
+
     @Override
     public void addSupplier(String code, String name, String address, String phoneNumber, String email) {
 
@@ -91,7 +98,6 @@ public class SupplierService implements ISupplierService {
     }
 
 
-
     /**
      * Create by: TanTH,
      * Date created: 27/02/2023,
@@ -104,7 +110,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Page<Supplier> showSupplierList(String name, String address, String email, Pageable pageable) {
-        return supplierRepository.showSupplierList(name,address,email,pageable);
+        return supplierRepository.showSupplierList(name, address, email, pageable);
     }
 
 }

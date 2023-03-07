@@ -33,6 +33,11 @@ public interface ISupplierRepository extends JpaRepository<Supplier, Integer> {
             nativeQuery = true)
     Page<Supplier> showList(@Param("search") String search, Pageable pageable);
 
+    /**
+     * Create by: CongTT,
+     * Date created: 27/02/2023,
+     * Function: add supplier + find supplier by id + update supplier
+     */
 
     @Modifying
     @Transactional

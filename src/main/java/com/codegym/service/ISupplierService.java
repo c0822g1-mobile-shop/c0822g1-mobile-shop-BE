@@ -29,6 +29,12 @@ public interface ISupplierService {
     void deleteSupplier(Integer id);
 
 
+    /**
+     * Create by: CongTT,
+     * Date created: 27/02/2023,
+     * Function: add supplier + find supplier by id + update supplier
+     */
+
     void addSupplier(String code, String name, String address, String phoneNumber, String email);
 
     Supplier findSupplier(Integer id);
