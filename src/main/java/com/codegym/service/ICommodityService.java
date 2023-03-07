@@ -1,10 +1,14 @@
 package com.codegym.service;
 
+import com.codegym.dto.CommodityDto;
 import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+
+import java.util.Map;
+
 
 public interface ICommodityService {
 
@@ -94,8 +98,10 @@ public interface ICommodityService {
 
     Page<Commodity> getAllCommodityNoParam(Pageable pageable);
 
-
     Page<Commodity> getCommodityByQuantity(Pageable pageable);
+
+
+    List<Commodity> getList();
 
     /**
      * Create by : DuongLTH
@@ -105,6 +111,7 @@ public interface ICommodityService {
      */
     Commodity findByQRCode(String QRCode);
 
+    Map<String, String> checkCreate(CommodityDto commodityDto);
 
-    List<Commodity> getList();
+    Map<String, String> checkUpdate(CommodityDto commodityDto);
 }
