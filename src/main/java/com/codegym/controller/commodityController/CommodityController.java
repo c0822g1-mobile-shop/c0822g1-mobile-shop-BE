@@ -49,7 +49,6 @@ public class CommodityController {
     }
 
 
-
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -81,7 +80,7 @@ public class CommodityController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Commodity> delete(@PathVariable("id") Integer id) {
-        Commodity commodity = commodityService.findById(id).orElse(null);
+        Commodity commodity = commodityService.findCommodity(id);
         if (commodity == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -117,8 +116,6 @@ public class CommodityController {
     }
 
     /**
-     * =======
-     * >>>>>>> origin/develop
      * Created by: DanhHD
      * Date Created: 27/02/2023
      * Function: create commodity
