@@ -3,14 +3,17 @@ package com.codegym.repository;
 import com.codegym.model.user.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
 
 @Transactional
 @Repository
@@ -161,8 +164,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
 
     @Query(value = "select u.* from `user` u join `bill` b on u.id = b.user_id join `bill_history` bh on b.id = bh.bill_id group by u.id", nativeQuery = true)
     List<User> getUserHasBuy();
-
-
 
 }
 

@@ -20,6 +20,7 @@ public class CommodityService implements ICommodityService {
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
+     * @param qrCode
      *
      * @param:QRCode
      */
@@ -28,7 +29,6 @@ public class CommodityService implements ICommodityService {
         return commodityRepository.findByQRCode(qrCode);
     }
 
-    @Override
     public Page<Commodity> searchByQuantity(int quantity, Pageable pageable) {
         return commodityRepository.searchByQuantity(quantity, pageable);
     }
@@ -97,10 +97,6 @@ public class CommodityService implements ICommodityService {
         return commodityRepository.getAllCommodityNoParam(pageable);
     }
 
-    @Override
-    public Optional<Commodity> findCommodityById(Integer id) {
-        return commodityRepository.findCommodityById(id);
-    }
 
     @Override
     public Page<Commodity> getCommodityByQuantity(Pageable pageable) {

@@ -1,5 +1,4 @@
 package com.codegym.controller.commodityController;
-
 import com.codegym.dto.CommodityDto;
 import com.codegym.model.commodity.Commodity;
 import com.codegym.service.ICommodityService;
@@ -13,11 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
 
 @CrossOrigin("*")
 @RequestMapping("/api/commodity")
@@ -49,24 +48,7 @@ public class CommodityController {
         return new ResponseEntity<>(commodityPage, HttpStatus.OK);
     }
 
-    /**
-     * Created by: LongPT
-     * Date created: 27/2/2023
-     * Function: get commodity by id
-     *
-     * @param id
-     * @return HttpStatus.NOT_FOUND if result is error, id null or id not in database. HttpStatus.OK if result is not error.
-     */
-    @GetMapping("{id}")
-    public ResponseEntity<Optional<Commodity>> getCommodityById(@PathVariable("id") Integer id) {
-        Optional<Commodity> commodity;
-        if (id == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            commodity = commodityService.findCommodityById(id);
-            return new ResponseEntity<>(commodity, HttpStatus.OK);
-        }
-    }
+
 
     /**
      * Created by: CongBD,
@@ -166,7 +148,7 @@ public class CommodityController {
      * @return HttpStatus.BAD_REQUEST if id is not found or HttpStatus.OK if id is found
      */
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Commodity> findById(@PathVariable("id") Integer id) {
         Commodity commodity = commodityService.findCommodity(id);
         if (commodity == null) {
