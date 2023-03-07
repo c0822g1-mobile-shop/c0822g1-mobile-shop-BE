@@ -1,14 +1,15 @@
 package com.codegym.service;
 
+import com.codegym.dto.CommodityDto;
 import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 public interface ICommodityService {
+
     /**
      * Created by: DanhHD
      * Date Created: 27/02/2023
@@ -27,7 +28,6 @@ public interface ICommodityService {
      * @param id
      * @return HttpStatus.OK if id is found
      */
-
     Commodity findCommodity(Integer id);
 
     /**
@@ -41,6 +41,7 @@ public interface ICommodityService {
 
     void editCommodity(Commodity commodity);
 
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -51,11 +52,11 @@ public interface ICommodityService {
      */
     Page<Commodity> findAll(Pageable pageable);
 
-
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
      * function: delete commodity
+     *
      * @param id
      * @Return HttpStatus.OK if result is not error
      */
@@ -65,31 +66,31 @@ public interface ICommodityService {
      * Created by: CongBD,
      * Date Created: 27/02/2023
      * function: search quantity commodity
+     *
      * @param quantity
      * @Return HttpStatus.OK if result is not error
      */
-    Page<Commodity> searchByQuantity(int quantity,Pageable pageable);
+    Page<Commodity> searchByQuantity(int quantity, Pageable pageable);
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
      * function: search price commodity
+     *
      * @param price
      * @Return HttpStatus.OK if result is not error
      */
-    Page<Commodity> searchByPrice(double price,Pageable pageable);
+    Page<Commodity> searchByPrice(double price, Pageable pageable);
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
      * function: search name commodity
+     *
      * @param name
      * @Return HttpStatus.OK if result is not error
      */
-    Page<Commodity> searchByName( String name,Pageable pageable);
-
-
-
-
-    Optional<Commodity> findById(int id);
+    Page<Commodity> searchByName(String name, Pageable pageable);
 
     Page<Commodity> getAllCommodity(Pageable pageable, String name);
 
@@ -97,14 +98,18 @@ public interface ICommodityService {
 
     Page<Commodity> getCommodityByQuantity(Pageable pageable);
 
-    Page<Commodity> searchCommodity(String name, Pageable pageable);
 
     List<Commodity> getList();
+
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
      *
-     * @param QRCode
+     * @param: qrCode
      */
-    Commodity findByQRCode(@Param("QRCode") String QRCode);
+    Commodity findByQRCode(String QRCode);
+
+    Map<String, String> checkCreate(CommodityDto commodityDto);
+
+    Map<String, String> checkUpdate(CommodityDto commodityDto);
 }

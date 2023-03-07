@@ -3,7 +3,10 @@ package com.codegym.dto;
 import com.codegym.model.commodity.Trademark;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 public class CommodityDto {
     private Integer id;
@@ -57,7 +60,8 @@ public class CommodityDto {
     public CommodityDto() {
     }
 
-    public CommodityDto(Integer id, String name, String cpu, String capacity, Double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, int quantity, Boolean flag_delete, int interestRate, Trademark trademark) {
+
+    public CommodityDto(Integer id, String name, String cpu, String capacity, Double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, int quantity, Boolean flagDelete, Integer interestRate, Trademark trademark) {
         this.id = id;
         this.name = name;
         this.cpu = cpu;
@@ -72,17 +76,9 @@ public class CommodityDto {
         this.description = description;
         this.codeQr = codeQr;
         this.quantity = quantity;
+        this.flagDelete = flagDelete;
         this.interestRate = interestRate;
-        this.flagDelete = flag_delete;
         this.trademark = trademark;
-    }
-
-    public int getInterestRate() {
-        return interestRate;
-    }
-
-    public void setInterestRate(int interestRate) {
-        this.interestRate = interestRate;
     }
 
     public Integer getId() {
@@ -205,12 +201,12 @@ public class CommodityDto {
         this.flagDelete = flagDelete;
     }
 
-    public Boolean getFlag_delete() {
-        return flagDelete;
+    public Integer getInterestRate() {
+        return interestRate;
     }
 
-    public void setFlag_delete(Boolean flag_delete) {
-        this.flagDelete = flag_delete;
+    public void setInterestRate(Integer interestRate) {
+        this.interestRate = interestRate;
     }
 
     public Trademark getTrademark() {

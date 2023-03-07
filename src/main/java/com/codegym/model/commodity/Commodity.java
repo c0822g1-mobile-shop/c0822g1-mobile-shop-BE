@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class Commodity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -31,6 +32,8 @@ public class Commodity {
     @ManyToOne
     @JoinColumn(name = "trademark_id", referencedColumnName = "id")
     private Trademark trademark;
+
+
     private int interestRate = 10;
 
     public Commodity() {

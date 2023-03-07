@@ -28,16 +28,15 @@ public class SupplierController {
      * Create by: DiemTTT,
      * Date created: 27/02/2023,
      * Function: show list supplier + delete supplier by id
-     *
      * @param:search
      * @param:pageable
      * @return HttpStatus.NOT_FOUND if result is error or HttpStatus.OK if result is not error
      */
     @GetMapping("/list")
     private ResponseEntity<?> showList(@RequestParam(defaultValue = "", required = false) String search,
-                                       @PageableDefault(size = 3) Pageable pageable) {
+                                       @PageableDefault(size = 5) Pageable pageable) {
         System.out.println(search);
-        Page<List<Supplier>> supplierListDtoList = supplierService.showList(search, pageable);
+        Page<Supplier> supplierListDtoList = supplierService.showList(search, pageable);
         return new ResponseEntity<>(supplierListDtoList, HttpStatus.OK);
     }
 
@@ -55,8 +54,8 @@ public class SupplierController {
      * Created By: CongTT
      * Date created: 27/02/2023
      * Function: create supplier
-     * @Param: supplierDto
-     * Return: HttpStatus.BAD_REQUEST if result is error or HttpStatus.CREATED if result is not error.
+     * @param: supplierDto
+     * @return: HttpStatus.BAD_REQUEST if result is error or HttpStatus.CREATED if result is not error.
      */
 
     @PostMapping("/add")
@@ -89,8 +88,8 @@ public class SupplierController {
      * Created By: CongTT
      * Date created: 27/02/2023
      * Function: find supplier by id
-     * @Param: id
-     * Return: HttpStatus.OK if result is not error.
+     * @param: id
+     * @return: HttpStatus.OK if result is not error.
      */
 
     @GetMapping("/supplier")
@@ -108,8 +107,8 @@ public class SupplierController {
      * Created By: CongTT
      * Date created: 27/02/2023
      * Function: update supplier
-     * Param: supplierDto
-     * Return: HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error.
+     * @param: supplierDto
+     * @return: HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error.
      */
 
     @PutMapping("/update")
@@ -132,5 +131,20 @@ public class SupplierController {
         BeanUtils.copyProperties(supplierDto, supplier);
         supplierService.updateSupplier(supplier.getName(), supplier.getAddress(), supplier.getPhoneNumber(), supplier.getEmail(), supplier.getId());
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Create by: TanTH,
+     * Date created: 27/02/2023,
+     * Function: show list supplier +Search supplier
+     *
+     * @param pageable
+     * @return HttpStatus.OK
+     */
+
+    @GetMapping("/findSupplier")
+    private ResponseEntity<?> showLists(@RequestParam(value = "name", defaultValue = "") String name, @RequestParam(value = "address", defaultValue = "") String address , @RequestParam(value = "email", defaultValue = "") String email, @PageableDefault(value = 2)Pageable pageable) {
+        Page<Supplier> lists = supplierService.showSupplierList(name,address,email,pageable);
+        return new ResponseEntity<>(lists, HttpStatus.OK);
     }
 }

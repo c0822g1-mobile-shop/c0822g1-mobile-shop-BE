@@ -1,5 +1,6 @@
 package com.codegym.service.impl;
 
+import com.codegym.dto.CommodityDto;
 import com.codegym.model.commodity.Commodity;
 import com.codegym.repository.ICommodityRepository;
 import com.codegym.service.ICommodityService;
@@ -8,13 +9,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 @Service
 public class CommodityService implements ICommodityService {
     @Autowired
     private ICommodityRepository commodityRepository;
+
 
     /**
      * Created by: DanhHD
@@ -23,7 +26,6 @@ public class CommodityService implements ICommodityService {
      *
      * @param commodity
      */
-
     @Override
     public void addCommodity(Commodity commodity) {
         commodityRepository.addCommodity(commodity);
@@ -70,10 +72,6 @@ public class CommodityService implements ICommodityService {
         return commodityRepository.getCommodityByQuantity(pageable, 20);
     }
 
-    @Override
-    public Page<Commodity> searchCommodity(String name, Pageable pageable) {
-        return commodityRepository.searchCommodity(name, pageable);
-    }
 
     @Override
     public List<Commodity> getList() {
@@ -86,22 +84,49 @@ public class CommodityService implements ICommodityService {
     }
 
     @Override
+    public Map<String, String> checkCreate(CommodityDto commodityDto) {
+        Map<String, String> check = new HashMap<>();
+        for (int i = 0; i < commodityRepository.getList().size(); i++) {
+            if (commodityRepository.getList().get(i).getName().equals(commodityDto.getName())) {
+                check.put("errorName", "Tên hàng đã tồn tại");
+            }
+            if (commodityRepository.getList().get(i).getCodeQr().equals(commodityDto.getCodeQr())) {
+                check.put("errorCode", "Mã QR đã tồn tại");
+            }
+        }
+        return check;
+    }
+
+    @Override
+    public Map<String, String> checkUpdate(CommodityDto commodityDto) {
+        Map<String, String> check = new HashMap<>();
+        Commodity commodity = findCommodity(commodityDto.getId());
+        for (int i = 0; i < commodityRepository.getList().size(); i++) {
+            if (!commodity.getName().equals(commodityDto.getName()) && commodityRepository.getList().get(i).getName().equals(commodityDto.getName())) {
+                check.put("errorName", "Tên hàng đã tồn tại");
+            }
+            if (!commodity.getCodeQr().equals(commodityDto.getCodeQr()) && commodityRepository.getList().get(i).getCodeQr().equals(commodityDto.getCodeQr())) {
+                check.put("errorCode", "Mã QR đã tồn tại");
+            }
+        }
+        return check;
+    }
+
+    @Override
     public Page<Commodity> searchByQuantity(int quantity, Pageable pageable) {
-        return iCommodityRepository.searchByQuantity(quantity, pageable);
+        return commodityRepository.searchByQuantity(quantity, pageable);
     }
 
     @Override
     public Page<Commodity> searchByPrice(double price, Pageable pageable) {
-        return iCommodityRepository.searchByPrice(price, pageable);
+        return commodityRepository.searchByPrice(price, pageable);
     }
 
     @Override
     public Page<Commodity> searchByName(String name, Pageable pageable) {
-        return iCommodityRepository.searchByName(name, pageable);
+        return commodityRepository.searchByName(name, pageable);
     }
 
-    @Autowired
-    private ICommodityRepository iCommodityRepository;
 
     /**
      * Created by: CongBD,
@@ -129,9 +154,6 @@ public class CommodityService implements ICommodityService {
         commodityRepository.deleteCommodity(id);
     }
 
-    @Override
-    public Optional<Commodity> findById(int id) {
-        return commodityRepository.findById(id);
-    }
 }
+
 
