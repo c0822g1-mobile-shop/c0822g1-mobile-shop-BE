@@ -70,21 +70,15 @@ public class UserPrinciple implements UserDetails {
         this.roles = roles;
     }
 
-<<<<<<< HEAD
-    public UserPrinciple(int id, String username, String password, String name, String email,String avatar,
-=======
+
 
     public UserPrinciple(int id, String username, String password, String name, String email, String avatar,
->>>>>>> origin/develop
                          String phoneNumber,
                          String address,
                          Integer age,
                          Boolean gender,
                          String dateOfBirth
-<<<<<<< HEAD
                         , Collection<? extends GrantedAuthority> roles) {
-=======
-            , Collection<? extends GrantedAuthority> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -100,18 +94,12 @@ public class UserPrinciple implements UserDetails {
     }
 
     public UserPrinciple(int id, String username, String password, String name, String email, String avatar, Collection<? extends GrantedAuthority> roles) {
->>>>>>> origin/develop
         this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
         this.avatar = avatar;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.age = age;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
         this.roles = roles;
     }
 
@@ -164,49 +152,7 @@ public class UserPrinciple implements UserDetails {
         return gender;
     }
 
-    public void setGender(Boolean gender) {
-        this.gender = gender;
-    }
 
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Boolean getGender() {
-        return gender;
-    }
-
-    public void setGender(Boolean gender) {
-        this.gender = gender;
-    }
 
     public String getDateOfBirth() {
         return dateOfBirth;

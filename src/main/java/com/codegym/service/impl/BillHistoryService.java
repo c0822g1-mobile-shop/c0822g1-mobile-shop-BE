@@ -1,10 +1,7 @@
 package com.codegym.service.impl;
 
 import com.codegym.model.bill.BillHistory;
-<<<<<<< HEAD
-=======
 import com.codegym.model.bill.IBillHistory;
->>>>>>> origin/develop
 import com.codegym.repository.IBillHistoryRepository;
 import com.codegym.service.IBillHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +13,6 @@ import java.util.List;
 public class BillHistoryService implements IBillHistoryService {
 
     @Autowired
-<<<<<<< HEAD
-=======
     private IBillHistoryRepository billHistoryRepository;
 
     @Override
@@ -32,7 +27,6 @@ public class BillHistoryService implements IBillHistoryService {
 
 
     @Autowired
->>>>>>> origin/develop
     private IBillHistoryRepository iBillHistoryRepository;
 
     /**

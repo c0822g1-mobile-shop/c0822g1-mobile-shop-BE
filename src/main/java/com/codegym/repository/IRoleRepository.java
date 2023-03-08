@@ -20,11 +20,7 @@ public interface IRoleRepository extends JpaRepository<Role,Integer> {
      **/
     @Query(value = "select r.* from role r where r.name = 'ROLE_ADMIN'",nativeQuery = true)
     Optional<Role>  roleAdmin();
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/develop
-    /**
+        /**
      * Created by: CuongVV
      * Date created: 28/2/2023
      * Function: get ROLE CUSTOMER

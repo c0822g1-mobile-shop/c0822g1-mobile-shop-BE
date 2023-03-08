@@ -1,27 +1,13 @@
 package com.codegym.service;
 
-<<<<<<< HEAD
-=======
-import com.codegym.model.SalesReport.ISalesReport;
 import com.codegym.dto.CommodityDto;
->>>>>>> origin/develop
 import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
-<<<<<<< HEAD
-
-
-import java.util.Optional;
-=======
-
 
 import java.util.List;
-
+import java.util.Optional;
 import java.util.Map;
-
->>>>>>> origin/develop
-
 public interface ICommodityService {
 
     /**
@@ -55,10 +41,6 @@ public interface ICommodityService {
 
     void editCommodity(Commodity commodity);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/develop
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -107,7 +89,6 @@ public interface ICommodityService {
      * @param name
      * @Return HttpStatus.OK if result is not error
      */
-<<<<<<< HEAD
     Page<Commodity> searchByName( String name,Pageable pageable);
 
 
@@ -116,24 +97,18 @@ public interface ICommodityService {
     Optional<Commodity> findById(int id);
 
     Page<Commodity> getAllCommodity(Pageable pageable, String name);
-    
+
     Page<Commodity> getAllCommodityNoParam(Pageable pageable);
-    
+
     Optional<Commodity> findCommodityById(Integer id);
-    
+
     Page<Commodity> getCommodityByQuantity(Pageable pageable);
 
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
-=======
-    Page<Commodity> searchByName(String name, Pageable pageable);
+**/
 
-    Page<Commodity> getAllCommodity(Pageable pageable, String name);
-
-    Page<Commodity> getAllCommodityNoParam(Pageable pageable);
-
-    Page<Commodity> getCommodityByQuantity(Pageable pageable);
 
 
     List<Commodity> getList();
@@ -141,16 +116,12 @@ public interface ICommodityService {
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
-     *
->>>>>>> origin/develop
      * @param: qrCode
      */
     Commodity findByQRCode(String QRCode);
 
-<<<<<<< HEAD
-=======
+
     Map<String, String> checkCreate(CommodityDto commodityDto);
 
     Map<String, String> checkUpdate(CommodityDto commodityDto);
->>>>>>> origin/develop
 }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-
+import java.util.Optional;
 
 
 @CrossOrigin("*")
@@ -49,7 +49,6 @@ public class CommodityController {
         }
         return new ResponseEntity<>(commodityPage, HttpStatus.OK);
     }
-<<<<<<< HEAD
     /**
      * Created by: LongPT
      * Date created: 27/2/2023
@@ -68,9 +67,7 @@ public class CommodityController {
             return new ResponseEntity<>(commodity, HttpStatus.OK);
         }
     }
-=======
 
->>>>>>> origin/develop
 
     /**
      * Created by: CongBD,
@@ -173,7 +170,7 @@ public class CommodityController {
      * @return HttpStatus.BAD_REQUEST if id is not found or HttpStatus.OK if id is found
      */
 
-    @GetMapping("/{id}")
+    @GetMapping("/search/{id}")
     public ResponseEntity<Commodity> findById(@PathVariable("id") Integer id) {
         Commodity commodity = commodityService.findCommodity(id);
         if (commodity == null) {
@@ -212,12 +209,9 @@ public class CommodityController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-<<<<<<< HEAD
-=======
     @GetMapping("/getList")
     public ResponseEntity<List<Commodity>> getList() {
         return new ResponseEntity<>(commodityService.getList(), HttpStatus.OK);
     }
->>>>>>> origin/develop
 }
 

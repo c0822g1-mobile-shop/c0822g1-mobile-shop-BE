@@ -1,4 +1,3 @@
-package com.codegym.controller.homeController;
 
 import com.codegym.model.commodity.Commodity;
 import com.codegym.service.ICommodityService;
@@ -28,17 +27,7 @@ public class HomeController {
      * @return List Commodity order by quantity sold
      * @Param name
      */
-<<<<<<< HEAD:src/main/java/com/codegym/controller/homeController/HomeController.java
-     
-    @GetMapping("search")
-    public ResponseEntity<Page<Commodity>> searchCommodity(@RequestParam(name = "name", defaultValue = "",required = false) String name,@PageableDefault(size = 5) Pageable pageable) {
-        if(name.equals("null")){
-            name ="";
-        }
-        Page<Commodity> commodityPage = commodityService.getAllCommodity(pageable,name);
-        if (commodityPage.getTotalElements() == 0) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-=======
+
 
     @GetMapping("search")
     public ResponseEntity<?> searchCommodity(@RequestParam(name = "name", defaultValue = "", required = false) String name, @PageableDefault(size = 5) Pageable pageable) {
@@ -48,7 +37,6 @@ public class HomeController {
         Page<Commodity> commodityPage = commodityService.getAllCommodity(pageable, name);
         if (commodityPage.getTotalElements() == 0) {
             return new ResponseEntity<>( name ,HttpStatus.NOT_FOUND);
->>>>>>> origin/develop:src/main/java/com/codegym/controller/HomeController.java
         }
         return new ResponseEntity<>(commodityPage, HttpStatus.OK);
     }

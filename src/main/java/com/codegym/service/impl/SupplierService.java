@@ -39,10 +39,6 @@ public class SupplierService implements ISupplierService {
         supplierRepository.deleteSupplier(id);
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/develop
     @Override
     public void addSupplier(String code, String name, String address, String phoneNumber, String email) {
 

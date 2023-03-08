@@ -1,20 +1,14 @@
 package com.codegym.service;
 
 import com.codegym.model.bill.BillHistory;
-<<<<<<< HEAD
-=======
 import com.codegym.model.bill.IBillHistory;
->>>>>>> origin/develop
 
 import java.util.List;
 
 public interface IBillHistoryService {
-<<<<<<< HEAD
-=======
     List<BillHistory> findAll(Integer id);
 
     List<IBillHistory> findById2(Integer id);
->>>>>>> origin/develop
 
     /**
      * Create by: HocHH

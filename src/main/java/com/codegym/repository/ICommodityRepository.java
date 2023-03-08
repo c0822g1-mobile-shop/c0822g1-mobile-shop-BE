@@ -1,9 +1,6 @@
 package com.codegym.repository;
-<<<<<<< HEAD
 
 import com.codegym.model.bill.Bill;
-=======
->>>>>>> origin/develop
 import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -118,7 +115,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      *
      * @param pageable
      */
-    @Query(value = "select * from commodity where flag_delete = false ", nativeQuery = true)
+    @Query(value = "select * from commodity where flag_delete = false order by id desc ", nativeQuery = true)
     Page<Commodity> showListCommodity(Pageable pageable);
 
     /**
@@ -148,14 +145,10 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      *
      * @param quantity
      */
-<<<<<<< HEAD
-    @Query(value = "select * from commodity where quantity = :quantity and flag_delete = false ",nativeQuery = true)
-    Page<Commodity> searchByQuantity(@Param("quantity")int quantity, Pageable pageable);
-=======
+
     @Query(value = "select * from commodity where quantity = :quantity and flag_delete = false ", nativeQuery = true)
     Page<Commodity> searchByQuantity(@Param("quantity") int quantity, Pageable pageable);
 
->>>>>>> origin/develop
 
     /**
      * Created by: CongBD,
@@ -174,12 +167,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
 
 
 
-    /**
-=======
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
 
 
 //    @Transactional
@@ -200,12 +188,8 @@ import java.util.Optional;
 //            " quantity)",nativeQuery = true)
 //    void saveCommodity(@Param("commodity") Commodity commodity);
 
-@Transactional
-@Repository
-public interface ICommodityRepository extends JpaRepository<Commodity, Integer> {
 
         /**
->>>>>>> origin/commodity-HocHH
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all commodity
@@ -257,17 +241,12 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      *
      * @param: QRCode
      */
-<<<<<<< HEAD
     @Query(value = "SELECT * FROM commodity where code_qr=:QRCode",nativeQuery = true)
     Commodity findByQRCode(@Param("QRCode") String QRCode);
 
 
-=======
-    @Query(value = "SELECT * FROM commodity where code_qr=:QRCode", nativeQuery = true)
-    Commodity findByQRCode(@Param("QRCode") String QRCode);
 
 
     @Query(value = "select * from commodity", nativeQuery = true)
     List<Commodity> getList();
->>>>>>> origin/develop
 }

@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/develop
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -166,11 +166,7 @@ public class Commodity {
         this.trademark = trademark;
     }
 
-<<<<<<< HEAD
 
-    public Integer getInterestRate() {
-        return interestRate;
-    }
 
 
     public void setInterestRate(Integer interestRate) {
@@ -179,7 +175,6 @@ public class Commodity {
     public boolean isFlagDelete() {
         return flagDelete;
     }
-=======
     public int getInterestRate() {
         return interestRate;
     }
@@ -187,5 +182,4 @@ public class Commodity {
     public void setInterestRate(int interestRate) {
         this.interestRate = interestRate;
     }
->>>>>>> origin/develop
 }

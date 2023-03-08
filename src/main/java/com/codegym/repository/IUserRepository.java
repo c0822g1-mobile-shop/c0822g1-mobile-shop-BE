@@ -12,13 +12,10 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-<<<<<<< HEAD
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-=======
 import org.springframework.data.jpa.repository.JpaRepository;
 
->>>>>>> origin/develop
 
 @Transactional
 @Repository
@@ -110,50 +107,17 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all customer
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * <p>
-     * =======
-     * import com.codegym.model.user.User;
-     * import org.hibernate.metamodel.model.convert.spi.JpaAttributeConverter;
-     * import org.springframework.data.domain.Page;
-     * import org.springframework.data.domain.Pageable;
-     * import org.springframework.data.jpa.repository.JpaRepository;
-     * import org.springframework.data.jpa.repository.Query;
-     * import org.springframework.data.repository.query.Param;
-     * import org.springframework.stereotype.Repository;
-     * <p>
-     * import java.util.Optional;
-     *
-=======
->>>>>>> origin/develop
-=======
-     *
->>>>>>> origin/develop
      * @param name
      * @param address
      * @param pageable
      * @Repository public interface IUserRepository extends JpaRepository<User, Integer> {
-<<<<<<< HEAD
-     * /**
-     * Created by: LongPT
-     * Date created: 27/2/2023
-     * Function: get all customer
-     * >>>>>>> origin/commodity-HocHH
      */
-=======
-     */
-
->>>>>>> origin/develop
     @Query(value = "select `user`.* " +
             " from `user` " +
             "         join `user_roles` on `user`.id = `user_roles`.user_id " +
             "         join `role` on `role`.id = `user_roles`.roles_id " +
-<<<<<<< HEAD
             "where role.id = 1 " +
-=======
             "where role.name = 'ROLE_CUSTOMER' " +
->>>>>>> origin/develop
             "  and user.name like concat('%', :name, '%') " +
             "  and user.address like concat('%', :address, '%')"
             , nativeQuery = true)
@@ -169,11 +133,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             " from `user` " +
             "         join `user_roles` on `user`.id = `user_roles`.user_id " +
             "         join `role` on `role`.id = `user_roles`.roles_id " +
-<<<<<<< HEAD
-            "where role.id = 1"
-=======
             "where role.name = 'ROLE_CUSTOMER' "
->>>>>>> origin/develop
             , nativeQuery = true)
     Page<User> findAllCustomerNoParam(Pageable pageable);
 
@@ -185,12 +145,12 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      *
      * @param id
      */
-    @Query(value = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.id = :id",
-            countQuery = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.id = :id", nativeQuery = true)
+    @Query(value = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.name = 'ROLE_CUSTOMER' and user.id = :id",
+            countQuery = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.name = 'ROLE_CUSTOMER' and user.id = :id"
+            , nativeQuery = true)
     Optional<User> findCustomerById(@Param("id") Integer id);
 
-<<<<<<< HEAD
-=======
+
     /**
      * Created by: HuyNL
      * Date created: 1/3/2023
@@ -209,7 +169,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
 
     @Query(value = "select u.* from `user` u join `bill` b on u.id = b.user_id join `bill_history` bh on b.id = bh.bill_id group by u.id", nativeQuery = true)
     List<User> getUserHasBuy();
->>>>>>> origin/develop
+
 
 }
 

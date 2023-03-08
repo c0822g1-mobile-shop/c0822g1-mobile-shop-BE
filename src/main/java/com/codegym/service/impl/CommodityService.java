@@ -12,67 +12,23 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class CommodityService implements ICommodityService {
     @Autowired
     private ICommodityRepository commodityRepository;
-<<<<<<< HEAD
-    
-=======
 
 
->>>>>>> origin/develop
-    /**
-<<<<<<< HEAD
-     * Create by : DuongLTH
-     * Date create 27/02/2023
-<<<<<<< HEAD
-     *
-     * @param:QRCode
-=======
-     * @param qrCode
-=======
-     * Created by: DanhHD
-     * Date Created: 27/02/2023
-     * Function: create commodity
->>>>>>> origin/commodity-CongBD
-     *
-     * @param commodity
-     */
+
+
+
+
     @Override
-    public void addCommodity(Commodity commodity) {
-        commodityRepository.addCommodity(commodity);
+    public Optional<Commodity> findById(int id) {
+        return commodityRepository.findById(id);
     }
 
-    /**
-     * Created by: DanhHD
-     * Date Created: 27/02/2023
-     * Function: find commodity by id
-     *
-     * @param id
->>>>>>> origin/develop
-     */
-    @Override
-    public Commodity findCommodity(Integer id) {
-        return commodityRepository.findCommodity(id);
-    }
-
-    @Override
-<<<<<<< HEAD
-    public Page<Commodity> searchByQuantity(int quantity, Pageable pageable) {
-        return commodityRepository.searchByQuantity(quantity,pageable);
-    }
-
-    @Override
-    public Page<Commodity> searchByPrice(double price, Pageable pageable) {
-        return commodityRepository.searchByPrice(price,pageable);
-    }
-
-    @Override
-    public Page<Commodity> searchByName(String name, Pageable pageable) {
-        return commodityRepository.searchByName(name, pageable);
-=======
     public List<Commodity> getList() {
         return commodityRepository.getList();
     }
@@ -94,7 +50,6 @@ public class CommodityService implements ICommodityService {
             }
         }
         return check;
->>>>>>> origin/develop
     }
 
     @Override
@@ -166,24 +121,20 @@ public class CommodityService implements ICommodityService {
         return commodityRepository.getAllCommodityNoParam(pageable);
     }
 
+    @Override
+    public Optional<Commodity> findCommodityById(Integer id) {
+        return Optional.empty();
+    }
+
 
     @Override
     public Page<Commodity> getCommodityByQuantity(Pageable pageable) {
-<<<<<<< HEAD
         return commodityRepository.getCommodityByQuantity(pageable,20);
     }
-
-
-
-=======
-        return commodityRepository.getCommodityByQuantity(pageable, 20);
-    }
->>>>>>> origin/develop
 
     /**
      * Created by: DanhHD
      * Date Created: 27/02/2023
-<<<<<<< HEAD
      * Function: create commodity
      * @param: commodity
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
@@ -210,11 +161,7 @@ public class CommodityService implements ICommodityService {
     /**
      * Created by: DanhHD
      * Date Created: 27/02/2023
-     * Function: edit commodity by id
-=======
      * Function: edit commodity by iduser
->>>>>>> origin/develop
-     *
      * @param commodity
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
@@ -223,13 +170,9 @@ public class CommodityService implements ICommodityService {
         commodityRepository.editCommodity(commodity);
     }
 
-<<<<<<< HEAD
 
 
 }
 
-=======
-}
 
 
->>>>>>> origin/develop

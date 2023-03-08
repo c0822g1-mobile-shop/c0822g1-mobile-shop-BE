@@ -1,17 +1,10 @@
 package com.codegym.service;
-<<<<<<< HEAD
-=======
 
 import com.codegym.dto.billHistory.BillHistoryDTO;
->>>>>>> origin/develop
 import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.model.user.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/develop
 import java.util.List;
 import java.util.Optional;
 
@@ -130,8 +123,6 @@ public interface IUserService {
      
     Page<User> findAllCustomerNoParam(Pageable pageable);
 
-<<<<<<< HEAD
-=======
 
     /**
      * Created by: HuyNL
@@ -147,5 +138,4 @@ public interface IUserService {
     List<BillHistoryDTO> getUserHasBuy();
 
     User userLogin(String username);
->>>>>>> origin/develop
 }

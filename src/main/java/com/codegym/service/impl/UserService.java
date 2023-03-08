@@ -12,10 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
->>>>>>> origin/develop
 import java.util.List;
 import java.util.Optional;
 
@@ -121,10 +118,7 @@ public class UserService implements IUserService {
      * @param:none
      **/
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/develop
     @Override
     public List<User> findAll() {
         return iUserRepository.getAllUser();
@@ -138,10 +132,6 @@ public class UserService implements IUserService {
      * @param:email
      **/
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/develop
     @Override
     public List<User> findAllCustomer() {
         return iUserRepository.findAllCustomer();
@@ -155,10 +145,6 @@ public class UserService implements IUserService {
      * @param:email
      **/
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/develop
     @Override
     public List<User> findAllEmployee() {
         return iUserRepository.findAllEmployee();

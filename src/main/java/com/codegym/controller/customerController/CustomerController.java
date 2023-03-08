@@ -11,18 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/develop
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/customer")
 public class CustomerController {
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/develop
     @Autowired
     private IUserService userService;
 
@@ -30,23 +24,16 @@ public class CustomerController {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all customer
-<<<<<<< HEAD
-=======
-     *
->>>>>>> origin/develop
      * @param pageable
      * @param name
      * @param address
      * @return HttpStatus.NOT_FOUND if result is error. HttpStatus.OK if result is not error.
      */
     @GetMapping("")
-<<<<<<< HEAD
-    public ResponseEntity<Page<User>> getAllCustomer(@PageableDefault(size = 5) Pageable pageable, @RequestParam(required = false, defaultValue = "") String name, @RequestParam(required = false, defaultValue = "") String address) {
-=======
+
     public ResponseEntity<Page<User>> getAllCustomer(
             @PageableDefault(size = 5) Pageable pageable,
             @RequestParam(required = false, defaultValue = "") String name, @RequestParam(required = false, defaultValue = "") String address) {
->>>>>>> origin/develop
         Page<User> userPage;
         if (name == null && address == null) {
             userPage = userService.findAllCustomerNoParam(pageable);
@@ -77,14 +64,11 @@ public class CustomerController {
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
     }
-<<<<<<< HEAD
-=======
 
     /**
      * Created by: HuyNL
      * Date created: 1/3/2023
      * Function: get customer by id
-     *
      * @param ageSearch
      * @param genderSearch
      * @param pageable
@@ -96,5 +80,5 @@ public class CustomerController {
         Page<User> userPage = userService.findAll(genderSearch, ageSearch, pageable);
         return new ResponseEntity<>(userPage, HttpStatus.OK);
     }
->>>>>>> origin/develop
+
 }

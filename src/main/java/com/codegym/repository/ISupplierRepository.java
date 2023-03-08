@@ -33,10 +33,6 @@ public interface ISupplierRepository extends JpaRepository<Supplier, Integer> {
             nativeQuery = true)
     Page<Supplier> showList(@Param("search") String search, Pageable pageable);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/develop
 
     @Modifying
     @Transactional

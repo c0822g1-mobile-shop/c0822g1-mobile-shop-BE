@@ -1,11 +1,8 @@
 package com.codegym.service.impl;
 
 import com.codegym.model.SalesReport.ISalesReport;
-<<<<<<< HEAD
-=======
 import com.codegym.model.SalesReport.SalesReport;
 import com.codegym.repository.ICommodityRepository;
->>>>>>> origin/develop
 import com.codegym.repository.ISalesReportRepository;
 import com.codegym.service.ISalesReportService;
 import org.springframework.beans.factory.annotation.Autowired;

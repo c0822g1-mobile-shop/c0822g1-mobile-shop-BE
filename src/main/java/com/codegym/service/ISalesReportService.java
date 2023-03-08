@@ -15,17 +15,10 @@ public interface ISalesReportService {
      * @param startDay
      * @param endDay
      */
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/develop
 
     ISalesReport salesReport(String startDay, String endDay);
 
     List<ISalesReport> getAllSalesReport(String startDay, String endDay);
-<<<<<<< HEAD
-=======
-
 
 
     ISalesReport salesReportById(String startDay, String endDay, Integer id);
@@ -33,5 +26,4 @@ public interface ISalesReportService {
 
     List<ISalesReport> getAllSalesReportById(String startDay,  String endDay,Integer id);
 
->>>>>>> origin/develop
 }
