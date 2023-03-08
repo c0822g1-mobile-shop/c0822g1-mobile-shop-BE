@@ -113,7 +113,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      *
      * @param pageable
      */
-    @Query(value = "select * from commodity where flag_delete = false ", nativeQuery = true)
+    @Query(value = "select * from commodity where flag_delete = false order by id desc ", nativeQuery = true)
     Page<Commodity> showListCommodity(Pageable pageable);
 
     /**
