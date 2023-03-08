@@ -8,13 +8,13 @@ import javax.persistence.*;
 @Entity
 public class Bill {
     @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String buyDate;
     private String detail;
     private int quantity;
     private String paymentMethod;
-//    private Boolean billPrint;
+    //    private Boolean billPrint;
     private Boolean billPrint;
     @ManyToOne
     private User user;

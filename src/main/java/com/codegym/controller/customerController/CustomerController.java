@@ -8,12 +8,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
+@RestController
+@CrossOrigin("*")
+@RequestMapping("api/customer")
 public class CustomerController {
 
     @Autowired
@@ -79,5 +81,10 @@ public class CustomerController {
                                               @PageableDefault(size = 5) Pageable pageable) {
         Page<User> userPage = userService.findAll(genderSearch, ageSearch, pageable);
         return new ResponseEntity<>(userPage, HttpStatus.OK);
+    }
+
+    @GetMapping("/getList")
+    public ResponseEntity<List<User>> getAllCustomer() {
+        return new ResponseEntity<>(userService.findAllCustomer(), HttpStatus.OK);
     }
 }
