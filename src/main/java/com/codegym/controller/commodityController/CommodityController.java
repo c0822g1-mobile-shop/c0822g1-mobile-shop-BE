@@ -14,7 +14,9 @@ import org.springframework.validation.annotation.Validated;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.Map;
+
 
 
 @CrossOrigin("*")
@@ -47,6 +49,7 @@ public class CommodityController {
         }
         return new ResponseEntity<>(commodityPage, HttpStatus.OK);
     }
+<<<<<<< HEAD
     /**
      * Created by: LongPT
      * Date created: 27/2/2023
@@ -65,6 +68,9 @@ public class CommodityController {
             return new ResponseEntity<>(commodity, HttpStatus.OK);
         }
     }
+=======
+
+>>>>>>> origin/develop
 
     /**
      * Created by: CongBD,
@@ -74,17 +80,16 @@ public class CommodityController {
      * @param pageable
      * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
      */
-
-
     @GetMapping("/list")
     public ResponseEntity<Page<Commodity>> showList(
-                                                    @PageableDefault(value = 5) Pageable pageable) {
+            @PageableDefault(value = 5) Pageable pageable) {
         Page<Commodity> commodityList = commodityService.findAll(pageable);
         if (commodityList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(commodityList, HttpStatus.OK);
     }
+
 
     /**
      * Created by: CongBD,
@@ -98,13 +103,14 @@ public class CommodityController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Commodity> delete(@PathVariable("id") Integer id) {
-        Commodity commodity = commodityService.findById(id).orElse(null);
+        Commodity commodity = commodityService.findCommodity(id);
         if (commodity == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         commodityService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -115,16 +121,16 @@ public class CommodityController {
      * @Return HttpStatus.OK if result is not error
      */
     @GetMapping("/search/{id}/{type}")
-    public ResponseEntity<Page<Commodity>> search(@PathVariable("id") int id,@PathVariable("type") String type,@PageableDefault(value = 5) Pageable pageable) {
-        switch (id){
+    public ResponseEntity<Page<Commodity>> search(@PathVariable("id") int id, @PathVariable("type") String type, @PageableDefault(value = 5) Pageable pageable) {
+        switch (id) {
             case 0:
                 return this.showList(pageable);
             case 1:
-                return new ResponseEntity<>(commodityService.searchByName(type,pageable),HttpStatus.ACCEPTED);
+                return new ResponseEntity<>(commodityService.searchByName(type, pageable), HttpStatus.ACCEPTED);
             case 2:
-                return new ResponseEntity<>(commodityService.searchByPrice(Double.parseDouble(type),pageable),HttpStatus.ACCEPTED);
+                return new ResponseEntity<>(commodityService.searchByPrice(Double.parseDouble(type), pageable), HttpStatus.ACCEPTED);
             case 3:
-                return new ResponseEntity<>(commodityService.searchByQuantity(Integer.parseInt(type),pageable),HttpStatus.ACCEPTED);
+                return new ResponseEntity<>(commodityService.searchByQuantity(Integer.parseInt(type), pageable), HttpStatus.ACCEPTED);
             default:
                 return ResponseEntity.ok(null);
         }
@@ -142,8 +148,15 @@ public class CommodityController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult bindingResult) {
+        Map<String, String> check = commodityService.checkCreate(commodityDto);
+        if (check.get("errorName") != null) {
+            bindingResult.rejectValue("name", "name", check.get("errorName"));
+        }
+        if (check.get("errorCode") != null) {
+            bindingResult.rejectValue("codeQr", "codeQr", check.get("errorCode"));
+        }
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
         }
         Commodity commodity = new Commodity();
         BeanUtils.copyProperties(commodityDto, commodity);
@@ -160,7 +173,7 @@ public class CommodityController {
      * @return HttpStatus.BAD_REQUEST if id is not found or HttpStatus.OK if id is found
      */
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Commodity> findById(@PathVariable("id") Integer id) {
         Commodity commodity = commodityService.findCommodity(id);
         if (commodity == null) {
@@ -178,12 +191,18 @@ public class CommodityController {
      * @param bindingResult
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-
     @PutMapping("/edit/{id}")
     public ResponseEntity<?> editCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult bindingResult, @PathVariable("id") Integer id) {
         Commodity commodity = commodityService.findCommodity(id);
+        Map<String, String> check = commodityService.checkUpdate(commodityDto);
+        if (check.get("errorName") != null) {
+            bindingResult.rejectValue("name", "name", check.get("errorName"));
+        }
+        if (check.get("errorCode") != null) {
+            bindingResult.rejectValue("code", "code", check.get("errorCode"));
+        }
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
         }
         if (commodity == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -193,4 +212,12 @@ public class CommodityController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+<<<<<<< HEAD
+=======
+    @GetMapping("/getList")
+    public ResponseEntity<List<Commodity>> getList() {
+        return new ResponseEntity<>(commodityService.getList(), HttpStatus.OK);
+    }
+>>>>>>> origin/develop
 }
+

@@ -1,5 +1,6 @@
 package com.codegym.service.impl;
 
+import com.codegym.dto.CommodityDto;
 import com.codegym.model.commodity.Commodity;
 import com.codegym.repository.ICommodityRepository;
 import com.codegym.service.ICommodityService;
@@ -8,25 +9,57 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class CommodityService implements ICommodityService {
     @Autowired
     private ICommodityRepository commodityRepository;
+<<<<<<< HEAD
     
+=======
+
+
+>>>>>>> origin/develop
     /**
+<<<<<<< HEAD
      * Create by : DuongLTH
      * Date create 27/02/2023
+<<<<<<< HEAD
      *
      * @param:QRCode
+=======
+     * @param qrCode
+=======
+     * Created by: DanhHD
+     * Date Created: 27/02/2023
+     * Function: create commodity
+>>>>>>> origin/commodity-CongBD
+     *
+     * @param commodity
      */
     @Override
-    public Commodity findByQRCode(String qrCode) {
-        return commodityRepository.findByQRCode(qrCode);
+    public void addCommodity(Commodity commodity) {
+        commodityRepository.addCommodity(commodity);
+    }
+
+    /**
+     * Created by: DanhHD
+     * Date Created: 27/02/2023
+     * Function: find commodity by id
+     *
+     * @param id
+>>>>>>> origin/develop
+     */
+    @Override
+    public Commodity findCommodity(Integer id) {
+        return commodityRepository.findCommodity(id);
     }
 
     @Override
+<<<<<<< HEAD
     public Page<Commodity> searchByQuantity(int quantity, Pageable pageable) {
         return commodityRepository.searchByQuantity(quantity,pageable);
     }
@@ -39,7 +72,47 @@ public class CommodityService implements ICommodityService {
     @Override
     public Page<Commodity> searchByName(String name, Pageable pageable) {
         return commodityRepository.searchByName(name, pageable);
+=======
+    public List<Commodity> getList() {
+        return commodityRepository.getList();
     }
+
+    @Override
+    public Commodity findByQRCode(String QRCode) {
+        return commodityRepository.findByQRCode(QRCode);
+    }
+
+    @Override
+    public Map<String, String> checkCreate(CommodityDto commodityDto) {
+        Map<String, String> check = new HashMap<>();
+        for (int i = 0; i < commodityRepository.getList().size(); i++) {
+            if (commodityRepository.getList().get(i).getName().equals(commodityDto.getName())) {
+                check.put("errorName", "Tên hàng đã tồn tại");
+            }
+            if (commodityRepository.getList().get(i).getCodeQr().equals(commodityDto.getCodeQr())) {
+                check.put("errorCode", "Mã QR đã tồn tại");
+            }
+        }
+        return check;
+>>>>>>> origin/develop
+    }
+
+    @Override
+    public Map<String, String> checkUpdate(CommodityDto commodityDto) {
+        Map<String, String> check = new HashMap<>();
+        Commodity commodity = findCommodity(commodityDto.getId());
+        for (int i = 0; i < commodityRepository.getList().size(); i++) {
+            if (!commodity.getName().equals(commodityDto.getName()) && commodityRepository.getList().get(i).getName().equals(commodityDto.getName())) {
+                check.put("errorName", "Tên hàng đã tồn tại");
+            }
+            if (!commodity.getCodeQr().equals(commodityDto.getCodeQr()) && commodityRepository.getList().get(i).getCodeQr().equals(commodityDto.getCodeQr())) {
+                check.put("errorCode", "Mã QR đã tồn tại");
+            }
+        }
+        return check;
+    }
+
+
 
 
     /**
@@ -55,6 +128,20 @@ public class CommodityService implements ICommodityService {
         return commodityRepository.showListCommodity(pageable);
     }
 
+    public Page<Commodity> searchByQuantity(int quantity, Pageable pageable) {
+        return commodityRepository.searchByQuantity(quantity, pageable);
+    }
+
+    @Override
+    public Page<Commodity> searchByPrice(double price, Pageable pageable) {
+        return commodityRepository.searchByPrice(price, pageable);
+    }
+
+    @Override
+    public Page<Commodity> searchByName(String name, Pageable pageable) {
+        return commodityRepository.searchByName(name, pageable);
+    }
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -68,11 +155,6 @@ public class CommodityService implements ICommodityService {
         commodityRepository.deleteCommodity(id);
     }
 
-    @Override
-    public Optional<Commodity> findById(int id) {
-        return commodityRepository.findById(id);
-    }
-
 
     @Override
     public Page<Commodity> getAllCommodity(Pageable pageable, String name) {
@@ -84,22 +166,24 @@ public class CommodityService implements ICommodityService {
         return commodityRepository.getAllCommodityNoParam(pageable);
     }
 
-    @Override
-    public Optional<Commodity> findCommodityById(Integer id) {
-        return commodityRepository.findCommodityById(id);
-    }
 
     @Override
     public Page<Commodity> getCommodityByQuantity(Pageable pageable) {
+<<<<<<< HEAD
         return commodityRepository.getCommodityByQuantity(pageable,20);
     }
 
 
 
+=======
+        return commodityRepository.getCommodityByQuantity(pageable, 20);
+    }
+>>>>>>> origin/develop
 
     /**
      * Created by: DanhHD
      * Date Created: 27/02/2023
+<<<<<<< HEAD
      * Function: create commodity
      * @param: commodity
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
@@ -127,6 +211,9 @@ public class CommodityService implements ICommodityService {
      * Created by: DanhHD
      * Date Created: 27/02/2023
      * Function: edit commodity by id
+=======
+     * Function: edit commodity by iduser
+>>>>>>> origin/develop
      *
      * @param commodity
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
@@ -136,7 +223,13 @@ public class CommodityService implements ICommodityService {
         commodityRepository.editCommodity(commodity);
     }
 
+<<<<<<< HEAD
 
 
 }
 
+=======
+}
+
+
+>>>>>>> origin/develop

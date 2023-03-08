@@ -1,5 +1,6 @@
 package com.codegym.service.impl;
 
+import com.codegym.dto.billHistory.BillHistoryDTO;
 import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.model.user.Role;
 import com.codegym.model.user.User;
@@ -11,6 +12,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> origin/develop
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +55,17 @@ public class UserService implements IUserService {
                 updateUserForm.getAvatar(),
                 updateUserForm.getUsername());
     }
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: change password
+     * @param:password,username
+     **/
+    @Override
+    public void changePassword(String password, String username) {
+        iUserRepository.changePassword(password,username);
+    }
+
 
     @Override
     public void save(User user) {
@@ -77,7 +93,6 @@ public class UserService implements IUserService {
             }
         }
         return false;
-
     }
 
     /**
@@ -106,6 +121,10 @@ public class UserService implements IUserService {
      * @param:none
      **/
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/develop
     @Override
     public List<User> findAll() {
         return iUserRepository.getAllUser();
@@ -119,6 +138,10 @@ public class UserService implements IUserService {
      * @param:email
      **/
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/develop
     @Override
     public List<User> findAllCustomer() {
         return iUserRepository.findAllCustomer();
@@ -132,6 +155,10 @@ public class UserService implements IUserService {
      * @param:email
      **/
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/develop
     @Override
     public List<User> findAllEmployee() {
         return iUserRepository.findAllEmployee();
@@ -182,4 +209,37 @@ public class UserService implements IUserService {
     public Page<User> findAllCustomerNoParam(Pageable pageable) {
         return userRepository.findAllCustomerNoParam(pageable);
     }
+
+    /**
+     * Created by: HuyNL
+     * Date created: 1/3/2023
+     * Function: get customer
+     */
+    @Override
+    public Page<User> findAll(String genderSearch, String ageSearch, Pageable pageable) {
+        if (genderSearch.equals("Nam")) {
+            return userRepository.findAllByGender(true, ageSearch, pageable);
+        }
+        if (genderSearch.equals("Nữ")) {
+            return userRepository.findAllByGender(false, ageSearch, pageable);
+        }
+        return userRepository.findAll(genderSearch, ageSearch, pageable);
+    }
+
+    @Override
+    public List<BillHistoryDTO> getUserHasBuy() {
+        List<BillHistoryDTO> list = new ArrayList<>();
+        for (int i = 0; i < userRepository.getUserHasBuy().size(); i++) {
+            BillHistoryDTO billHistoryDTO = new BillHistoryDTO(userRepository.getUserHasBuy().get(i), userRepository.selectQuantity(userRepository.getUserHasBuy().get(i).getId()));
+            list.add(billHistoryDTO);
+        }
+        return list;
+    }
+
+    @Override
+    public User userLogin(String username) {
+        return iUserRepository.userLogin(username);
+    }
 }
+
+

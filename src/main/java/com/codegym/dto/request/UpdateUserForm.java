@@ -1,25 +1,34 @@
 package com.codegym.dto.request;
 
+import com.codegym.model.user.User;
+import org.springframework.validation.Errors;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.util.List;
+import java.util.Objects;
 
 public class UpdateUserForm {
-    @NotBlank(message = "Vui lòng không bỏ trống họ và tên")
+    @NotBlank(message = "Vui lòng không bỏ trống họ và tên.")
+    @Size(min = 5,max = 20,message = "Độ dài của kí tự không hợp lệ.")
     private String name;
     private String username;
-    @NotBlank(message = "Vui lòng nhập số điện thoại")
+    @NotBlank(message = "Vui lòng nhập số điện thoại.")
+    @Pattern(regexp = "[0]\\d{9,10}",message = "Số điện thoại không đúng định dạng.")
     private String phoneNumber;
-    @NotBlank(message = "Vui lòng nhập địa chỉ email")
+    @NotBlank(message = "Vui lòng nhập địa chỉ email.")
+    @Pattern(regexp = "^\\w+@gmail.com$",message = "Email không đúng định dạng.")
     private String email;
-    @NotBlank(message = "Vui lòng không bỏ trống địa chỉ")
+    @NotBlank(message = "Vui lòng không bỏ trống địa chỉ.")
     private String address;
-    @NotNull(message = "Vui lòng nhập số tuổi")
     private Integer age;
-    @NotNull(message = "Vui lòng chọn giới tính")
+    @NotNull(message = "Vui lòng chọn giới tính.")
     private Boolean gender;
-    @NotBlank(message = "Vui lòng không bỏ trống ngày sinh")
+    @NotBlank(message = "Vui lòng không bỏ trống ngày sinh.")
     private String dateOfBirth;
-    @NotBlank(message = "Vui lòng không bỏ trống ảnh đại diện")
+    @NotBlank(message = "Vui lòng không bỏ trống ảnh đại diện.")
     private String avatar;
 
     public UpdateUserForm() {
@@ -107,5 +116,34 @@ public class UpdateUserForm {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+   public void validate(List<User> list, UpdateUserForm updateUserForm, Errors error) {
+       for (int i = 0; i < list.size(); i++) {
+           if (Objects.equals(list.get(i).getUsername(), updateUserForm.getUsername())) {
+               continue;
+           }
+           if (Objects.equals(list.get(i).getEmail(), updateUserForm.getEmail())) {
+               error.rejectValue("email","email","Email " + updateUserForm.getEmail() + " đã được sử dụng vui lòng nhập email khác" );
+
+           }
+           if (Objects.equals(list.get(i).getPhoneNumber(), updateUserForm.getPhoneNumber())) {
+               error.rejectValue("phoneNumber","phoneNumber","Số điện thoại " + updateUserForm.getPhoneNumber() + " đã được sử dụng vui lòng nhập số điện thoại khác" );
+
+           }
+       }
+   }
+    @Override
+    public String toString() {
+        return "UpdateUserForm{" +
+                "name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", avatar='" + avatar + '\'' +
+                '}';
     }
 }

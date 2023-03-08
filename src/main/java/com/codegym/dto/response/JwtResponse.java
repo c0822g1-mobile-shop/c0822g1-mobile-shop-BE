@@ -56,10 +56,32 @@ public class JwtResponse {
         this.name = name;
         this.roles = roles;
     }
-
-    public JwtResponse(String token, String name, Collection<? extends GrantedAuthority> authorities) {
+    //(new JwtResponse(token, userPrinciple.getName(), userPrinciple.getId(), userPrinciple.getUsername(), userPrinciple.getEmail(), userPrinciple.getPassword(), userPrinciple.getAvatar()
+//                ,userPrinciple.getPhoneNumber(),
+//                        userPrinciple.getAddress(),
+//                        userPrinciple.getAge(),
+//                        userPrinciple.getGender(),
+//                        userPrinciple.getDateOfBirth()
+//                        , userPrinciple.getAuthorities()));
+    public JwtResponse(String token, String name, Integer id,String username,String email,String password,String avatar,
+            String phoneNumber,
+            String address,
+            Integer age,
+            Boolean gender,
+            String dateOfBirth
+            ,Collection<? extends GrantedAuthority> authorities) {
         this.token = token;
         this.name = name;
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.avatar = avatar;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.age = age;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
         this.roles = authorities;
     }
 
@@ -93,6 +115,46 @@ public class JwtResponse {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(Boolean gender) {
+        this.gender = gender;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public void setPassword(String password) {

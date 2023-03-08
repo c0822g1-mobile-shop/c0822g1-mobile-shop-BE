@@ -16,12 +16,6 @@ import com.codegym.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.security.authentication.AuthenticationManager;
-//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-//import org.springframework.security.core.Authentication;
-//import org.springframework.security.core.context.SecurityContextHolder;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -30,7 +24,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -60,7 +53,11 @@ public class AuthController {
      * @return
      */
     @PostMapping("/signup")
-    public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm) {
+    public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm,BindingResult bindingResult) {
+        new SignUpForm().validate(iUserService.findAll(),signUpForm,bindingResult);
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.BAD_REQUEST);
+        }
         if (iUserService.existsByUsername(signUpForm.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("Tên đăng " + signUpForm.getUsername() + " nhập đã được sử dụng, vui lòng chọn tên khác"), HttpStatus.BAD_REQUEST);
         }
@@ -97,8 +94,8 @@ public class AuthController {
      * @return
      */
     @PostMapping("/login")
-    public ResponseEntity<?> login( @RequestBody SignInForm signInForm ) {
 
+    public ResponseEntity<?> login( @RequestBody SignInForm signInForm ) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(signInForm.getUsername(), signInForm.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -111,7 +108,6 @@ public class AuthController {
                 userPrinciple.getGender(),
                 userPrinciple.getDateOfBirth()
                 , userPrinciple.getAuthorities()));
-
     }
     /**
      * Created by: CuongVV
@@ -121,23 +117,28 @@ public class AuthController {
      * @return
      */
     @PostMapping("/change-password")
-    public ResponseEntity<?> changePassword(@Valid @RequestBody ChangePasswordForm changePasswordForm) {
+    public ResponseEntity<?> changePassword(@Valid @RequestBody ChangePasswordForm changePasswordForm,BindingResult bindingResult) {
         if (!Objects.equals(changePasswordForm.getNewPassword(), changePasswordForm.getConfirmPassword())) {
-            return new  ResponseEntity<>(new ResponseMessage("Mật khẩu xác nhận " +
-                    changePasswordForm.getConfirmPassword() +" không trùng với mật khẩu mới " + changePasswordForm.getNewPassword()),HttpStatus.BAD_REQUEST);
+            bindingResult.rejectValue("confirmPassword","confirmPassword","Mật khẩu xác nhận không trùng với mật khẩu mới");
+//            return new  ResponseEntity<>(new ResponseMessage("Mật khẩu xác nhận " +
+//                    changePasswordForm.getConfirmPassword() +" không trùng với mật khẩu mới " + changePasswordForm.getNewPassword()),HttpStatus.BAD_REQUEST);
         }
         User user = iUserService.findByUsername(changePasswordForm.getUsername()).orElse(null);
-        if (user != null) {
-            if (passwordEncoder.matches(changePasswordForm.getPassword(), user.getPassword())) {
-                user.setPassword(passwordEncoder.encode(changePasswordForm.getNewPassword()));
-                iUserService.save(user);
-                return new ResponseEntity<>(new ResponseMessage("Cập nhật mật khẩu thành công"),HttpStatus.OK);
-            } else {
-                return new  ResponseEntity<>(new ResponseMessage("Bạn đã nhập sai mật khẩu"),HttpStatus.BAD_REQUEST);
-            }
+        assert user != null;
+        if (!passwordEncoder.matches(changePasswordForm.getPassword(), user.getPassword())) {
+            bindingResult.rejectValue("password","password","Bạn đã nhập sai mật khẩu cũ");
+        }
+         if (bindingResult.hasErrors()) {
+             return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.BAD_REQUEST);
+         }
+        if (passwordEncoder.matches(changePasswordForm.getPassword(), user.getPassword())) {
+            user.setPassword(passwordEncoder.encode(changePasswordForm.getNewPassword()));
+            iUserService.changePassword(user.getPassword(),user.getUsername());
+            return new ResponseEntity<>(new ResponseMessage("Cập nhật mật khẩu thành công"),HttpStatus.OK);
         }
         return new ResponseEntity<>(new ResponseMessage("Thay đổi mật khẩu thất bại"),HttpStatus.BAD_REQUEST);
     }
+
     /**
      * Created by: CuongVV
      * Date created: 27/2/2023
@@ -162,7 +163,8 @@ public class AuthController {
      */
     @PostMapping("/update")
     public ResponseEntity<?> updateUser(@Valid @RequestBody UpdateUserForm updateUserForm,BindingResult bindingResult) {
-       if (bindingResult.hasErrors()) {
+       new UpdateUserForm().validate(iUserService.findAll(),updateUserForm,bindingResult);
+        if (bindingResult.hasErrors()) {
            return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.NOT_ACCEPTABLE);
        }
         iUserService.updateUser(updateUserForm);
@@ -177,5 +179,10 @@ public class AuthController {
     @GetMapping("/customer")
     public ResponseEntity<?> getAll() {
         return new ResponseEntity<>(iUserService.findAll(),HttpStatus.OK);
+    }
+
+    @GetMapping("/profile/{username}")
+    public ResponseEntity<?> profile(@PathVariable("username") String username) {
+        return new ResponseEntity<>(iUserService.userLogin(username),HttpStatus.ACCEPTED);
     }
 }

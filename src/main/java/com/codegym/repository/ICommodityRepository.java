@@ -1,6 +1,9 @@
 package com.codegym.repository;
+<<<<<<< HEAD
 
 import com.codegym.model.bill.Bill;
+=======
+>>>>>>> origin/develop
 import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,10 +14,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
-@Repository
-@Transactional
-public interface ICommodityRepository extends JpaRepository<Commodity, Integer> {
+import java.util.List;
+
+public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
 
     /**
      * Created by: DanhHD
@@ -22,7 +24,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      * Function: create commodity
      *
      * @param commodity
-     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
 
     @Modifying
@@ -70,7 +71,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      * Function: find commodity by id
      *
      * @param id
-     * @return HttpStatus.OK if id is found
      */
 
     @Query(value = "select * from commodity " +
@@ -79,15 +79,15 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
             nativeQuery = true)
     Commodity findCommodity(@Param("id") Integer id);
 
+
+
     /**
      * Created by: DanhHD
      * Date Created: 27/02/2023
      * Function: edit commodity by id
      *
      * @param commodity
-     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-
     @Modifying
     @Transactional
     @Query(value = "update commodity set " +
@@ -120,6 +120,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      */
     @Query(value = "select * from commodity where flag_delete = false ", nativeQuery = true)
     Page<Commodity> showListCommodity(Pageable pageable);
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -127,8 +128,9 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      *
      * @param name
      */
-    @Query(value = "select * from commodity where name like %:name% and flag_delete = false ",nativeQuery = true)
-    Page<Commodity> searchByName(@Param("name") String name,Pageable pageable);
+    @Query(value = "select * from commodity where name like %:name% and flag_delete = false ", nativeQuery = true)
+    Page<Commodity> searchByName(@Param("name") String name, Pageable pageable);
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -136,8 +138,9 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      *
      * @param price
      */
-    @Query(value = "select * from commodity where price = :price and flag_delete = false ",nativeQuery = true)
-    Page<Commodity> searchByPrice(@Param("price")double price,Pageable pageable);
+    @Query(value = "select * from commodity where price = :price and flag_delete = false ", nativeQuery = true)
+    Page<Commodity> searchByPrice(@Param("price") double price, Pageable pageable);
+
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -145,8 +148,14 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      *
      * @param quantity
      */
+<<<<<<< HEAD
     @Query(value = "select * from commodity where quantity = :quantity and flag_delete = false ",nativeQuery = true)
     Page<Commodity> searchByQuantity(@Param("quantity")int quantity, Pageable pageable);
+=======
+    @Query(value = "select * from commodity where quantity = :quantity and flag_delete = false ", nativeQuery = true)
+    Page<Commodity> searchByQuantity(@Param("quantity") int quantity, Pageable pageable);
+
+>>>>>>> origin/develop
 
     /**
      * Created by: CongBD,
@@ -160,9 +169,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
     @Query(value = "update commodity  set flag_delete = true" +
             " where id = :id", nativeQuery = true)
     void deleteCommodity(@Param("id") Integer id);
-
-    @Query(value = "select * from commodity where id = :id and flag_delete = false",nativeQuery = true)
-    Optional<Commodity> findById(@Param("id") int id);
 
 
 
@@ -203,6 +209,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all commodity
+     *
      * @param:name
      * @param:pageable
      **/
@@ -213,22 +220,25 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all commodity
+     *
      * @param: pageable
      */
 
     @Query(value = "select * from commodity", nativeQuery = true)
     Page<Commodity> getAllCommodityNoParam(Pageable pageable);
 
-    /**
-     * Created by: LongPT
-     * Date created: 27/2/2023
-     * Function: get commodity by id
-     * @param: id
-     */
 
-    @Query(value = "select * from commodity where commodity.id = :id"
-            ,nativeQuery = true)
-    Optional<Commodity> findCommodityById(@Param("id") Integer id);
+
+    /**
+     * Created by: PhucNT
+     * Date created: 27/2/2023
+     * Function: searchCommodity
+     *
+     * @param: name
+     */
+    @Query(value = "select * from `commodity` where name like concat('%',:name,'%')", nativeQuery = true)
+    Page<Commodity> searchCommodity(@Param("name") String name, Pageable pageable);
+
 
     /**
      * Created by: PhucNT
@@ -237,17 +247,27 @@ public interface ICommodityRepository extends JpaRepository<Commodity, Integer> 
      */
 
     @Query(nativeQuery = true, value = "SELECT c.* , ifnull(sum(ifnull(wh.quantity,0))-ifnull(c.quantity,0),0) as quantity_sold" +
-            " FROM `commodity` c JOIN `ware_housing` wh on c.id = wh.commodity_id GROUP BY c.id " +
+            " FROM `commodity` c left JOIN `ware_housing` wh on c.id = wh.commodity_id GROUP BY c.id having c.flag_delete = false " +
             "ORDER BY quantity_sold")
-    Page<Commodity> getCommodityByQuantity(Pageable pageable, @Param("limit") Integer limit );
-    
+    Page<Commodity> getCommodityByQuantity(Pageable pageable, @Param("limit") Integer limit);
+
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
+     *
      * @param: QRCode
      */
+<<<<<<< HEAD
     @Query(value = "SELECT * FROM commodity where code_qr=:QRCode",nativeQuery = true)
     Commodity findByQRCode(@Param("QRCode") String QRCode);
 
 
+=======
+    @Query(value = "SELECT * FROM commodity where code_qr=:QRCode", nativeQuery = true)
+    Commodity findByQRCode(@Param("QRCode") String QRCode);
+
+
+    @Query(value = "select * from commodity", nativeQuery = true)
+    List<Commodity> getList();
+>>>>>>> origin/develop
 }

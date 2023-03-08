@@ -6,14 +6,19 @@ import javax.persistence.*;
 public class Commodity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(unique = true)
+    @Column(unique = true, length = 200)
     private String name;
+    @Column(length = 50)
     private String cpu;
+    @Column(length = 50)
     private String capacity;
     private Double price;
     private String image;
+    @Column(length = 50)
     private String camera;
+    @Column(length = 50)
     private String selfie;
+    @Column(length = 20)
     private String screenSize;
     private String guarantee;
     private String origin;
@@ -27,10 +32,7 @@ public class Commodity {
     private Trademark trademark;
 
 
-
     private int interestRate = 10;
-
-
 
     public Commodity() {
 
@@ -67,8 +69,6 @@ public class Commodity {
     public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
-
-
 
     public Double getPrice() {
         return price;
@@ -166,6 +166,7 @@ public class Commodity {
         this.trademark = trademark;
     }
 
+<<<<<<< HEAD
 
     public Integer getInterestRate() {
         return interestRate;
@@ -178,4 +179,13 @@ public class Commodity {
     public boolean isFlagDelete() {
         return flagDelete;
     }
+=======
+    public int getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(int interestRate) {
+        this.interestRate = interestRate;
+    }
+>>>>>>> origin/develop
 }

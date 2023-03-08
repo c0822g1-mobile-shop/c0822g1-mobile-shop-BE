@@ -29,6 +29,12 @@ public interface IBillRepository extends JpaRepository<Bill, Integer> {
             " user_email) value ( :payment_method,  :bill_print,  :user_name,  :user_phone_number, :user_address, :user_age,  :user_email) ",nativeQuery = true)
     void saveBill(@Param("payment_method") String paymentMethod, @Param("bill_print") Boolean billPrint, @Param("user_name") String name, @Param("user_phone_number") String phoneNumber, @Param("user_address") String address, @Param("user_age") int age, @Param("user_email") String email);
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> origin/develop
     /**
      * Create by: HocHH
      * Date created: 27/02/2023

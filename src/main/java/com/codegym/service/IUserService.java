@@ -1,12 +1,22 @@
 package com.codegym.service;
+<<<<<<< HEAD
+=======
+
+import com.codegym.dto.billHistory.BillHistoryDTO;
+>>>>>>> origin/develop
 import com.codegym.dto.request.UpdateUserForm;
 import com.codegym.model.user.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/develop
 import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
+
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
@@ -15,10 +25,20 @@ public interface IUserService {
      **/
     Optional<User> findByUsername(String username);
 
-
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: update user
+     * @param:updateUserForm
+     **/
     void updateUser(UpdateUserForm updateUserForm);
-
-
+    /**
+     * Created by: CuongVV
+     * Date created: 28/2/2023
+     * Function: changer password
+     * @param:password,username
+     **/
+    void changePassword(String password,String username);
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
@@ -75,11 +95,15 @@ public interface IUserService {
      * Date created: 27/2/2023
      * Function: get all customer
 <<<<<<< HEAD
+<<<<<<< HEAD
 
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get all customer
 =======
+>>>>>>> origin/develop
+=======
+     *
 >>>>>>> origin/develop
      * @param name
      * @param address
@@ -91,6 +115,7 @@ public interface IUserService {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get customer by id
+     *
      * @param id
      */
     Optional<User> findCustomerById(Integer id);
@@ -99,9 +124,28 @@ public interface IUserService {
      * Created by: LongPT
      * Date created: 27/2/2023
      * Function: get customer by id
+     *
      * @param pageable
      */
      
     Page<User> findAllCustomerNoParam(Pageable pageable);
 
+<<<<<<< HEAD
+=======
+
+    /**
+     * Created by: HuyNL
+     * Date created: 27/2/2023
+     * Function: get customer by id
+     *
+     * @param ageSearch
+     * @param genderSearch
+     * @param pageable
+     */
+    Page<User> findAll(String genderSearch, String ageSearch, Pageable pageable);
+
+    List<BillHistoryDTO> getUserHasBuy();
+
+    User userLogin(String username);
+>>>>>>> origin/develop
 }

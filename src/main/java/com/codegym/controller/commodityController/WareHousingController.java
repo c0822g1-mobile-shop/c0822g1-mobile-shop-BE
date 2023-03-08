@@ -7,7 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+<<<<<<< HEAD
     @RequestMapping("/api/wareHousing")
+=======
+@RequestMapping("/api/wareHousing")
+>>>>>>> origin/develop
 @CrossOrigin("*")
 public class WareHousingController {
 
@@ -25,11 +29,25 @@ public class WareHousingController {
     @Autowired
     private IWareHousingService wareHousingService;
 
+<<<<<<< HEAD
 
 
    @PutMapping("{id}&{quantityNew}")
     private ResponseEntity<?> wareHousing(@PathVariable("id") Integer id, @PathVariable( "quantityNew") Integer quantityNew){
        wareHousingService.wareHousing(quantityNew, id);
+=======
+   @PutMapping("{id}&{quantityNew}")
+    private ResponseEntity<?> wareHousing(@PathVariable("id") Integer id, @PathVariable( "quantityNew") Integer quantityNew) {
+       wareHousingService.wareHousing(quantityNew, id);
+       return  new ResponseEntity<>(HttpStatus.OK);
+   }
+   @PutMapping("/ware-housing")
+    private ResponseEntity<?> wareHousing(@RequestBody Commodity commodity, @RequestParam(value = "quantityNew") Integer quantityNew){
+       if (commodity==null && quantityNew == null){
+           return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+       }
+       wareHousingService.wareHousing(quantityNew, commodity.getId());
+>>>>>>> origin/develop
         return  new ResponseEntity<>(HttpStatus.OK);
     }
 
