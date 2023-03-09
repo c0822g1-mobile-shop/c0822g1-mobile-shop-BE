@@ -17,6 +17,8 @@ public class SignUpForm {
     private String email;
     @NotBlank(message = "Vui lòng nhập mật khẩu")
     private String password;
+    @NotBlank(message = "Vui lòng nhập mật khẩu xác nhận")
+    private String confirmPassword;
     private Set<String> roles;
 
     public SignUpForm() {
@@ -38,7 +40,20 @@ public class SignUpForm {
                errors.rejectValue("email", "email", "Email " + signInForm.getEmail() + " đã được sử dụng");
            }
        }
+       if (!Objects.equals(signInForm.getPassword(), signInForm.getConfirmPassword())) {
+           errors.rejectValue("confirmPassword", "confirmPassword", "Mật khẩu xác nhận không trùng khớp ");
+
+       }
    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
     public String getName() {
         return name;
     }
