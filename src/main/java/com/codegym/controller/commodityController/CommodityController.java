@@ -11,11 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 
 @CrossOrigin("*")
@@ -49,7 +48,6 @@ public class CommodityController {
     }
 
 
-
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -81,15 +79,13 @@ public class CommodityController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Commodity> delete(@PathVariable("id") Integer id) {
-        Commodity commodity = commodityService.findById(id).orElse(null);
+        Commodity commodity = commodityService.findCommodity(id);
         if (commodity == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         commodityService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 
     /**
      * Created by: CongBD,
@@ -117,8 +113,6 @@ public class CommodityController {
     }
 
     /**
-     * =======
-     * >>>>>>> origin/develop
      * Created by: DanhHD
      * Date Created: 27/02/2023
      * Function: create commodity
@@ -130,8 +124,15 @@ public class CommodityController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult bindingResult) {
+        Map<String, String> check = commodityService.checkCreate(commodityDto);
+        if (check.get("errorName") != null) {
+            bindingResult.rejectValue("name", "name", check.get("errorName"));
+        }
+        if (check.get("errorCode") != null) {
+            bindingResult.rejectValue("codeQr", "codeQr", check.get("errorCode"));
+        }
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
         }
         Commodity commodity = new Commodity();
         BeanUtils.copyProperties(commodityDto, commodity);
@@ -169,22 +170,26 @@ public class CommodityController {
     @PutMapping("/edit/{id}")
     public ResponseEntity<?> editCommodity(@RequestBody @Validated CommodityDto commodityDto, BindingResult bindingResult, @PathVariable("id") Integer id) {
         Commodity commodity = commodityService.findCommodity(id);
+        Map<String, String> check = commodityService.checkUpdate(commodityDto);
+        if (check.get("errorName") != null) {
+            bindingResult.rejectValue("name", "name", check.get("errorName"));
+        }
+        if (check.get("errorCode") != null) {
+            bindingResult.rejectValue("code", "code", check.get("errorCode"));
+        }
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
         }
         if (commodity == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        BeanUtils.copyProperties(commodityDto,commodity);
+        BeanUtils.copyProperties(commodityDto, commodity);
         commodityService.editCommodity(commodity);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
-
     @GetMapping("/getList")
     public ResponseEntity<List<Commodity>> getList() {
-
         return new ResponseEntity<>(commodityService.getList(), HttpStatus.OK);
     }
 }

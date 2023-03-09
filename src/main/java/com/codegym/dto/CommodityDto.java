@@ -11,15 +11,15 @@ import javax.validation.constraints.Pattern;
 public class CommodityDto {
     private Integer id;
     @NotBlank(message = "Không được để trống")
-    @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$", message = "Tên hàng không được nhập ký tự đặc biệt")
-    @Length(min = 5, max = 200, message = "Tên hàng không được nhập ít hơn 5 chữ và dài quá 200 chữ")
+    @Pattern(regexp = "^[a-zA-Z0-9\\+ ]*$", message = "Không đúng định dạng")
+    @Length(min = 5, max = 30, message = "Tên hàng không được nhập ít hơn 5 chữ và dài quá 200 chữ")
     private String name;
-    @Pattern(regexp = "^[-a-zA-Z0-9\\+ ]*$", message = "CPU không được nhập ký tự đặc biệt")
+    @Pattern(regexp = "^[-a-zA-Z0-9\\+ ]*$", message = "Không đúng định dạng")
     @NotBlank(message = "Không được để trống")
-    @Length(min = 5, max = 50, message = "CPU không được nhập ít hơn 5 chữ và dài quá 200 chữ")
+    @Length(min = 5, max = 30, message = "CPU không được nhập ít hơn 5 chữ và dài quá 15 chữ")
     private String cpu;
-    @Length(min = 5, max = 20, message = "Lưu trữ không được nhập ít hơn 5 chữ và dài quá 20 chữ")
-    @Pattern(regexp = "^[0-9]* [G][B]$", message = "Lưu trữ không được nhập ký tự đặc biệt")
+    @Length(min = 2, max = 3, message = "Lưu trữ không được nhập ít hơn 2 chữ và dài quá 3 chữ")
+    @Pattern(regexp = "^[0-9]+$", message = "Không đúng định dạng")
     @NotBlank(message = "Không được để trống")
     private String capacity;
     @Min(value = 0, message = "Giá không được nhập nhỏ hơn 0")
@@ -29,43 +29,37 @@ public class CommodityDto {
     @NotBlank(message = "Không được để trống")
     private String image;
     @NotBlank(message = "Không được để trống")
-    @Length(min = 2, max = 50, message = "Camera không được nhập ít hơn 5 chữ và dài quá 50 chữ")
-    @Pattern(regexp = "^[0-9]* [M][P]$", message = "Camera không được nhập ký tự đặc biệt")
+    @Length( max = 3, message = "Camera không được nhập ít hơn 2 chữ và dài quá 3 chữ")
+    @Pattern(regexp = "^[0-9]+$", message = "Không đúng định dạng")
     private String camera;
-    @Length(min = 2, max = 50)
-    @Pattern(regexp = "^[0-9]* [M][P]$", message = "Selfie không được nhập ký tự đặc biệt")
+    @Length( max = 3)
+    @Pattern(regexp = "^[0-9]+$", message = "Không đúng định dạng")
     @NotBlank(message = "Không được để trống")
     private String selfie;
-    @Length(min = 5, max = 20)
-    @Pattern(regexp = "^[0-9.]* [a-z]*$", message = "Kích thước màn hình không được nhập ký tự đặc biệt")
+    @Length(max = 3)
+    @Pattern(regexp = "^[0-9]+[.]?[0-9]?$", message = "Không đúng định dạng")
     @NotBlank(message = "Không được để trống")
     private String screenSize;
     @NotBlank(message = "Không được để trống")
     @Length(min = 1, max = 2)
-    @Pattern(regexp = "^[0-9]*$", message = "Thời gian bảo hành không được nhập ký tự đặc biệt")
+    @Pattern(regexp = "^[0-9]+$", message = "Không đúng định dạng")
     private String guarantee;
     @NotBlank(message = "Không được để trống")
-    @Length(min = 1, max = 20)
-    @Pattern(regexp = "^[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđA-Z ]*$", message = "Xuất xứ không được nhập ký tự đặc biệt và số")
+    @Length(max = 10)
+    @Pattern(regexp = "^[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđA-Z ]*$", message = "Không đúng địng dạng")
     private String origin;
     private String description;
-    @NotBlank(message = "Không được để trống")
-    @Pattern(regexp = "^[Q][R][0-9]*$", message = "Mã QR không được nhập ký tự đặc biệt")
     private String codeQr;
     private int quantity;
-
-
     private Boolean flagDelete = false;
     private Integer interestRate = 10;
-
     private Trademark trademark;
 
     public CommodityDto() {
     }
 
 
-    public CommodityDto(Integer id, String name, String cpu, String capacity, Double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, int quantity, Boolean flagDelete, int interestRate, Trademark trademark) {
-
+    public CommodityDto(Integer id, String name, String cpu, String capacity, Double price, String image, String camera, String selfie, String screenSize, String guarantee, String origin, String description, String codeQr, int quantity, Boolean flagDelete, Integer interestRate, Trademark trademark) {
         this.id = id;
         this.name = name;
         this.cpu = cpu;
@@ -84,15 +78,6 @@ public class CommodityDto {
         this.interestRate = interestRate;
         this.trademark = trademark;
     }
-
-    public int getInterestRate() {
-        return interestRate;
-    }
-
-    public void setInterestRate(int interestRate) {
-        this.interestRate = interestRate;
-    }
-
 
     public Integer getId() {
         return id;
@@ -198,15 +183,8 @@ public class CommodityDto {
         this.codeQr = codeQr;
     }
 
-
     public int getQuantity() {
-        return this.quantity;
-
-
-    }
-
-    public void setInterestRate(Integer interestRate) {
-        this.interestRate = interestRate;
+        return quantity;
     }
 
     public void setQuantity(int quantity) {
@@ -219,6 +197,14 @@ public class CommodityDto {
 
     public void setFlagDelete(Boolean flagDelete) {
         this.flagDelete = flagDelete;
+    }
+
+    public Integer getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(Integer interestRate) {
+        this.interestRate = interestRate;
     }
 
     public Trademark getTrademark() {

@@ -1,6 +1,4 @@
 package com.codegym.repository;
-
-
 import com.codegym.model.commodity.Commodity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +22,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      * Function: create commodity
      *
      * @param commodity
-     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
 
     @Modifying
@@ -62,8 +59,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
             ":#{#commodity.codeQr}, " +
             ":#{#commodity.quantity}," +
             ":#{#commodity.flagDelete}," +
-            ":#{#commodity.interestRate}" +
-            ":#{#commodity.quantity}, false )",
+            ":#{#commodity.interestRate})",
             nativeQuery = true)
     void addCommodity(@Param("commodity") Commodity commodity);
 
@@ -73,7 +69,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      * Function: find commodity by id
      *
      * @param id
-     * @return HttpStatus.OK if id is found
      */
 
     @Query(value = "select * from commodity " +
@@ -82,15 +77,15 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
             nativeQuery = true)
     Commodity findCommodity(@Param("id") Integer id);
 
+
+
     /**
      * Created by: DanhHD
      * Date Created: 27/02/2023
      * Function: edit commodity by id
      *
      * @param commodity
-     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-
     @Modifying
     @Transactional
     @Query(value = "update commodity set " +
@@ -121,7 +116,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      *
      * @param pageable
      */
-    @Query(value = "select * from commodity where flag_delete = false ", nativeQuery = true)
+    @Query(value = "select * from commodity where flag_delete = false order by id desc ", nativeQuery = true)
     Page<Commodity> showListCommodity(Pageable pageable);
 
     /**
@@ -153,13 +148,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      */
     @Query(value = "select * from commodity where quantity = :quantity and flag_delete = false ", nativeQuery = true)
     Page<Commodity> searchByQuantity(@Param("quantity") int quantity, Pageable pageable);
-
-    @Query(value = "select * from commodity where flag_delete = false " +
-            "and (commodity.name like concat('%',:search ,'%')" +
-            " or commodity.price = :search " +
-            "or  commodity.quantity = :search)", nativeQuery = true)
-    Page<Commodity> showListCommodity(@Param("search") String name,
-                                      Pageable pageable);
 
 
     /**
@@ -199,6 +187,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
     Page<Commodity> getAllCommodityNoParam(Pageable pageable);
 
 
+
     /**
      * Created by: PhucNT
      * Date created: 27/2/2023
@@ -217,7 +206,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      */
 
     @Query(nativeQuery = true, value = "SELECT c.* , ifnull(sum(ifnull(wh.quantity,0))-ifnull(c.quantity,0),0) as quantity_sold" +
-            " FROM `commodity` c JOIN `ware_housing` wh on c.id = wh.commodity_id GROUP BY c.id " +
+            " FROM `commodity` c left JOIN `ware_housing` wh on c.id = wh.commodity_id GROUP BY c.id having c.flag_delete = false " +
             "ORDER BY quantity_sold")
     Page<Commodity> getCommodityByQuantity(Pageable pageable, @Param("limit") Integer limit);
 

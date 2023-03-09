@@ -1,5 +1,6 @@
 package com.codegym.service.impl;
 
+import com.codegym.dto.CommodityDto;
 import com.codegym.model.commodity.Commodity;
 import com.codegym.repository.ICommodityRepository;
 import com.codegym.service.ICommodityService;
@@ -8,8 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 @Service
 public class CommodityService implements ICommodityService {
@@ -20,13 +22,83 @@ public class CommodityService implements ICommodityService {
     /**
      * Create by : DuongLTH
      * Date create 27/02/2023
-     * @param qrCode
+     * Created by: DanhHD
+     * Date Created: 27/02/2023
+     * Function: create commodity
      *
-     * @param:QRCode
+     * @param commodity
      */
     @Override
-    public Commodity findByQRCode(String qrCode) {
-        return commodityRepository.findByQRCode(qrCode);
+    public void addCommodity(Commodity commodity) {
+        commodityRepository.addCommodity(commodity);
+    }
+
+    /**
+     * Created by: DanhHD
+     * Date Created: 27/02/2023
+     * Function: find commodity by id
+     *
+     * @param id
+     */
+
+    @Override
+    public Commodity findCommodity(Integer id) {
+        return commodityRepository.findCommodity(id);
+    }
+
+    @Override
+    public List<Commodity> getList() {
+        return commodityRepository.getList();
+    }
+
+    @Override
+    public Commodity findByQRCode(String QRCode) {
+        return commodityRepository.findByQRCode(QRCode);
+    }
+
+    @Override
+    public Map<String, String> checkCreate(CommodityDto commodityDto) {
+        Map<String, String> check = new HashMap<>();
+        for (int i = 0; i < commodityRepository.getList().size(); i++) {
+            if (commodityRepository.getList().get(i).getName().equals(commodityDto.getName())) {
+                check.put("errorName", "Tên hàng đã tồn tại");
+            }
+            if (commodityRepository.getList().get(i).getCodeQr().equals(commodityDto.getCodeQr())) {
+                check.put("errorCode", "Mã QR đã tồn tại");
+            }
+        }
+        return check;
+    }
+
+    @Override
+    public Map<String, String> checkUpdate(CommodityDto commodityDto) {
+        Map<String, String> check = new HashMap<>();
+        Commodity commodity = findCommodity(commodityDto.getId());
+        for (int i = 0; i < commodityRepository.getList().size(); i++) {
+            if (!commodity.getName().equals(commodityDto.getName()) && commodityRepository.getList().get(i).getName().equals(commodityDto.getName())) {
+                check.put("errorName", "Tên hàng đã tồn tại");
+            }
+            if (!commodity.getCodeQr().equals(commodityDto.getCodeQr()) && commodityRepository.getList().get(i).getCodeQr().equals(commodityDto.getCodeQr())) {
+                check.put("errorCode", "Mã QR đã tồn tại");
+            }
+        }
+        return check;
+    }
+
+
+
+
+    /**
+     * Created by: CongBD,
+     * Date Created: 27/02/2023
+     * function: show commodity list
+     *
+     * @param pageable
+     * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
+     */
+    @Override
+    public Page<Commodity> findAll(Pageable pageable) {
+        return commodityRepository.showListCommodity(pageable);
     }
 
     public Page<Commodity> searchByQuantity(int quantity, Pageable pageable) {
@@ -43,31 +115,6 @@ public class CommodityService implements ICommodityService {
         return commodityRepository.searchByName(name, pageable);
     }
 
-
-    @Override
-    public List<Commodity> getList() {
-        return commodityRepository.getList();
-    }
-
-
-    @Autowired
-    private ICommodityRepository iCommodityRepository;
-
-
-    /**
-     * Created by: CongBD,
-     * Date Created: 27/02/2023
-     * function: show commodity list
-     *
-     * @param pageable
-     * @Return HttpStatus.NO_CONTENT if result is error or HttpStatus.OK if result is not error
-     */
-    @Override
-    public Page<Commodity> findAll(Pageable pageable) {
-        return commodityRepository.showListCommodity(pageable);
-    }
-
-
     /**
      * Created by: CongBD,
      * Date Created: 27/02/2023
@@ -79,11 +126,6 @@ public class CommodityService implements ICommodityService {
     @Override
     public void delete(Integer id) {
         commodityRepository.deleteCommodity(id);
-    }
-
-    @Override
-    public Optional<Commodity> findById(int id) {
-        return commodityRepository.findById(id);
     }
 
 
@@ -103,41 +145,10 @@ public class CommodityService implements ICommodityService {
         return commodityRepository.getCommodityByQuantity(pageable, 20);
     }
 
-//    @Override
-//    public Page<Commodity> searchCommodity(String name, Pageable pageable) {
-//        return commodityRepository.searchCommodity(name, pageable);
-//    }
-
     /**
      * Created by: DanhHD
      * Date Created: 27/02/2023
-     * Function: create commodity
-     * @param: commodity
-     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
-     */
-
-    @Override
-    public void addCommodity(Commodity commodity) {
-        commodityRepository.addCommodity(commodity);
-    }
-
-    /**
-     * Created by: DanhHD
-     * Date Created: 27/02/2023
-     * Function: find commodity by id
-     *
-     * @param id
-     * @return HttpStatus.OK if id is found
-     */
-    @Override
-    public Commodity findCommodity(Integer id) {
-        return commodityRepository.findCommodity(id);
-    }
-
-    /**
-     * Created by: DanhHD
-     * Date Created: 27/02/2023
-     * Function: edit commodity by id
+     * Function: edit commodity by iduser
      *
      * @param commodity
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
@@ -147,11 +158,5 @@ public class CommodityService implements ICommodityService {
         commodityRepository.editCommodity(commodity);
     }
 
-    /**
-     * Created by: PhucNT
-     * Date Created: 5/3/2023
-     * @param name
-     * @param offset
-     * @return 5 record commodity
-     */
 }
+
