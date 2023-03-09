@@ -7,7 +7,6 @@ public interface IBillHistory {
     String getEmail();
     String getPhoneNumber();
     String getNumberOfPurchases();
-
     String getBuyDate();
     String getProduct();
     String getTotal();

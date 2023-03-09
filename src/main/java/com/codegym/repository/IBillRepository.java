@@ -43,6 +43,8 @@ public interface IBillRepository extends JpaRepository<Bill, Integer> {
     @Query(value = " insert into bill_history (bill_id, bill_history_commodity_id) value (:bill_id, :bill_history_commodity_id) ",nativeQuery = true)
     void insertBillHistory(@Param("bill") int billId, @Param("bill_history") int billHistoryCommodityId);
 
+   @Query(value = "insert into bill(buy_date,detail,payment_method,quantity,user_id) values (:buy_date,:detail,:payment_method,:quantity,:user_id)",nativeQuery = true)
+    void insertToBill(@Param("buy_date") String buyDate,@Param("payment_method") String payment_method,@Param("quantity") int quantity,@Param("user_id") int id);
 
 
 }

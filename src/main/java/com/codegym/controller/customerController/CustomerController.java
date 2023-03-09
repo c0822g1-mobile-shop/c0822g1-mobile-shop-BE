@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/customer")
@@ -79,5 +81,10 @@ public class CustomerController {
                                               @PageableDefault(size = 5) Pageable pageable) {
         Page<User> userPage = userService.findAll(genderSearch, ageSearch, pageable);
         return new ResponseEntity<>(userPage, HttpStatus.OK);
+    }
+
+    @GetMapping("/getList")
+    public ResponseEntity<List<User>> getAllCustomer() {
+        return new ResponseEntity<>(userService.findAllCustomer(), HttpStatus.OK);
     }
 }

@@ -1,25 +1,31 @@
-package com.codegym.model.bill;
+package com.codegym.dto;
 
 import com.codegym.model.user.User;
 
-import javax.persistence.*;
+import javax.persistence.ManyToOne;
 
-
-@Entity
-public class Bill {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BillBuyDTO {
     private Integer id;
     private String buyDate;
     private String detail;
     private int quantity;
     private String paymentMethod;
-    //    private Boolean billPrint;
     private Boolean billPrint;
-    @ManyToOne
-    private User user;
+    private Integer userId;
+    private Integer commodityId;
 
-    public Bill() {
+    public BillBuyDTO() {
+    }
+
+    public BillBuyDTO(Integer id, String buyDate, String detail, int quantity, String paymentMethod, Boolean billPrint, Integer userId, Integer commodityId) {
+        this.id = id;
+        this.buyDate = buyDate;
+        this.detail = detail;
+        this.quantity = quantity;
+        this.paymentMethod = paymentMethod;
+        this.billPrint = billPrint;
+        this.userId = userId;
+        this.commodityId = commodityId;
     }
 
     public Integer getId() {
@@ -70,13 +76,19 @@ public class Bill {
         this.billPrint = billPrint;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
+    public Integer getCommodityId() {
+        return commodityId;
+    }
 
+    public void setCommodityId(Integer commodityId) {
+        this.commodityId = commodityId;
+    }
 }
