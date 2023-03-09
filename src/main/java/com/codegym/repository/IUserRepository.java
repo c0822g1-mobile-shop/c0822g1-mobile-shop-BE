@@ -144,8 +144,8 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      *
      * @param id
      */
-    @Query(value = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.id = :id",
-            countQuery = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.id = 1 and user.id = :id"
+    @Query(value = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.name = 'ROLE_CUSTOMER' and user.id = :id",
+            countQuery = "select * from user join user_roles on user.id = user_roles.user_id join role on role.id = user_roles.roles_id where role.name = 'ROLE_CUSTOMER' and user.id = :id"
             , nativeQuery = true)
     Optional<User> findCustomerById(@Param("id") Integer id);
 

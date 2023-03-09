@@ -32,7 +32,7 @@ public class CommodityDto {
     @Length(min = 2, max = 3, message = "Camera không được nhập ít hơn 2 chữ và dài quá 3 chữ")
     @Pattern(regexp = "^[0-9]+$", message = "Không đúng định dạng")
     private String camera;
-    @Length(min = 2, max = 3)
+    @Length( max = 3)
     @Pattern(regexp = "^[0-9]+$", message = "Không đúng định dạng")
     @NotBlank(message = "Không được để trống")
     private String selfie;
@@ -49,9 +49,7 @@ public class CommodityDto {
     @Pattern(regexp = "^[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđA-Z ]*$", message = "Không đúng địng dạng")
     private String origin;
     private String description;
-    @NotBlank(message = "Không được để trống")
-    @Pattern(regexp = "^[Q][R][0-9]+$", message = "Không đúng định dạng")
-    private String codeQrcfhd;
+    private String codeQr;
     private int quantity;
     private Boolean flagDelete = false;
     private Integer interestRate = 10;
