@@ -20,7 +20,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      *
      * @param commodity
      */
-
     @Modifying
     @Transactional
     @Query(value = "insert into commodity" +
@@ -67,14 +66,11 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      *
      * @param id
      */
-
     @Query(value = "select * from commodity " +
             "where id =:id " +
             "and flag_delete = false",
             nativeQuery = true)
     Commodity findCommodity(@Param("id") Integer id);
-
-
 
     /**
      * Created by: DanhHD
@@ -104,7 +100,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
             "and flag_delete = false ",
             nativeQuery = true)
     void editCommodity(@Param("commodity") Commodity commodity);
-
 
     /**
      * Created by: CongBD,
@@ -177,7 +172,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      *
      * @param: pageable
      */
-
     @Query(value = "select * from commodity", nativeQuery = true)
     Page<Commodity> getAllCommodityNoParam(Pageable pageable);
 
@@ -197,7 +191,6 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      * Date created: 27/2/2023
      * Function: get commodity list bt quantity sold
      */
-
     @Query(nativeQuery = true, value = "SELECT c.* , ifnull(sum(ifnull(wh.quantity,0))-ifnull(c.quantity,0),0) as quantity_sold" +
             " FROM `commodity` c left JOIN `ware_housing` wh on c.id = wh.commodity_id GROUP BY c.id having c.flag_delete = false " +
             "ORDER BY quantity_sold")
