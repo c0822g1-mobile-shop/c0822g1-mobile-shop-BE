@@ -19,10 +19,10 @@ public class SupplierDto implements Validator {
     @NotBlank(message = "Không được để trống.")
     private String address;
     @NotBlank(message = "Không được để trống.")
-    @Pattern(regexp = "^(0|\\+84)\\d{9}$", message = "Số điện thoại không đúng định dạng.")
+    @Pattern(regexp = "^(0|\\+84)\\d{9}$", message = "Số điện thoại không đúng định dạng (Ví dụ: +84937110xxx / 0937110xxx).")
     private String phoneNumber;
     @NotBlank(message = "Không được để trống.")
-    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$", message = "Email không đúng định dạng.")
+    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Email không đúng định dạng (Ví dụ: supplier-email@email.com).")
     private String email;
     private boolean flagDelete;
 
