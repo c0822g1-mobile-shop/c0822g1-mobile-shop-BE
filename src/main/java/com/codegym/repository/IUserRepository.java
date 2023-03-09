@@ -47,7 +47,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param:username,password
      **/
     @Modifying
-@Query(value = "update user set password = :password where username = :username",nativeQuery = true)
+    @Query(value = "update user set password = :password where username = :username",nativeQuery = true)
     void changePassword(@Param("password") String password,@Param("username") String username);
 
     /**
@@ -82,6 +82,9 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     @Query(value = "insert into user_roles (user_id,roles_id) values (:user,:role)", nativeQuery = true)
     void insertRole(@Param("user") int userID, @Param("role") int roleID);
 
+    @Query(value = "select * from user where username = :username",nativeQuery = true)
+    User userLogin(@Param("username") String username);
+
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
@@ -113,7 +116,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             " from `user` " +
             "         join `user_roles` on `user`.id = `user_roles`.user_id " +
             "         join `role` on `role`.id = `user_roles`.roles_id " +
-            "where role.id = 1 " +
+            "where role.name = 'ROLE_CUSTOMER' " +
             "  and user.name like concat('%', :name, '%') " +
             "  and user.address like concat('%', :address, '%')"
             , nativeQuery = true)
@@ -130,7 +133,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             " from `user` " +
             "         join `user_roles` on `user`.id = `user_roles`.user_id " +
             "         join `role` on `role`.id = `user_roles`.roles_id " +
-            "where role.id = 1"
+            "where role.name = 'ROLE_CUSTOMER' "
             , nativeQuery = true)
     Page<User> findAllCustomerNoParam(Pageable pageable);
 
@@ -152,10 +155,10 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Function: get customer list & search
      */
 
-    @Query(value = "select * from `user` where gender like %:genderSearch% and age like %:ageSearch%", countQuery = "select * from `user` where gender like %:genderSearch% and age like %:ageSearch%", nativeQuery = true)
+    @Query(value = "select u.* from `user` u join `user_roles` ur on u.id = ur.user_id join `role` r on ur.roles_id = r.id  where r.name = 'ROLE_CUSTOMER' and u.gender like %:genderSearch% and u.age like %:ageSearch%", countQuery = "select * from `user` where gender like %:genderSearch% and age like %:ageSearch%", nativeQuery = true)
     Page<User> findAll(@Param("genderSearch") String genderSearch, @Param("ageSearch") String age, Pageable pageable);
 
-    @Query(value = "select * from `user` where gender = :genderSearch and age like %:ageSearch%", countQuery = "select * from `user` where gender like %:genderSearch% and age like %:ageSearch%", nativeQuery = true)
+    @Query(value = "select u.* from `user` u join `user_roles` ur on u.id = ur.user_id join `role` r on ur.roles_id = r.id  where r.name = 'ROLE_CUSTOMER' and u.gender = :genderSearch and u.age like %:ageSearch% ", countQuery = "select * from `user` where gender like %:genderSearch% and age like %:ageSearch%", nativeQuery = true)
     Page<User> findAllByGender(@Param("genderSearch") boolean genderSearch, @Param("ageSearch") String age, Pageable pageable);
 
     @Query(value = "select count(u.id) from `user` u join `bill` b on u.id = b.user_id " +
@@ -166,4 +169,3 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     List<User> getUserHasBuy();
 
 }
-

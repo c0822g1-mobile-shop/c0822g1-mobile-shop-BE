@@ -19,12 +19,10 @@ import java.util.Optional;
 public class UserService implements IUserService {
     @Autowired
     private IUserRepository iUserRepository;
-
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
      * Function: find user by username
-     *
      * @param:username
      **/
     @Override
@@ -36,7 +34,6 @@ public class UserService implements IUserService {
      * Created by: CuongVV
      * Date created: 28/2/2023
      * Function: update user table to change info user
-     *
      * @param:UpdateUserForm
      **/
     @Override
@@ -51,17 +48,15 @@ public class UserService implements IUserService {
                 updateUserForm.getAvatar(),
                 updateUserForm.getUsername());
     }
-
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
      * Function: change password
-     *
      * @param:password,username
      **/
     @Override
     public void changePassword(String password, String username) {
-        iUserRepository.changePassword(password, username);
+        iUserRepository.changePassword(password,username);
     }
 
 
@@ -69,24 +64,21 @@ public class UserService implements IUserService {
      * Created by: CuongVV
      * Date created: 28/2/2023
      * Function: insert into user to register account
-     *
      * @param:name,username,password,email
      **/
     @Override
     public void save(User user) {
-        iUserRepository.save(user.getName(), user.getUsername(), user.getEmail(), user.getPassword());
+        iUserRepository.save(user.getName(),user.getUsername(), user.getEmail(), user.getPassword());
         User user1 = iUserRepository.findByUsername(user.getUsername()).orElse(null);
-        for (Role x : user.getRoles()) {
+        for (Role x: user.getRoles()) {
             assert user1 != null;
             iUserRepository.insertRole(user1.getId(), x.getId());
         }
     }
-
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
      * Function: check exists user by username
-     *
      * @param:username
      **/
 
@@ -104,7 +96,6 @@ public class UserService implements IUserService {
      * Created by: CuongVV
      * Date created: 28/2/2023
      * Function: check exists user by email
-     *
      * @param:email
      **/
 
@@ -122,7 +113,6 @@ public class UserService implements IUserService {
      * Created by: CuongVV
      * Date created: 28/2/2023
      * Function: get all user
-     *
      * @param:none
      **/
 
@@ -136,7 +126,6 @@ public class UserService implements IUserService {
      * Created by: CuongVV
      * Date created: 28/2/2023
      * Function: get all user customer
-     *
      * @param:email
      **/
 
@@ -145,12 +134,10 @@ public class UserService implements IUserService {
     public List<User> findAllCustomer() {
         return iUserRepository.findAllCustomer();
     }
-
     /**
      * Created by: CuongVV
      * Date created: 28/2/2023
      * Function: get all user employee
-     *
      * @param:email
      **/
 
@@ -164,7 +151,6 @@ public class UserService implements IUserService {
      * Created by: CuongVV
      * Date created: 28/2/2023
      * Function: get all user admin
-     *
      * @param:none
      **/
     @Override
@@ -231,4 +217,10 @@ public class UserService implements IUserService {
         }
         return list;
     }
+
+    @Override
+    public User userLogin(String username) {
+        return iUserRepository.userLogin(username);
+    }
 }
+

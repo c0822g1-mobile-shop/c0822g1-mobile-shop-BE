@@ -55,7 +55,7 @@ public class AuthController {
     public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm,BindingResult bindingResult) {
         new SignUpForm().validate(iUserService.findAll(),signUpForm,bindingResult);
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.BAD_REQUEST); 
+            return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.BAD_REQUEST);
         }
         if (iUserService.existsByUsername(signUpForm.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("Tên đăng " + signUpForm.getUsername() + " nhập đã được sử dụng, vui lòng chọn tên khác"), HttpStatus.BAD_REQUEST);
@@ -127,9 +127,9 @@ public class AuthController {
         if (!passwordEncoder.matches(changePasswordForm.getPassword(), user.getPassword())) {
             bindingResult.rejectValue("password","password","Bạn đã nhập sai mật khẩu cũ");
         }
-         if (bindingResult.hasErrors()) {
-             return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.BAD_REQUEST);
-         }
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.BAD_REQUEST);
+        }
         if (passwordEncoder.matches(changePasswordForm.getPassword(), user.getPassword())) {
             user.setPassword(passwordEncoder.encode(changePasswordForm.getNewPassword()));
             iUserService.changePassword(user.getPassword(),user.getUsername());
@@ -162,10 +162,10 @@ public class AuthController {
      */
     @PostMapping("/update")
     public ResponseEntity<?> updateUser(@Valid @RequestBody UpdateUserForm updateUserForm,BindingResult bindingResult) {
-       new UpdateUserForm().validate(iUserService.findAll(),updateUserForm,bindingResult);
+        new UpdateUserForm().validate(iUserService.findAll(),updateUserForm,bindingResult);
         if (bindingResult.hasErrors()) {
-           return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.NOT_ACCEPTABLE);
-       }
+            return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.NOT_ACCEPTABLE);
+        }
         iUserService.updateUser(updateUserForm);
         return new ResponseEntity<>(new ResponseMessage("Chỉnh sửa thông tin thành công"),HttpStatus.ACCEPTED);
     }
@@ -179,4 +179,10 @@ public class AuthController {
     public ResponseEntity<?> getAll() {
         return new ResponseEntity<>(iUserService.findAll(),HttpStatus.OK);
     }
+
+    @GetMapping("/profile/{username}")
+    public ResponseEntity<?> profile(@PathVariable("username") String username) {
+        return new ResponseEntity<>(iUserService.userLogin(username),HttpStatus.ACCEPTED);
+    }
 }
+
