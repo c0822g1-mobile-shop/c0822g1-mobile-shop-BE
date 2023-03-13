@@ -30,7 +30,6 @@ public class CustomerController {
      * @return HttpStatus.NOT_FOUND if result is error. HttpStatus.OK if result is not error.
      */
     @GetMapping("")
-
     public ResponseEntity<Page<User>> getAllCustomer(
             @PageableDefault(size = 5) Pageable pageable,
             @RequestParam(required = false, defaultValue = "") String name, @RequestParam(required = false, defaultValue = "") String address) {

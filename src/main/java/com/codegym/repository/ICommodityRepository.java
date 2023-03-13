@@ -197,7 +197,7 @@ public interface ICommodityRepository extends JpaRepository<Commodity,Integer> {
      * @param:name
      * @param:pageable
      **/
-    @Query(value = "select * from commodity where commodity.name like concat('%', :name, '%')", nativeQuery = true)
+    @Query(value = "select * from commodity where commodity.name like concat('%', :name, '%') and flag_delete = false ", nativeQuery = true)
     Page<Commodity> getAllCommodity(Pageable pageable, @Param("name") String name);
 
     /**

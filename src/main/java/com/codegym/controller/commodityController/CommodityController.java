@@ -49,24 +49,6 @@ public class CommodityController {
         }
         return new ResponseEntity<>(commodityPage, HttpStatus.OK);
     }
-    /**
-     * Created by: LongPT
-     * Date created: 27/2/2023
-     * Function: get commodity by id
-     *
-     * @param id
-     * @return HttpStatus.NOT_FOUND if result is error, id null or id not in database. HttpStatus.OK if result is not error.
-     */
-    @GetMapping("{id}")
-    public ResponseEntity<Optional<Commodity>> getCommodityById(@PathVariable("id") Integer id) {
-        Optional<Commodity> commodity;
-        if (id == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            commodity = commodityService.findCommodityById(id);
-            return new ResponseEntity<>(commodity, HttpStatus.OK);
-        }
-    }
 
 
     /**
@@ -170,7 +152,7 @@ public class CommodityController {
      * @return HttpStatus.BAD_REQUEST if id is not found or HttpStatus.OK if id is found
      */
 
-    @GetMapping("/search/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Commodity> findById(@PathVariable("id") Integer id) {
         Commodity commodity = commodityService.findCommodity(id);
         if (commodity == null) {

@@ -24,10 +24,6 @@ public class CommodityService implements ICommodityService {
 
 
 
-    @Override
-    public Optional<Commodity> findById(int id) {
-        return commodityRepository.findById(id);
-    }
 
     public List<Commodity> getList() {
         return commodityRepository.getList();
@@ -119,11 +115,6 @@ public class CommodityService implements ICommodityService {
     @Override
     public Page<Commodity> getAllCommodityNoParam(Pageable pageable) {
         return commodityRepository.getAllCommodityNoParam(pageable);
-    }
-
-    @Override
-    public Optional<Commodity> findCommodityById(Integer id) {
-        return Optional.empty();
     }
 
 

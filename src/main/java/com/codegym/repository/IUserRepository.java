@@ -116,7 +116,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             " from `user` " +
             "         join `user_roles` on `user`.id = `user_roles`.user_id " +
             "         join `role` on `role`.id = `user_roles`.roles_id " +
-            "where role.id = 1 " +
             "where role.name = 'ROLE_CUSTOMER' " +
             "  and user.name like concat('%', :name, '%') " +
             "  and user.address like concat('%', :address, '%')"
